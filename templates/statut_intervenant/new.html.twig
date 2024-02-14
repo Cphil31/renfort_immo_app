@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New StatutIntervenant{% endblock %}
+
+{% block body %}
+    <h1>Create new StatutIntervenant</h1>
+
+    {{ include('statut_intervenant/_form.html.twig') }}
+
+    <a href="{{ path('app_statut_intervenant_index') }}">back to list</a>
+{% endblock %}

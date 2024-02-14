@@ -1,0 +1,34 @@
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#newAccompteModal">
+  Ajouter Accompte
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="newAccompteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Ajouter Accompte</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        
+        {{ form_start(formAccompte) }}
+            {{ form_label(formAccompte.date, 'Date') }}
+            {{ form_widget(formAccompte.date, {'attr': {'class': 'form-control'}}) }}
+            {{ form_label(formAccompte.prix, 'Prix') }}
+            {{ form_widget(formAccompte.prix, {'attr': {'class': 'form-control'}}) }}
+            {{ form_label(formAccompte.payer, '') }}
+            {{ form_widget(formAccompte.payer, {'attr': {'class': 'form-check-input'}}) }}
+        
+
+        
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">fermer</button>
+            <button type="button submit" class="btn btn-primary btn-sm">Ajouter</button>
+          </div>
+        {{ form_end(formAccompte) }}
+    </div>
+  </div>
+</div>

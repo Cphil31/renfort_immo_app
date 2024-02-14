@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Taches a faire{% endblock %}
+
+{% block body %}
+
+<h1 class="orange text-center">Liste des tâches à faire</h1>
+
+
+<table class="table mt-5">
+    <thead>
+        <tr>
+            <th scope="col" class="orange">#</th>
+            <th scope="col" class="orange">Date</th>
+            <th scope="col" class="orange">Mission</th>
+            <th scope="col" class="orange">Classe</th>
+            <th scope="col" class="orange">Actions</th>
+            <th scope="col" class="orange">ok</th>
+            <th scope="col" class="orange">Observations</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% set nbr = 0 %}
+        {% for t in taches %}
+            {% set nbr = nbr + 1 %}
+            <tr>
+                <th scope="row">{{nbr}}</th>
+                <td>{{t.date | date("d/m/Y") }}</td>
+                <td>{{t.probleme.mission.name | capitalize }}</td>
+                <td>{{t.probleme.classe}}</td>
+                <td>{{t.description | capitalize }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

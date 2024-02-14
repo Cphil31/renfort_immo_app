@@ -1,0 +1,91 @@
+ {% if deplacements %}
+ 
+                {% set nbrDep = 0 %}
+                {% set totalNbr = 0 %}
+                {% set totalCout = 0 %}
+                {% set totalPeage = 0 %}
+                {% set totalCarburant = 0 %}
+                {% set total1Deplacement = 0 %}
+                {% set TotauxDeplacements = 0 %}
+            <table class="table">
+            <thead>
+                <tr>
+                <th scope="col">Déplacements</th>
+                <th scope="col">Lieu</th>
+                <th scope="col">Durée</th>
+                <th scope="col">Coût</th>
+                <th scope="col">Coût Péage</th>
+                <th scope="col">Coût Carburant</th>
+                <th scope="col">Reglement</th>
+                <th scope="col">Total</th>
+                <th scope="col"></th>
+
+
+                </tr>
+            </thead>
+            <tbody>
+                {% for d in deplacements %}
+                    {% set nbrDep = nbrDep + 1 %}
+                    {% set totalCout = totalCout + d.cout %}
+                    {% set totalPeage = totalPeage +  d.coutPeage %}
+                    {% set totalCarburant = totalCarburant + d.coutCarburant %}
+                    {% set total1Deplacement = d.cout + d.coutPeage + d.coutCarburant %}
+                    {% if d.payer == false %}
+                        
+                        {% set TotauxDeplacements = TotauxDeplacements + total1Deplacement %}
+                    {% endif %}
+
+                    <tr>
+                        <th scope="row">{{ d.date|date('d/m/Y')}}</th>
+                        <td>
+                            {{d.lieu | capitalize }}
+                        </td>
+                        <td>
+                            {{d.duree|date('H:i')}}
+                        </td>
+                        <td>
+                            {{d.cout ? d.cout ~ " €" : ""}} 
+                        </td>
+                        <td>
+                            {{d.coutPeage ? d.coutPeage ~ " €" : ""}} 
+                        </td>
+                        <td>
+                            {{d.coutCarburant ? d.coutCarburant ~ " €" : ""}} 
+                        </td>
+                        <td>
+                            {{ d.payer ? "réglé" : "pas réglé"}}
+                            
+                        </td>
+                        <td>
+                            {{total1Deplacement ? total1Deplacement ~ " €" : ""}} 
+                        </td>
+                        <td>
+                            <a href={{ path('app_deplacement_edit' , { "id" : d.id}) }} class="btn btn-success btn-sm">
+                                modifier
+                            </a>
+                        </td>
+
+                    </tr>  
+                {% endfor %}
+                {% if deplacements|length > 1 %}
+                    
+                    <tr>
+                        <th scope="row">Total</th>
+                        <td></td>
+                        <td></td>
+                        <td> </td>
+                        <td> </td>
+                        <td> </td>
+                        <td></td>
+                        <td>{{ totalDeplacment ?  totalDeplacment ~ " €" : 0 ~ " €"}}</td>
+                        <td></td>
+
+                    </tr>    
+                {% endif %}
+                
+            </tbody>
+            </table>
+            
+            
+
+        {% endif %}

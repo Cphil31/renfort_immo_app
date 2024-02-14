@@ -1,0 +1,41 @@
+.flex{
+    display: flex;
+    justify-content: space-between;
+}
+.droite{
+    display: flex;
+    justify-content: flex-end;
+}
+.modifier
+{
+    margin-right: 10px;
+}
+.orange{
+    color: #e8531e;
+}
+.pdfButton{
+    margin-bottom: 20px;
+}
+
+a:link ,a.btn:link {
+    color: white;
+    }
+    /* visited link */
+    a:visited,a.btn:visited {
+    color: white;
+    }
+    
+    /* mouse over link */
+    a:hover , a.btn:hover {
+    color: black;
+    }
+    
+    /* selected link */
+    a:active  , a.btn:active{
+    color: blue;
+    }
+    
+    a.deco{
+    margin-left: 10px;
+    }
+      

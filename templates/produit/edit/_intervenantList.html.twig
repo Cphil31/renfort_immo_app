@@ -1,0 +1,47 @@
+{% if intervenants %}
+<h4> <span class='souligne orange'>Interlocuteurs</span> : </h4>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Interlocuteur</th>
+            <th scope="col">Réalisations</th>
+            <th scope="col">Observations</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% set nbrint = 0 %}
+        {% for i in intervenants %}
+        {% set nbrint = nbrint + 1 %}
+
+        <tr>
+            <th scope="row">{{ nbrint }}</th>
+            <td> {{ i.contact.nom ? i.contact.nom }} {{ i.contact.prenom ? i.contact.prenom}} </td>
+            <td>
+                {{ i.realisations ? i.realisations | capitalize }}
+            </td>
+            <td>
+                {{ i.observation ? i.observation | capitalize }}
+            </td>
+            <td>
+                <a href="#" class="btn btn-success btn-sm">
+                    modifier
+                </a>
+            </td>
+            <td>
+                <form method="post" action="{{ path('app_intervenant_delete', {'id': i.id}) }}"
+                    onsubmit="return confirm('Are you sure you want to delete this item?');">
+                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ i.id) }}">
+                    <button class="btn btn-danger btn-sm">supprimer</button>
+                </form>
+            </td>
+        </tr>
+
+        {% endfor %}
+
+    </tbody>
+</table>
+{% endif %}

@@ -1,0 +1,111 @@
+<style type="text/css">
+    /*
+*/
+    center {
+        text-align: center;
+    }
+
+    .relative {
+        position: relative;
+    }
+
+    img.img {
+        width: 40%;
+    }
+
+    table {
+        font-family: Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 702px;
+        margin-top: 30px;
+        margin-bottom: 20px;
+        page-break-inside: avoid;
+
+    }
+
+    table thead tr th {
+        text-align: center;
+    }
+
+    table td,
+    table th {
+        border: 1px solid #ddd;
+        padding: 8px;
+        font-size: 15px;
+        text-align: right;
+    }
+
+    table td {
+        font-size: 10px;
+
+    }
+
+    table th {
+        font-size: 12px;
+    }
+
+    .border {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: right;
+    }
+</style>
+
+{{ include('mission/edit/notedefrais/pdf/include/_top.html.twig') }}
+
+{# afficher les taches #}
+
+{#  FORFAITS   #}
+{{ include('mission/edit/notedefrais/pdf/include/_forfait.html.twig') }}
+{#  FORFAITS   #}
+
+{#   DEPLACEMENTS     #}
+{{ include('mission/edit/notedefrais/pdf/include/_deplacements.html.twig') }}
+{#   DEPLACEMENTS     #}
+
+{#  HEBERGEMENTS   #}
+{{ include('mission/edit/notedefrais/pdf/include/_hebergements.html.twig') }}
+
+{#  HEBERGEMENTS   #}
+
+{#  INTERVENANTS   #}
+{{ include('mission/edit/notedefrais/pdf/include/_intervenants.html.twig') }}
+
+{#  INTERVENANTS   #}
+
+{#  COMMUNICATIONS   #}
+{{ include('mission/edit/notedefrais/pdf/include/_communications.html.twig') }}
+{#  COMMUNICATIONS   #}
+
+{#  RESTAURATIONS   #}
+{{ include('mission/edit/notedefrais/pdf/include/_restaurations.html.twig') }}
+{#  RESTAURATIONS   #}
+
+{#  REUNIONS   #}
+{{ include('mission/edit/notedefrais/pdf/include/_reunions.html.twig') }}
+{#  REUNIONS   #}
+
+{# DOCUMENTS #}
+{{ include('mission/edit/notedefrais/pdf/include/_documents.html.twig') }}
+{# DOCUMENTS #}
+
+<table class="table relative" style="width: 180 px;margin-left:auto;margin-top : 50px;margin-bottom:10px;">
+
+    <tbody>
+        <tr>
+            <td>Total ht : {{ totalHt }} €</td>
+        </tr>
+        <tr>
+            <td>TVA 20 % : {{ tva}} €</td>
+        </tr>
+        <tr>
+            <td> TTC : {{ttc}} €</td>
+        </tr>
+    </tbody>
+</table>
+{# ACCORD #}
+{{ include('mission/edit/notedefrais/pdf/include/_accord.html.twig') }}
+{# ACCORD #}
+{# FOOTER #}
+{{ include('mission/edit/notedefrais/pdf/include/_footer.html.twig') }}
+{# FOOTER #}

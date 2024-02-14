@@ -1,0 +1,11 @@
+{{ devi.problemes.snapshot ? "<h4> Liste des Problèmes</h4>" : "<h4>Aucun problème</h4>"}}
+<ul>
+    {% for p in devi.problemes.snapshot %}
+    <li>
+        {{ p.statut.statut}} :
+        {{ p.description}}
+        <a href={{ path('app_probleme_show', {'id' : p.id}) }}>détail</a>
+    </li>
+    {% else %}
+    {% endfor %}
+</ul>

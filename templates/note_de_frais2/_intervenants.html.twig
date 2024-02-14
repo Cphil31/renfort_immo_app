@@ -1,0 +1,56 @@
+ {% if data.intervenants %}
+            {% set nbrInter = 0 %}
+            {% set totalIntervention = 0 %}
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Intervenants</th>
+                        <th scope="col">Durée</th>
+                        <th scope="col">Réalisation</th>
+                        <th scope="col">Observation</th>
+                        <th scope="col">Reglement</th>
+                        <th scope="col">Coût</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    {% for i in data.intervenants %}
+                        {% set nbrInter = nbrInter + 1 %}
+                        {% if i.payer  %}
+
+                        {% else %}
+                            {% set totalIntervention = totalIntervention + i.cout %}        
+                        {% endif %}
+
+                        <tr>
+                            <th scope="row">{{ i.date | date('d/m/Y')}}</th>
+                            <td>{{ i.duree | date('H:i')}}</td>
+                            <td> {{ i.realisations }} </td>
+                            <td> {{ i.observation }} </td>
+                            <td>{{ i.payer ? "réglé" : "pas réglé"}}</td>
+                            <td> {{ i.cout ? i.cout ~ " €" : ""}} </td>
+                            <td>
+                                <a href={{ path( 'app_intervenant_edit' , {"id" : i.id} ) }} class="btn btn-success btn-sm">
+                                    modifier
+                                </a>
+                            </td>
+                        </tr>
+                        
+                    {% endfor %}
+
+                        <tr>
+                            <th >Total</th>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td> {{ data.totalIntervenants }} € </td>
+                        </tr>
+                    
+                </tbody>
+            </table>
+            
+            
+
+        {% endif %}

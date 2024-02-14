@@ -1,0 +1,21 @@
+{{ form_start(form) }}
+{{ form_label(form.contact, 'contact') }}
+{{ form_widget(form.contact, {'attr': {'class': 'form-select'}}) }}
+{{ form_label(form.statut, 'statut') }}
+{{ form_widget(form.statut, {'attr': {'class': 'form-select'}}) }}
+{{ form_label(form.duree, 'durée') }}
+{{ form_widget(form.duree, {'attr': {'class': 'form-control'}}) }}
+{{ form_label(form.date, 'date') }}
+{{ form_widget(form.date, {'attr': {'class': 'form-control'} }) }}
+{{ form_label(form.produit, 'produit') }}
+{{ form_widget(form.produit, {'attr': {'class': 'form-select'} }) }}
+{{ form_label(form.tache, 'tache') }}
+{{ form_widget(form.tache, {'attr': {'class': 'form-control'} }) }}
+{{ form_label(form.realisations, 'realisations') }}
+{{ form_widget(form.realisations, {'attr': {'class': 'form-control'} }) }}
+{{ form_label(form.cout, 'coûts') }}
+{{ form_widget(form.cout, {'attr': {'class': 'form-control'} }) }}
+{{ form_label(form.observation, 'observations') }}
+{{ form_widget(form.observation, {'attr': {'class': 'form-control'} }) }}
+<button class="btn btn-primary btn-sm">{{ button_label|default('Ajouter') }}</button>
+{{ form_end(form) }}

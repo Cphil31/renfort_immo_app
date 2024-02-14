@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	{{entreprise.raisonsociale}}
+{% endblock %}
+
+{% block stylesheets %}
+	<link rel="stylesheet" href="{{ asset('assets/css/entreprise/style.css') }}">
+{% endblock %}
+
+{% block body %}
+	<div class="flex">
+		<div class="titre">
+			<h1>{{entreprise.statut.statut}}
+				:
+				{{entreprise.raisonsociale | capitalize}}</h1>
+			<h4>{{entreprise.siret ?  "Siret : " ~ entreprise.siret : ""}}</h4>
+			<h4>{{entreprise.naf ?  "Code naf : " ~ entreprise.naf : ""}}</h4>
+		</div>
+		<div class="edit">
+			<div>
+				{{ include('entreprise/edit/_entrepriseEditModal.html.twig') }}
+			</div>
+			{{ include('entreprise/_delete_form.html.twig') }}
+		</div>
+	</div>
+
+	{{ include('entreprise/edit/_adressesList.html.twig') }}
+	{{ include('entreprise/edit/_newAdresse.html.twig') }}
+	{{ include('entreprise/edit/_telephoneList.html.twig') }}
+	{{ include('entreprise/edit/_newTelephone.html.twig') }}
+	{{ include('entreprise/edit/_professionList.html.twig') }}
+	{{ include('entreprise/edit/_newIntervenant.html.twig') }}
+	<div>
+		{{ include('entreprise/edit/_newNote.html.twig') }}
+	</div>
+	{{ include('entreprise/edit/_noteList.html.twig') }}
+{% endblock %}

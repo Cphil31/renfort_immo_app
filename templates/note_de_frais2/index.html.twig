@@ -1,0 +1,73 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Note de Frais{% endblock %}
+{% block body %}
+
+        <h1>
+            Mission : 
+            <a href={{ path('app_mission_edit',{'id' : data.mission.id})}}>
+                {{ data.mission.name}}
+            </a>
+        <h1>Notes de frais du {{data.month}}/{{data.year}}</h1>
+        </h1>
+        
+     
+
+        
+{# afficher les taches #}
+
+       
+        {#  FORFAITS   #}
+        {{ include('note_de_frais/_forfait.html.twig') }}
+        {#  FORFAITS   #}
+
+       {#   DEPLACEMENTS     #}
+       {{ include('note_de_frais/_deplacements.html.twig') }}
+        {#   DEPLACEMENTS     #}
+
+        {#  HEBERGEMENTS   #}
+        {{ include('note_de_frais/_hebergements.html.twig') }}
+    
+        {#  HEBERGEMENTS   #}
+
+        {#  INTERVENANTS   #}
+        {{ include('note_de_frais/_intervenants.html.twig') }}
+       
+        {#  INTERVENANTS   #}
+
+        {#  RESTAURATIONS   #}
+        {{ include('note_de_frais/_restaurations.html.twig') }}
+
+        {#  RESTAURATIONS   #}
+
+        {#  COMMUNICATIONS   #}
+        {{ include('note_de_frais/_communications.html.twig') }}
+        {#  COMMUNICATIONS   #}
+
+        {#  REUNIONS   #}
+        {{ include('note_de_frais/_reunions.html.twig') }}
+        {#  REUNIONS   #}
+     
+        {# DOCUMENTS #}
+        {{ include('note_de_frais/_documents.html.twig') }}
+        {# DOCUMENTS #}
+        
+            <table class="table relative" style="width: 180 px;margin-left:auto;margin-top : 50px;margin-bottom:10px;">
+            
+                <tbody>
+                    <tr>
+                    <td>Total ht : {{ data.totalHt }} €</td>
+                    </tr>
+                    <tr>
+                    <td>TVA 20 % : {{ data.tva}} €</td>
+                    </tr>
+                    <tr>
+                    <td> TTC :  {{data.ttc}} €</td>
+                    </tr>
+                </tbody>
+            </table>
+
+
+
+{% endblock %}
+

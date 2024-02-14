@@ -1,0 +1,42 @@
+{% if EtatsTab %}
+    <h4> <span class='souligne orange'>Etats des Lieux</span>  : </h4>
+    
+    <table class="table">
+    <thead>
+        <tr>
+        <th scope="col">#</th>
+        <th scope="col">Date</th>
+        <th scope="col">Statut</th>
+        <th scope="col">Observation</th>
+        <th scope="col"></th>
+		<th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% set nbrEtat = 0 %}
+        {% for etat in EtatsTab %}
+            {% set nbrEtat = nbrEtat + 1 %}
+        
+            <tr>
+            <th scope="row">{{ nbrEtat }}</th>
+            <td>{{etat.createdat |date('d/m/Y') }}</td>
+            <td>{{etat.statut.statut ? etat.statut.statut | capitalize  : " " }}</td>
+            <td>{{etat.observation | capitalize }}</td>
+            <td>
+                <a href= {{ path('app_etat_des_lieux_edit', {'id' : etat.id } ) }} class="btn btn-success btn-sm">
+                    modifier
+                </a>
+            </td>
+            <td>
+                <form method="post" action="{{ path('app_etat_des_lieux_delete', {'id': etat.id}) }}" onsubmit="return confirm('Etes vous sur de vouloir supprimer cet état ?');">
+                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ etat.id) }}">
+                    <button class="btn btn-danger btn-sm">supprimer</button>
+                </form>
+            </td>
+            </tr>
+            
+        {% endfor %}
+        
+    </tbody>
+    </table>
+{% endif %}

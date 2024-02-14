@@ -1,0 +1,57 @@
+      {% if data.restaurations %}
+                {% set nbrRest = 0 %}
+                
+
+                <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Restaurations</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Durée</th>
+                        <th scope="col">Etablissement</th>
+                        <th scope="col">Forfait</th>
+                        <th scope="col">repas Personnel</th>
+                        <th scope="col">repas Clients</th>
+                        <th scope="col">Total</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for r in data.restaurations %}
+                    {% set total1Restauration = 0 %}
+                    {% set nbrRest = nbrRest + 1 %}
+                    {% set total1Restauration = total1Restauration + r.forfait + r.coutRepasPersonnel + r.coutRepasClients %}
+                    
+                    <tr>
+                        <th scope="row">{{nbrRest}}</th>
+                        <td>{{ r.date | date('d/m/Y')}}</td>
+                        <td>{{ r.duree | date('H:i')}}</td>
+                        <td>{{ r.etablissement }}</td>
+                        <td>{{ r.forfait ? r.forfait ~ " €" : " "}}</td>
+                        <td>{{ r.coutRepasPersonnel ? r.coutRepasPersonnel ~ " €" : " "}}</td>
+                        <td>{{ r.coutRepasClients ? r.coutRepasClients ~ " €" : " "}}</td>
+                        <td>{{ total1Restauration ? total1Restauration ~ " €" : " "}}</td>
+                        <td>{{ r.payer ? "Réglé" : " Pas réglé"}}</td>
+                        <td>
+                            <a href={{ path('app_restauration_edit' , { 'id' : r.id} ) }} class="btn btn-success btn-sm">
+                                modifier
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                    <tr>
+                        <th scope="row"></th>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>{{ data.totalrestaurations ? data.totalrestaurations ~ " €"}}</td>
+                    </tr>
+                
+                </tbody>
+                </table>
+
+              
+            {% endif %}

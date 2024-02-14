@@ -1,0 +1,9 @@
+{% if devi.mission.contact %}
+<h4>
+    Contact :
+    <a href={{ path("app_contact_edit", {'id' : devi.mission.contact.id } ) }}>
+        {{ devi.mission.contact.nom }}
+        {{ devi.mission.contact.prenom }}
+    </a>
+</h4>
+{% endif %}

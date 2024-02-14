@@ -1,0 +1,50 @@
+{% if mission.problemes.snapshot %}
+        <h4> <span class="orange">Problèmes</span> : </h4>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Statut</th>
+                    <th scope="col">Classe</th>
+                    <th scope="col">Tâches</th> 
+                </tr>
+            </thead>
+            <tbody>
+                {% set nbrProbleme = 0 %}
+
+                {% for prob in mission.problemes.snapshot %}
+                    
+                    {% set nbrProbleme = nbrProbleme + 1  %}
+                    <tr>
+                        <th scope="row"> {{nbrProbleme}}</th>
+                        <td> 
+                            {{ prob.statut ? prob.statut.statut : " " }}
+                        </td>
+                        <td> 
+                            <a href={{ path('app_probleme_edit', {'id' : prob.id })}}>
+                                {{ prob.classe| capitalize}} 
+                            </a>
+                        </td>
+                        <td>
+                            {{ include('mission/edit/_tachesList.html.twig') }}
+                            
+                        </td>
+                        <td> 
+                            <a href= {{ path('app_probleme_edit' , { 'id' : prob.id }) }} class="btn btn-success btn-sm">
+                                modifier
+                            </a>
+                        </td>
+                        <td>
+                            <form method="post" action="{{ path('app_probleme_delete', {'id': prob.id}) }}" onsubmit="return confirm('Etes vous sur de supprimer ce problème ?');">
+                                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ prob.id) }}">
+                                <button class="btn btn-danger btn-sm">Supprimer</button>
+                            </form>
+
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    
+{% endif %}

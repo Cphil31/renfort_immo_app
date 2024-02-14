@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}StatutEtatDesLieux index{% endblock %}
+
+{% block body %}
+    <h1>StatutEtatDesLieux index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Statut</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for statut_etat_des_lieux in statut_etat_des_lieuxes %}
+            <tr>
+                <td>{{ statut_etat_des_lieux.id }}</td>
+                <td>{{ statut_etat_des_lieux.statut }}</td>
+                <td>
+                    <a href="{{ path('app_statut_etat_des_lieux_show', {'id': statut_etat_des_lieux.id}) }}">show</a>
+                    <a href="{{ path('app_statut_etat_des_lieux_edit', {'id': statut_etat_des_lieux.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_statut_etat_des_lieux_new') }}">Create new</a>
+{% endblock %}

@@ -1,0 +1,35 @@
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#newComModal">
+  Ajouter communication
+</button>
+<!-- Modal -->
+<div class="modal fade" id="newComModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Ajouter communication</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        {{ form_start(formNewCom) }}
+        
+        {{ form_label(formNewCom.date, 'Date') }}
+        {{ form_widget(formNewCom.date, {'attr': {'class': 'form-control'}}) }}
+        {{ form_label(formNewCom.statut, 'Statut') }}
+        {{ form_widget(formNewCom.statut, {'attr': {'class': 'form-select'}}) }}
+        {{ form_label(formNewCom.forfait, 'Forfait') }}
+        {{ form_widget(formNewCom.forfait, {'attr': {'class': 'form-control'}}) }}
+        {{ form_label(formNewCom.description, 'Description') }}
+        {{ form_widget(formNewCom.description, {'attr': {'class': 'form-control'}}) }}
+        {{ form_label(formNewCom.payer, 'payer') }}
+        {{ form_widget(formNewCom.payer) }}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">fermer</button>
+        <button type="button submit" class="btn btn-primary btn-sm">Ajouter</button>
+      </div>
+        {{ form_end(formNewCom) }}
+    </div>
+  </div>
+</div>

@@ -1,0 +1,62 @@
+<style>
+	#form_produit{
+		border-left: none;
+	}
+	#dropdownProduit{
+		display: none;
+		border-radius: 0px 0px 20px 20px;
+	}
+	a{
+		color: white;
+		text-decoration:none;
+	}
+	#search-produit{
+		position: relative;
+    	margin-top: -10px;
+		padding-left: 20%;
+	}
+</style>
+
+<div class="card" >
+	<div class="card-body">
+		<h3>Produits</h3>
+		
+		{{ form_start(formProduits) }}
+
+		<div class=" input-group  relative">
+				<span class="input-group-text " id="loupeProduit" >
+					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+						<path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+					</svg>
+				</span>
+				{{ form_widget(formProduits.produit, {'attr': {'class': 'form-control'}}) }}
+			</div>
+
+			<div id="dropdownProduit">
+				
+				<div class="scrolling">
+					<div id="search-produit">
+						<h6 class="text-xl"><i class="fa-solid fa-cubes mr-2 my-auto"></i></h6>
+						{% for p in produits %}
+							<a class="trans" href="{{ path( 'app_produit_edit', { 'id': p.id } ) }}">
+								<div class="flex">	
+									<p class="w-full truncate">{{ p.name }} </p>
+								</div>
+							</a>
+						{% endfor %}
+					</div>
+				</div>
+			</div>
+
+		{{ form_end(formProduits) }}
+
+		<div class="add">
+			{{ include('home/show/_newProduit.html.twig') }}
+		</div>
+
+	</div>
+</div>
+
+<script>
+
+</script>

@@ -1,0 +1,29 @@
+.content{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+    padding: 10px;
+}
+.search{
+    display: flex;
+    justify-content: space-around;
+}
+.card{
+    font-size: 14px ;
+    width: 100%;
+}
+.add{
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+}
+.form{
+    display: flex;
+}
+
+h3{
+    color:#e8531e;
+    text-align: center;
+}
+

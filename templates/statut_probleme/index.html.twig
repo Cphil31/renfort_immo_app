@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}StatutProbleme index{% endblock %}
+
+{% block body %}
+    <h1>StatutProbleme index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Statut</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for statut_probleme in statut_problemes %}
+            <tr>
+                <td>{{ statut_probleme.id }}</td>
+                <td>{{ statut_probleme.statut }}</td>
+                <td>
+                    <a href="{{ path('app_statut_probleme_show', {'id': statut_probleme.id}) }}">show</a>
+                    <a href="{{ path('app_statut_probleme_edit', {'id': statut_probleme.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_statut_probleme_new') }}">Create new</a>
+{% endblock %}

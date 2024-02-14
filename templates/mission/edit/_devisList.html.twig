@@ -1,0 +1,41 @@
+{% if mission.devis.snapshot %}
+    {% set nbrDevis = 0 %}
+    <h4>Devis :</h4>  
+    <table class="table">
+    <thead>
+        <tr>
+        <th scope="col"> </th>
+        <th scope="col">Devis</th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for devis in mission.devis.snapshot %}
+            {% set nbrDevis = nbrDevis + 1 %}
+            <tr>
+                <th >{{ devis.date | date('d/m/Y') }}</th>
+                <td> 
+                    <a href={{ path('app_devis_edit',{'id':devis.id})}}>
+                        {{ devis.name| capitalize }}
+                    </a>
+                </td>
+                <td>
+                    <a href= {{ path('app_devis_edit' , { 'id' : devis.id }) }} class="btn btn-success btn-sm">
+                        modifier
+                    </a>
+                </td>
+                <td>
+                    <form method="post" action="{{ path('app_devis_delete', {'id': devis.id}) }}" onsubmit="return confirm('Etes vous sur de supprimer ce devis ?');">
+                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ devis.id) }}">
+                        <button class="btn btn-danger btn-sm">supprimer</button>
+                    </form>
+                </td>
+                  
+            </tr>
+            
+        {% endfor %}
+    </tbody>
+    </table>
+    
+{% endif %}

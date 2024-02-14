@@ -1,0 +1,42 @@
+{% if entreprise.adresses.snapshot %}
+	<h4>Liste des adresses</h4>
+	<table class="table">
+		<thead>
+			<tr>
+			<th scope="col">#</th>
+			<th scope="col">Rue</th>
+			<th scope="col">Ville</th>
+			<th scope="col">Code postal</th>
+			<th scope="col">Département</th>
+			<th scope="col">Région</th>
+			</tr>
+		</thead>
+		<tbody>
+				{% for a in entreprise.adresses.snapshot %}
+					
+						<tr>
+							<th scope="row">1</th>
+							<td>{{ a.rue }}</td>
+							<td>{{ a.ville ?  a.ville :" "  }}</td>
+							<td>{{ a.codepostal ?  a.codepostal :" "  }}</td>
+							<td>{{ a.departement ? ", " ~ a.departement :" "  }}</td>
+							<td>{{ a.region ?  a.region :" "  }}</td>
+							<td>{{ a.pays ?  a.pays :" "  }}</td>
+							<td>
+								<a href={{path('app_adresse_edit',{'id' : a.id} )}} class="btn btn-success btn-sm">modifier</a>
+							</td>
+							<td>
+								<form method="post" action="{{ path('app_adresse_delete', {'id': a.id}) }}" onsubmit="return confirm('Etes-vous sur de supprimer cette adresse ?  ');">
+								<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ a.id) }}">
+								<button class="btn btn-danger btn-sm">supprimer adresse</button>
+								</form>
+							</td>
+						</tr>
+					{% else %}
+
+				{% endfor %}
+		</tbody>
+	</table>
+	
+
+{% endif %}

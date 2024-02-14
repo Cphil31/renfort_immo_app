@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Document{% endblock %}
+
+{% block body %}
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="editDocumentModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog ">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5 text-center" id="staticBackdropLabel">
+                    Modifier Document
+                </h1>
+            </div>
+            <div class="modal-body">
+                {{ form_start(form) }}
+
+                {{ form_label(form.name, 'Nom') }}
+                {{ form_widget(form.name, {'attr': {'class': 'form-control'}}) }}
+                {{ form_label(form.coutAchatDocument, 'Coût achat document') }}
+                {{ form_widget(form.coutAchatDocument, {'attr': {'class': 'form-control'}}) }}
+                {{ form_label(form.coutDocumentCommande, 'coût document commandé') }}
+                {{ form_widget(form.coutDocumentCommande, {'attr': {'class': 'form-control'}}) }}
+                {{ form_label(form.coutDocumentProduit, 'Coût document produit') }}
+                {{ form_widget(form.coutDocumentProduit, {'attr': {'class': 'form-control'}}) }}
+                {{ form_label(form.date, 'Date') }}
+                {{ form_widget(form.date, {'attr': {'class': 'form-control'}}) }}
+                {{ form_label(form.payer, 'payer') }}
+                {{ form_widget(form.payer) }}
+
+            </div>
+            <div class="modal-footer">
+                <a href={{ path("app_tache_edit", {'id': document.tache.id } ) }}>
+
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">fermer</button>
+                </a>
+
+
+                <button type="button submit" class="btn btn-primary">Modifier</button>
+            </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+</div>
+<script>
+    // jappelle le modal apres 3 secondes
+    window.setTimeout(affichageModal, 250);
+
+    function affichageModal() {
+        const myModal = new bootstrap.Modal(document.getElementById('editDocumentModal'), {})
+        myModal.show();
+    };
+    // la doc !
+    // https://getbootstrap.com/docs/5.2/components/modal/#how-it-works
+</script>
+
+{% endblock %}

@@ -1,0 +1,15 @@
+<div class="horloge my-3">
+    <div class="date">
+        <span class="orange">
+            Date 
+        </span>
+        : {{ "now"|date("d/m/Y" , "Europe/Paris") }}
+    </div>
+    <div>
+        <span class="orange">
+            Heure 
+        </span>
+        :
+        <span id="date_heure">  {{ "now" |date("H:i:s" , "Europe/Paris") }}</span>
+    </div>
+</div>

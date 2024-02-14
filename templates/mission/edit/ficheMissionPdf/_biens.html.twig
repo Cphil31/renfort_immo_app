@@ -1,0 +1,42 @@
+<style>
+    .biens{
+        margin-top: 30px;
+    }
+</style>
+<div class="biens">
+    <h3 style="text-decoration: underline;">
+        Biens concernés :
+    </h3>
+    {% if mission.produit.snapshot %}
+
+    {% for p in mission.produit.snapshot %}
+    <table class="table">
+        <thead>
+            <tr class="table">
+                <th scope="col">{{ p.name | title }}</th>
+                <th scope="col">Etat de lieux</th>
+                <th scope="col">Observation</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if  p.etatDesLieuxes.snapshot %}
+            {% set nbre = 0 %}
+            {% for e in p.etatDesLieuxes.snapshot %}
+            {% set nbre = nbre + 1 %}
+            <tr>
+                <th scope="row">{{ e.createdAt | date("d/m/Y") }}</th>
+                <td>{{ e.statut.statut | capitalize }}</td>
+                <td>{{ e.observation | capitalize }}</td>
+            </tr>
+
+            {% endfor %}
+            {% endif %}
+
+        </tbody>
+    </table>
+
+
+    {% endfor %}
+
+    {% endif %}
+</div>

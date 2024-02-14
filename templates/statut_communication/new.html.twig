@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New StatutCommunication{% endblock %}
+
+{% block body %}
+    <h1>Create new StatutCommunication</h1>
+
+    {{ include('statut_communication/_form.html.twig') }}
+
+    <a href="{{ path('app_statut_communication_index') }}">back to list</a>
+{% endblock %}

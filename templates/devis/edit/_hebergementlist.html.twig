@@ -1,0 +1,52 @@
+{% if devi.devisHebergements.snapshot %}
+
+    {% set nbrHebegement = 0 %}
+    {% set Totalquantite = 0 %}
+    {% set TotauxPrix = 0 %}
+    {% set TotauxFinalLigne = 0 %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col"> </th>
+                <th scope="col">Hébergement</th>
+                <th scope="col">Prix</th>
+                <th scope="col">Totaux</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for d in devi.devisHebergements.snapshot %}
+                {% set nbrHebegement = nbrHebegement + 1 %}
+                {% set Totalquantite = Totalquantite + d.quantite %}
+                {% set TotauxPrix = TotauxPrix + d.prixUnitaire %}
+                {% set TotauxFinalLigne = TotauxFinalLigne + d.quantite * d.prixUnitaire %}
+                <tr>
+                    <th scope="row">{{ nbrHebegement }}</th>
+                    <td> {{ d.quantite }}  </td>
+                    <td> {{ d.prixUnitaire }} €</td>
+                    <td> {{ d.quantite * d.prixUnitaire }} € </td>
+                    <td>
+                        <a href= {{ path( 'app_devis_hebergement_edit' , {'id' : d.id} ) }} class="btn btn-success btn-sm">
+                            modifier
+                        </a>
+                    </td>
+                    <td>
+                        <form method="post" action="{{ path('app_devis_hebergement_delete', {'id': d.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ d.id) }}">
+                            <button class="btn btn-danger btn-sm">supprimer</button>
+                        </form>
+                    </td>
+                </tr>  
+            {% endfor %}
+            <tr>
+                <td></td>
+                <td>{{ Totalquantite }}</td>
+                <td>{{ TotauxPrix }} €</td>
+                <td>{{ TotauxFinalLigne }} €</td>
+            </tr>
+                    
+        </tbody>
+    </table>
+
+{% endif %}

@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Contact{% endblock %}
+
+{% block body %}
+<h1>Contact</h1>
+
+
+
+
+
+<a href="{{ path('app_contact_index') }}">back to list</a>
+
+<a href="{{ path('app_contact_edit', {'id': contact.id}) }}">edit</a>
+
+{{ include('contact/_delete_form.html.twig') }}
+{% endblock %}

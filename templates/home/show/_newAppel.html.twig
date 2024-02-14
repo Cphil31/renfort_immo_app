@@ -1,0 +1,35 @@
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#newAppelModal">
+  Ajouter un appel
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="newAppelModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Ajouter un appel</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+       {{ form_start(formAppel) }}
+        {{ form_label(formAppel.contact, 'Contact') }}
+        {{ form_widget(formAppel.contact)}}
+        {{ form_label(formAppel.mission, 'Mission') }}
+        {{ form_widget(formAppel.mission)}}
+        {{ form_label(formAppel.date, 'Date') }}
+        {{ form_widget(formAppel.date)}}
+        {{ form_label(formAppel.objet, 'Objet') }}
+        {{ form_widget(formAppel.objet)}}
+        {{ form_label(formAppel.appeller, 'appeller') }}
+        {{ form_widget(formAppel.appeller)}}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">fermer</button>
+        <button type="button submit" class="btn btn-primary">Ajouter</button>
+       {{ form_end(formAppel) }}
+      </div>
+       
+    </div>
+  </div>
+</div>

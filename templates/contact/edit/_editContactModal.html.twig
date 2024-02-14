@@ -1,0 +1,37 @@
+<!-- Button trigger modal -->
+<a >
+<button type="button" class="btn btn-success btn-sm mx-2" data-bs-toggle="modal" data-bs-target="#contactModal">
+  modifier contact
+</button>
+</a>
+
+<!-- Modal -->
+<div class="modal fade" id="contactModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel"> modifier contact</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        {{ form_start(form) }}
+        {{ form_label(form.statut, 'Statut') }}
+        {{ form_widget(form.statut, {'attr': {'class': 'form-select'}}) }}
+        {{ form_label(form.entreprise, 'entreprise') }}
+        {{ form_widget(form.entreprise, {'attr': {'class': 'form-control'}}) }}
+        {{ form_label(form.poste, 'poste') }}
+        {{ form_widget(form.poste, {'attr': {'class': 'form-control'}}) }}
+        {{ form_label(form.nom, 'nom') }}
+        {{ form_widget(form.nom, {'attr': {'class': 'form-control'}}) }}
+        {{ form_label(form.prenom, 'prenom') }}
+        {{ form_widget(form.prenom, {'attr': {'class': 'form-control'}}) }}
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">fermer</button>
+        <button type="button submit" class="btn btn-success btn-sm">Modifier</button>
+      </div>
+    </div>
+    {{ form_end(form) }}
+  </div>
+</div>

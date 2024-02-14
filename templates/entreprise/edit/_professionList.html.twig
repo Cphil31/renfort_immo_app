@@ -1,0 +1,44 @@
+{% if entreprise.professions.snapshot %}
+<h4>Liste des contacts </h4>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Nom</th>
+      <th scope="col">Prénom</th>
+      <th scope="col">Profession</th>
+      <th scope="col">Poste</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for c in entreprise.professions.snapshot %}
+    <tr>
+      <td>
+        <a href={{ path( 'app_contact_edit' , {'id' : c.contact.id} )}}>
+          {{ c.contact.nom }}
+        </a>
+      </td>
+      <td>
+        {{ c.contact.prenom }}
+
+      </td>
+      <td>{{ c.profession | capitalize }}</td>
+      <td>{{  c.poste | capitalize  }}</td>
+      <td>
+        <a href={{path('app_profession_edit',{'id' : c.id})}} class="btn btn-success btn-sm">modifier</a>
+      </td>
+      <td>
+        <form method="post" action="{{ path('app_profession_delete', {'id': c.id}) }}"
+          onsubmit="return confirm('Etes vous sur de supprimer ce contact ?');">
+          <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ c.id) }}">
+          <button class="btn btn-danger btn-sm">Supprimer contact</button>
+        </form>
+      </td>
+    </tr>
+    {% else %}
+    {% endfor %}
+  </tbody>
+</table>
+
+    
+{% endif %}

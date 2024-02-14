@@ -1,0 +1,67 @@
+.flex
+{
+    display: flex;
+    justify-content: space-between;
+}
+.column
+{
+    display: flex;
+    flex-direction: column;
+}
+.end
+{
+    display: flex;
+    justify-content: end;
+}
+.modifier
+{
+    margin-right: 10px;
+}
+h1{
+    color: #e8531e;
+}
+p{
+    text-align: justify;
+    width: auto; /* à modifier selon vos besoins */
+    overflow: hidden; /* les dépassements seront masqués */
+    word-wrap: break-word;
+}
+.table{
+    padding: 1%;
+}
+.add{
+    display: flex;
+    padding: 9px;
+}
+button{
+    margin-right: 10px;
+}
+.souligne{
+ text-decoration: underline;
+}
+
+a:link ,a.btn:link {
+color: white;
+}
+/* visited link */
+a:visited,a.btn:visited {
+color: white;
+}
+
+/* mouse over link */
+a:hover , a.btn:hover {
+color: #e8531e;
+}
+
+/* selected link */
+a:active  , a.btn:active{
+color: blue;
+}
+
+a.deco{
+margin-left: 10px;
+}
+.orange{
+    color: #e8531e;
+}
+  

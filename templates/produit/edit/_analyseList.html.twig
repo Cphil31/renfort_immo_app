@@ -1,0 +1,43 @@
+    <div>
+        {% if produit.analyses.snapshot %}
+                <h4><span class='souligne'>Analyses</span> : </h4>
+                {% set nbrAna = 0 %}
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col"></th>
+                            <th scope="col">Titre</th>
+                            <th scope="col">Description</th>
+                            <th scope="col">Observations</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for analyse in produit.analyses.snapshot %}
+                            {% set nbrAna = nbrAna + 1 %}
+                            <tr>
+                                <th scope="row"> {{ nbrAna }}</th>
+                                <td>{{ analyse.titre }}</td>
+                                <td>{{ analyse.description }}</td>
+                                <td>{{ analyse.observations }}</td>
+                                <td>
+                                    <a href={{ path('app_analyse_edit' , {'id': analyse.id} )}} class="btn btn-success btn-sm">
+                                        modifier
+                                    </a>
+                                </td>
+                                <td>
+                                    <form method="post" action="{{ path('app_analyse_delete', {'id': analyse.id}) }}" onsubmit="return confirm('Etes vous sur de vouloir supprimer cette analyse ?');">
+                                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ analyse.id) }}">
+                                        <button class="btn btn-danger btn-sm ">supprimer</button>
+                                    </form>
+                                </td>
+                            </tr>
+                            
+                        {% endfor %}
+                    
+                    </tbody>
+                </table>
+            
+        {% endif %}
+    </div>

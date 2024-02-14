@@ -1,0 +1,35 @@
+{% if entreprise.notes.snapshot %}
+
+<h4>
+    Listes des notes
+</h4>
+<table class="table table-borderless">
+    <thead>
+        <tr>
+            <th scope="col">Note</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for n in entreprise.notes.snapshot %}
+        <tr>
+            <td>{{n.note}}</td>
+            <td>
+            <a  href= {{ path('app_note_edit' , { 'id' : n.id})}} class="btn btn-success btn-sm">
+                modifier
+            </a>
+            </td>
+            <td>
+                <form method="post" action="{{ path('app_note_delete', {'id': n.id}) }}"
+                    onsubmit="return confirm('Etes vous sur de supprimer cette note ?');">
+                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ n.id) }}">
+                    <button class="btn btn-danger btn-sm">supprimer</button>
+                </form>
+            </td>
+        </tr>
+        {% else %}
+        {% endfor %}
+    </tbody>
+</table>
+
+
+{% endif %}

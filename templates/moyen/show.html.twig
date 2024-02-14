@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Moyen{% endblock %}
+
+{% block body %}
+    <h1>Moyen</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ moyen.id }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_moyen_index') }}">back to list</a>
+
+    <a href="{{ path('app_moyen_edit', {'id': moyen.id}) }}">edit</a>
+
+    {{ include('moyen/_delete_form.html.twig') }}
+{% endblock %}

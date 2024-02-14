@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New EtatDesLieux{% endblock %}
+
+{% block body %}
+    <h1>Create new EtatDesLieux</h1>
+
+    {{ include('etat_des_lieux/_form.html.twig') }}
+
+    <a href="{{ path('app_etat_des_lieux_index') }}">back to list</a>
+{% endblock %}

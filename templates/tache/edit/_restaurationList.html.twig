@@ -1,0 +1,56 @@
+{% if tache.restaurations.snapshot %}
+<h4>Restaurations</h4>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Date</th>
+            <th scope="col">Etablissement</th>
+            <th scope="col">Coût Repas Personnel</th>
+            <th scope="col">Coût Repas Clients</th>
+            <th scope="col">Durée</th>
+            <th scope="col">Forfait</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for res in tache.restaurations.snapshot %}
+        
+        <tr>
+            <td>{{res.date | date('d/m/Y')}} </td>
+            <td>{{res.Etablissement}} </td>
+            <td>
+               {{res.coutRepasPersonnel ? res.coutRepasPersonnel ~ " €" : "" }} 
+            </td>
+            <td>{{res.coutRepasClients ? res.coutRepasClients ~ " €" : "" }} </td>
+            <td>{{res.duree | date('H:i' )  }} </td>
+            <td>{{ res.forfait}}</td>
+            <td>
+                {% if res.payer %}
+                    Réglé
+                {% else %}    
+                    Pas réglé
+                {% endif %}
+            </td>
+            <td>
+                <a href= {{ path('app_restauration_edit' , {'id' : res.id}) }} class="btn btn-success btn-sm">
+                    modifier
+                </a>
+            </td>
+            <td>
+                <form method="post" action="{{ path('app_restauration_delete', {'id': res.id}) }}" onsubmit="return confirm('Etes vous sur de supprimer cette restauration?');">
+                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ res.id) }}">
+                    <button class="btn btn-danger btn-sm">suprimer</button>
+                </form>
+            </td>
+            <td>
+                
+            </td>
+            {% else %}
+            {% endfor %}
+        </tr>
+    </tbody>
+</table>
+
+{% endif %}

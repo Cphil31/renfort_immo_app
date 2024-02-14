@@ -1,0 +1,55 @@
+
+      <img src= {{logo}} alt="" class="img relative">
+      <p class="titre relative" style="margin-top: -30px;font-size:30px;margin-left:380px;">
+          Notes de frais : 
+          {{ month }} /
+          {{ year }}
+          </p>
+          
+          <p class="relative" style="margin-top: 20px;font-size:20px;margin-left:450px;">
+              </p>
+              <p class="relative">
+                  Mission :
+                  {{mission.name}}
+                  </p>
+                    {% if mission.contact %}
+                        <p class="relative" style="margin-top:-300px;margin-left:530px;">
+                            Client :
+                            {{ mission.contact.nom }}
+                            {{ mission.contact.prenom }}
+                            </p>
+                        {% endif %}
+                    
+                    {% if mission.reference %}   
+                        <p class="relative">
+                            Référence :
+                            {{mission.reference | capitalize }}
+                            </p>
+                    {% endif %}
+                        {% if adresses %}
+
+                            {% for a in adresses %}
+                                {% if a.facturation %}     
+                                    {{ a.rue }}
+                                    <br>
+                                    {{ a.codePostal }} , {{ a.ville }}
+                                {% endif %}
+                            {% endfor %}
+                            
+                        {% endif %}
+                    {#
+                    {% if mission.contact.adresses.snapshot %}
+                        
+                        <p class="relative" style="margin-top:-300px;margin-left:530px;margin-bottom:20px;">
+                            Adresse :
+                            {% for a in mission.contact.adresses.snapshot %}
+                                {% if a.facturation %}  
+                                    {{ a.rue }}
+                                    <br>
+                                    {{ a.codePostal }} , {{ a.ville }}
+                                {% endfor %}
+                                
+                            {% endif %}
+                            #}
+                </p>
+                

@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit StatutProbleme{% endblock %}
+
+{% block body %}
+    <h1>Edit StatutProbleme</h1>
+
+    {{ include('statut_probleme/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_statut_probleme_index') }}">back to list</a>
+
+    {{ include('statut_probleme/_delete_form.html.twig') }}
+{% endblock %}

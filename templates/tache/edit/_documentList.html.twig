@@ -1,0 +1,93 @@
+{% if tache.documents.snapshot %}
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col"></th>
+      <th scope="col">Documents</th>
+      <th scope="col">Coût d'achat</th>
+      <th scope="col">Coût de commande</th>
+      <th scope="col">Coût document produit</th>
+      <th scope="col"> </th>
+    </tr>
+  </thead>
+  <tbody>
+
+      {% set totalCoutAchat = 0 %}
+      {% set totalCoutDocumentCommande = 0 %}
+      {% set totalCoutDocumentProduit = 0 %}
+
+      {% for d in tache.documents.snapshot %}
+        {% set totalCoutAchat = totalCoutAchat + d.coutAchatDocument %}
+        {% set totalCoutDocumentCommande = totalCoutDocumentCommande + d.coutDocumentCommande %}
+        {% set totalCoutDocumentProduit = totalCoutDocumentProduit + d.coutDocumentProduit %}
+
+
+        {% set ext = d.name |split('.')|last   %}
+
+      <tr>
+          <td>
+            
+          </td>
+          <td>
+            {% if ext == 'pdf'  %}
+            <a href="{{'/uploads/documents/' ~ d.name}}" target="_blank" >
+            {{d.name}}
+            </a>
+            {% else %}
+              <img src="{{'/uploads/documents/' ~ d.name}}" alt="Image" width="150" height="150">
+            {% endif %}
+          </td>
+          <td>
+            {{ d.coutAchatDocument  }}
+          </td>
+          <td>
+            {{ d.coutDocumentCommande  }}
+          </td>
+          <td>
+            {{ d.coutDocumentProduit  }}
+          </td>
+          <td>
+            
+          </td>
+          <td>
+            <a href={{ path('app_document_edit' , { 'id' : d.id})}} class="btn btn-success btn-sm">
+              modifier</td>
+          </a>
+          
+          <td>
+            <form method="post" action="{{ path('app_document_delete', {'id': d.id}) }}"
+              onsubmit="return confirm('Etes vous sur de vouloir supprimer ce document?');">
+              <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ d.id) }}">
+              <button class="btn btn-danger btn-sm">supprimer</button>
+            </form>
+          </td>
+
+          {% endfor %}
+      </tr>
+      {% if tache.documents.snapshot|length > 1 %}
+      <tr>
+        <td>
+          Totaux 
+        </td>
+        <td>
+           
+        </td>
+        <td>
+          {{ totalCoutAchat }} €
+        </td>
+        <td>
+          {{ totalCoutDocumentCommande }} €
+        </td>
+        <td>
+          {{ totalCoutDocumentProduit }} €
+        </td>
+          {% set Totaux = totalCoutAchat + totalCoutDocumentCommande + totalCoutDocumentProduit %} 
+        <td>
+          {{ Totaux}}€
+        </td>
+      </tr>
+      {% endif %}
+  </tbody>
+</table>
+
+{% endif %}

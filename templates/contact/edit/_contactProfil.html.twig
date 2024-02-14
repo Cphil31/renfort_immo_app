@@ -1,0 +1,26 @@
+<div class="flex">
+
+  <h1 class="orange"> {{contact.nom | upper}} {{ contact.prenom}}</h1>
+
+
+  <div class="droite">
+    <a href={{ path("app_contact_pdf" , {"id" : contact.id} )}}  target="_blank" >
+    <button class="btn btn-success  btn-sm">
+      pdf
+    </button>  
+    </a>
+    {{ include('contact/edit/_editContactModal.html.twig') }}
+    {{ include('contact/_delete_form.html.twig') }}
+  </div>
+</div>
+
+{% if contact.entreprise %}
+  <h3>{{ contact.entreprise ? "Entreprise : "~contact.entreprise  : ""  }} </h3>
+{% endif %}
+<h3>
+  {{ contact.statut ? "Poste : " ~ contact.statut : "Poste : aucun"}}
+</h3>
+<h3>
+  {{contact.poste ? "Poste :  " ~ contact.poste |capitalize  : "Poste : aucun"}}
+</h3>
+

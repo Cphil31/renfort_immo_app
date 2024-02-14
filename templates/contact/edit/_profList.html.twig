@@ -1,0 +1,25 @@
+{% if contact.professions.snapshot %}
+<h4> Metiers </h4>
+
+<table class="table">
+     <thead>
+     </thead>
+     <tbody>
+          {% for e in contact.professions.snapshot %}
+
+          <tr>
+               <td>
+                    {{ e.profession }} chez <a
+                         href={{path('app_entreprise_edit',{'id' : e.entreprise.id })}}>{{ e.entreprise.raisonsociale}}</a>
+
+               </td>
+          </tr>
+          {% else %}
+          {% endfor %}
+     </tbody>
+</table>
+<ul>
+</ul>
+
+
+{% endif %}

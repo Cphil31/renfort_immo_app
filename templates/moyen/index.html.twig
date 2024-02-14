@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Moyen index{% endblock %}
+
+{% block body %}
+    <h1>Moyen index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for moyen in moyens %}
+            <tr>
+                <td>{{ moyen.id }}</td>
+                <td>
+                    <a href="{{ path('app_moyen_show', {'id': moyen.id}) }}">show</a>
+                    <a href="{{ path('app_moyen_edit', {'id': moyen.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="2">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_moyen_new') }}">Create new</a>
+{% endblock %}

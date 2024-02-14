@@ -1,0 +1,90 @@
+{% if tache.deplacements.snapshot %}
+<h4> Déplacements</h4>
+<table class="table">
+    <thead>
+
+        <tr>
+            <th scope="col">Date</th>
+            <th scope="col">Statut</th>
+            <th scope="col">Lieu</th>
+            <th scope="col">Kilo Départ</th>
+            <th scope="col">Kilo Arrivée</th>
+            <th scope="col">Durée</th>
+            <th scope="col">Coût</th>
+            <th scope="col">Péage</th>
+            <th scope="col">Carburant</th>
+            <th scope="col">Observation</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+
+        {% set coutSommme = 0 %} 
+        {% set coutPeage = 0 %}
+        {% set coutCarburant = 0 %}
+
+        {% for d in tache.deplacements.snapshot %}
+        
+        {% set coutSommme = coutSommme + d.cout %} 
+        {% set coutPeage = coutPeage + d.coutPeage %} 
+        {% set coutCarburant = coutCarburant + d.coutCarburant %}
+
+        <tr>
+            <td>{{ d.date | date('d/m/y') }} à {{ d.date | date('H:i') }}</td>
+            <td>{{d.statut.statut ? d.statut.statut : " "}}</td>
+            <td>{{ d.lieu | capitalize }}</td>
+            <td>{{ d.kilometrageDepart ? d.kilometrageDepart : "" }}</td>
+            <td>{{ d.kilometrageArrive ? d.kilometrageArrive : "" }}</td>
+            <td>{{ d.duree | date('h') | capitalize }}:{{ d.duree | date('i') | capitalize }}</td>
+            <td>{{ d.cout ?  d.cout | capitalize ~ " €" :""}}  </td>
+            <td>{{ d.coutPeage ? d.coutPeage ~ " €" : ""  }}</td>
+            <td>{{ d.coutCarburant ? d.coutCarburant ~ " €": "" }}</td>
+            <td>{{ d.observation ? d.observation : "" }}</td>
+            <td>
+                {{d.payer ? "Réglée" : "Pas réglée" }}
+            </td>
+            <td>
+                <a href={{ path( 'app_deplacement_edit',{'id' : d.id})}}>
+                    <button class="btn btn-success btn-sm ">modifier</button>
+                </a>
+            </td>
+            <td>
+                <form method="post" action="{{ path('app_deplacement_delete', {'id': d.id}) }}"
+                    onsubmit="return confirm('Etes vous sur de vouloir supprimer ce déplacement ?');">
+                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ d.id) }}">
+                    <button class="btn btn-danger btn-sm">supprimer</button>
+                </form>
+
+            </td>
+
+        </tr>
+
+        {% else %}
+        {% endfor %}
+        {% if tache.deplacements.snapshot > 1 %}
+
+        {% set Totaldeplacement = coutSommme + coutPeage + coutCarburant %}
+        <tr>
+            <td>Total</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td> </td>
+            <td> {{ coutSommme}} €</td>
+            <td> {{ coutPeage }} €</td>
+            <td> {{ coutCarburant }} €</td>
+            <td></td>
+            <td></td>
+            <td> {{Totaldeplacement}} € </td>
+
+        </tr>
+
+        {% endif %}
+    </tbody>
+</table>
+
+
+{% endif %}

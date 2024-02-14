@@ -1,0 +1,14 @@
+<div class="card" style="width: 18rem;">
+	<div class="card-body">
+		<h3>Entreprises</h3>
+		{{ form_start(formEntreprise) }}
+		<div class="form">
+			{{ form_widget(formEntreprise.entreprise, {'attr': {'class': 'form-select'}}) }}
+			<button type="button submit " class="btn btn-primary btn-sm">Chercher</button>
+		</div>
+		{{ form_end(formEntreprise) }}
+                <div class="add">
+			{{ include('home/show/_newEntreprise.html.twig') }}
+		</div>
+	</div>
+</div>

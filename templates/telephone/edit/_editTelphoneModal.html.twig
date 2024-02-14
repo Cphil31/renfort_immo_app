@@ -1,0 +1,48 @@
+<!-- Modal -->
+<div class="modal fade" id="editTelephoneModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog ">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5 text-center" id="staticBackdropLabel">
+                    {{telephone.contact ? telephone.contact.nom ~ " " ~ telephone.contact.prenom : telephone.entreprise.raisonsociale }}
+                </h1>
+            </div>
+            <div class="modal-body">
+                {{ form_start(form) }}
+                {{ form_label(form.statut, 'Statut') }}
+                {{ form_widget(form.statut, {'attr': {'class': 'form-select'}}) }}
+                {{ form_label(form.number, 'Numéro') }}
+                {{ form_widget(form.number, {'attr': {'class': 'form-control'}}) }}
+                {{ form_label(form.observation, 'Observation') }}
+                {{ form_widget(form.observation, {'attr': {'class': 'form-control'}}) }}
+            </div>
+            <div class="modal-footer">
+                {% if telephone.contact == null %}
+                <a href={{ path("app_entreprise_edit" , {'id' : telephone.entreprise.id})}}>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">fermer</button>
+                </a>
+                {% endif %}
+                {% if telephone.entreprise == null %}
+                <a href={{ path("app_contact_edit" , {'id' : telephone.contact.id})}}>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">fermer</button>
+                </a>
+                {% endif %}
+
+                <button type="button submit" class="btn btn-primary">Modifier</button>
+            </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+</div>
+<script>
+    // jappelle le modal apres 3 secondes
+    window.setTimeout(affichageModal, 000);
+
+    function affichageModal() {
+        const myModal = new bootstrap.Modal(document.getElementById('editTelephoneModal'), {})
+        myModal.show();
+    };
+    // la doc !
+    // https://getbootstrap.com/docs/5.2/components/modal/#how-it-works
+</script>

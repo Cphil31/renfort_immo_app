@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Identification{% endblock %}
+
+{% block body %}
+    <h1>Identification</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ identification.id }}</td>
+            </tr>
+            <tr>
+                <th>Identification</th>
+                <td>{{ identification.identification }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_identification_index') }}">back to list</a>
+
+    <a href="{{ path('app_identification_edit', {'id': identification.id}) }}">edit</a>
+
+    {{ include('identification/_delete_form.html.twig') }}
+{% endblock %}

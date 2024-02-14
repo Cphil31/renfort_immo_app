@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des problèmes{% endblock %}
+
+{% block body %}
+    <h1>Liste des problèmes</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Description</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for probleme in problemes %}
+            <tr>
+                <td>{{ probleme.id }}</td>
+                <td>{{ probleme.description }}</td>
+                <td>
+                    <a href="{{ path('app_probleme_edit', {'id': probleme.id}) }}">modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_probleme_new') }}">Create new</a>
+{% endblock %}

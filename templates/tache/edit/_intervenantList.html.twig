@@ -1,0 +1,67 @@
+{% if tache.intervenants.snapshot %}
+<h4>Intervenants</h4>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Date</th>
+            <th scope="col">Durée</th>
+            <th scope="col">Intervenant</th>
+            <th scope="col">Coût</th>
+            <th scope="col">Réalisations</th>
+            <th scope="col">Observations</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% set TotauxIntervenants = 0 %}
+
+        {% for i in tache.intervenants.snapshot %}
+
+            {% set TotauxIntervenants = TotauxIntervenants + i.cout %}
+        
+            <tr>
+                <td>{{i.date |  date('d/m/Y') }}</td>
+                <td>{{i.duree | date('h:i') }} </td>
+                <td>
+                    <a href={{path("app_contact_edit" , { 'id' : i.contact.id})}}>
+                        {{i.contact.nom}} {{i.contact.prenom}}
+                    </a>
+                </td>
+                <td>{{i.cout}} €</td>
+                <td>{{i.realisations}}</td>
+                <td>{{i.observation}}</td>
+                <td> {{ i.payer ? "Réglé" : "Pas réglé" }} </td>
+                <td>
+                    <a href={{ path('app_fiche_intervenant_pdf' , {'id' : i.id }) }}>Pdf</a>
+                </td>
+                <td>
+                    <a href={{ path('app_intervenant_edit',{'id': i.id })}} class="btn btn-success btn-sm" >
+                    modifier
+                    </a>
+                </td>
+                <td>
+                    <form method="post" action="{{ path('app_intervenant_delete', {'id': i.id}) }}"
+                        onsubmit="return confirm('Etes vous sur de vouloir supprimer cet intervenant ?');">
+                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ i.id) }}">
+                        <button class="btn btn-danger btn-sm">supprimer</button>
+                    </form>
+                </td>
+            </tr>
+            
+            {% else %}
+
+        {% endfor %}
+
+        <tr>
+            <td>
+                Total
+            </td>
+            <td></td>
+            <td></td>
+            <td>{{ TotauxIntervenants ? TotauxIntervenants ~ " €" : ""}} </td>
+        </tr>
+    </tbody>
+</table>
+
+{% endif %}

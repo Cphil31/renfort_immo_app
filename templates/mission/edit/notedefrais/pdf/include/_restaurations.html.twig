@@ -1,0 +1,53 @@
+      {% if restaurations %}
+                {% set nbrRest = 0 %}
+                
+
+                <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Restaurations</th>
+                        <th scope="col">Durée</th>
+                        <th scope="col">Etablissement</th>
+                        <th scope="col">Forfait</th>
+                        <th scope="col">repas Personnel</th>
+                        <th scope="col">repas Clients</th>
+                        <th scope="col">Reglement</th>
+                        <th scope="col">Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                {% for r in restaurations %}
+                    {% set total1Restauration = 0 %}
+                    {% set nbrRest = nbrRest + 1 %}
+                    {% set total1Restauration = total1Restauration + r.forfait + r.coutRepasPersonnel + r.coutRepasClients %}
+                    
+                    <tr>
+                        <td>{{ r.date | date('d/m/Y')}}</td>
+                        <td>{{ r.duree | date('H:i')}}</td>
+                        <td>{{ r.etablissement }}</td>
+                        <td>{{ r.forfait ? r.forfait ~ " €" : " "}}</td>
+                        <td>{{ r.coutRepasPersonnel ? r.coutRepasPersonnel ~ " €" : " "}}</td>
+                        <td>{{ r.coutRepasClients ? r.coutRepasClients ~ " €" : " "}}</td>
+                        <td>{{ r.payer ? "Réglé" : " Pas réglé"}}</td>
+                        <td>{{ total1Restauration ? total1Restauration ~ " €" : " "}}</td> 
+                    </tr>
+                {% endfor %}
+
+                    <tr>
+                        <th scope="row">Total</th>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>{{ totalrestaurations ? totalrestaurations ~ " €"}}</td>
+                        
+                    </tr>
+                
+                </tbody>
+                </table>
+
+              
+            {% endif %}

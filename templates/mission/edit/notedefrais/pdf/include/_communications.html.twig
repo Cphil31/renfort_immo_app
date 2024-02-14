@@ -1,0 +1,43 @@
+  {% if communications %}
+                {% set nbrCom = 0 %}
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Communications</th>
+                            <th scope="col">Date</th>
+                            <th scope="col">Statut</th>
+                            <th scope="col">Description</th>
+                            <th scope="col">Reglement</th>
+                            <th scope="col">Forfait</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for c in communications %}
+                            {% if c.payer %}
+                            {% else %}
+                            
+                            {% endif %}
+                            
+                            <tr>
+                                <th scope="row">1</th>
+                                <td> {{ c.date | date('d/m/Y')}} </td>
+                                <td>{{ c.statut.statut ? c.statut.statut : " "}}</td>
+                                <td> {{ c.description }} </td>
+                                <td> {{ c.payer ? "réglé" : "Pas réglé"}} </td>
+                                <td> {{ c.forfait ? c.forfait ~ " €" : "" }}</td>
+                                
+                            </tr>
+                        {% endfor %}
+                            <tr>
+                                <th scope="row">Total</th>
+                                <td> </td>
+                                <td></td>
+                                <td>  </td>
+                                <td></td>
+                                <td> {{ totalCom ? totalCom ~ " €" : "0 €" }} </td>
+                            </tr>
+                        
+                    </tbody>
+                </table>
+           
+            {% endif %}

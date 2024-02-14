@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit StatutEtatDesLieux{% endblock %}
+
+{% block body %}
+    <h1>Edit StatutEtatDesLieux</h1>
+
+    {{ include('statut_etat_des_lieux/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_statut_etat_des_lieux_index') }}">back to list</a>
+
+    {{ include('statut_etat_des_lieux/_delete_form.html.twig') }}
+{% endblock %}

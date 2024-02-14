@@ -1,0 +1,12 @@
+.flex{
+    display:flex;
+    justify-content: space-between;
+}
+.edit
+{
+    display: flex;
+}
+.modifier
+{
+    margin-right: 10px;
+}

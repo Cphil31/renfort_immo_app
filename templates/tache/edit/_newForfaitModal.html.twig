@@ -1,0 +1,36 @@
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#newForModal">
+  Ajouter un forfait
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="newForModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Ajouter un forfait</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        {{ form_start(formFor) }}
+        
+          {{ form_label(formFor.description, 'Description') }}
+          {{ form_widget(formFor.description, {'attr': {'class': 'form-control'}}) }}
+          {{ form_label(formFor.prix, 'Prix') }}
+          {{ form_widget(formFor.prix, {'attr': {'class': 'form-control'}}) }}
+          {{ form_label(formFor.date, 'Date') }}
+          {{ form_widget(formFor.date, {'attr': {'class': 'form-control'}}) }}
+          {{ form_label(formFor.date_reglement, 'Date de reglement') }}
+          {{ form_widget(formFor.date_reglement, {'attr': {'class': 'form-control'}}) }}
+          {{ form_label(formFor.payer, 'Payé') }}
+          {{ form_widget(formFor.payer ) }}
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">fermer</button>
+        <button type="button submit" class="btn btn-primary btn-sm">Ajouter</button>
+      </div>
+      {{ form_end(formFor) }}
+    </div>
+  </div>
+</div>

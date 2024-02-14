@@ -1,0 +1,76 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Deplacement{% endblock %}
+
+{% block body %}
+    {#
+#}
+    <!-- Modal -->
+<div class="modal fade" id="editDeplacementModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog ">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5 text-center" id="staticBackdropLabel">
+                Modifier
+                </h1>
+            </div>
+            <div class="modal-body">
+                {{ form_start(form) }}
+
+                {{ form_label(form.statut, 'Statut') }}
+                {{ form_widget(form.statut, {'attr': {'class': 'form-select'}}) }}
+        
+                {{ form_label(form.date, 'Date') }}
+                {{ form_widget(form.date, {'attr': {'class': 'form-control'}}) }}
+        
+                {{ form_label(form.lieu, 'Lieu') }}
+                {{ form_widget(form.lieu) }}
+        
+                {{ form_label(form.kilometrage_depart, 'kilometrage départ') }}
+                {{ form_widget(form.kilometrage_depart) }}
+        
+                {{ form_label(form.kilometrage_arrive, 'kilometrage arrivée') }}
+                {{ form_widget(form.kilometrage_arrive) }}
+        
+                {{ form_label(form.duree, 'Durée') }}
+                {{ form_widget(form.duree, {'attr': {'class': 'form-control'}}) }}
+                {{ form_label(form.cout, 'Coût') }}
+                {{ form_widget(form.cout, {'attr': {'class': 'form-control'}}) }}
+                {{ form_label(form.coutPeage, 'Coût Péage') }}
+                {{ form_widget(form.coutPeage, {'attr': {'class': 'form-control'}}) }}
+                {{ form_label(form.coutCarburant, 'Coût Carburant') }}
+                {{ form_widget(form.coutCarburant, {'attr': {'class': 'form-control'}}) }}
+                {{ form_label(form.observation, 'observation') }}
+                {{ form_widget(form.observation, {'attr': {'class': 'form-control'}}) }}
+                {{ form_label(form.payer, 'payer') }}
+                {{ form_widget(form.payer ) }}
+            </div>
+            <div class="modal-footer">
+                
+               <a href={{ path('app_tache_edit',{'id' : deplacement.tache.id})}}>
+                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">fermer</button>
+               </a>
+            
+                <button type="button submit" class="btn btn-success btn-sm">Modifier</button>
+                {{ form_end(form) }}
+            </div>
+            
+            
+            
+        </div>
+    </div>
+</div>
+<script>
+    // jappelle le modal apres 3 secondes
+    window.setTimeout(affichageModal, 250);
+
+    function affichageModal() {
+        const myModal = new bootstrap.Modal(document.getElementById('editDeplacementModal'), {})
+        myModal.show();
+    };
+    // la doc !
+    // https://getbootstrap.com/docs/5.2/components/modal/#how-it-works
+</script>
+
+{% endblock %}

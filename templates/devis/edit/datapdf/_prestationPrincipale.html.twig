@@ -1,0 +1,24 @@
+{% set qtePresta = 0 %}
+{% set prixPresta = 0 %}
+{% if devis.devisPrestations.snapshot %}
+
+  {% for p in devis.devisPrestations.snapshot %}
+    {% set qtePresta = qtePresta + p.quantite %}
+    {% set prixPresta = prixPresta + p.prix %}
+    
+  {% endfor %}
+  
+{% endif %}
+<p class="designation border" style="padding-left:20px;width:330px;padding-bottom:13px;"  >
+  Coût prestation principale
+</p>
+<p class='border relative' style="width:60px;margin-top:-100px;margin-left:430px;text-align: right;">
+  {{ qtePresta }}
+</p>
+<p class='border relative' style="width:60px;margin-top:-100px;margin-left:530px;text-align: right;">
+  {{ prixPresta }} €
+</p>
+<p class='border relative' style="width:60px;margin-top:-100px;margin-left:630px;text-align: right;">
+  {% set Totalht = qtePresta * prixPresta %}
+  {{ Totalht|number_format(0, ',', ' ')}} €
+</p> 

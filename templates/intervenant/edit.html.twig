@@ -1,0 +1,85 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Intervenant{% endblock %}
+
+{% block body %}
+<!-- Modal -->
+<div class="modal fade" id="editIntervenantModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog ">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5 text-center" id="staticBackdropLabel">
+
+                </h1>
+            </div>
+            <div class="modal-body">
+
+
+                
+                {% if intervenant.tache %}
+                {{ form_start(form) }}
+                    {{ form_label(form.statut, 'Statut') }}
+                    {{ form_widget(form.statut, {'attr': {'class': 'form-select'}}) }}
+                    {{ form_label(form.contact, 'contact') }}
+                    {{ form_widget(form.contact, {'attr': {'class': 'form-select'}}) }}
+                    {{ form_label(form.entreprise, 'entreprise') }}
+                    {{ form_widget(form.entreprise, {'attr': {'class': 'form-select'}}) }}
+                    {{ form_label(form.cout, 'coût') }}
+                    {{ form_widget(form.cout, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_label(form.duree, 'durée') }}
+                    {{ form_widget(form.duree, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_label(form.date, 'date') }}
+                    {{ form_widget(form.date, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_label(form.observation, 'observation') }}
+                    {{ form_widget(form.observation, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_label(form.realisations, 'realisations') }}
+                    {{ form_widget(form.realisations, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_label(form.payer, 'payer') }}
+                    {{ form_widget(form.payer) }}
+
+                {% endif %}
+
+
+            </div>
+            <div class="modal-footer">
+
+                
+                {% if intervenant.tache %}
+
+                <a href={{ path('app_tache_edit', {'id' : intervenant.tache.id})}}>
+                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">fermer</button>
+                </a>
+
+                {% endif %}
+
+                {% if intervenant.entreprise %}
+
+                <a href={{ path('app_tache_edit', {'id' : intervenant.entreprise.id})}}>
+                    <button type="button" class="btn btn-success btn-sm" data-bs-dismiss="modal">fermer</button>
+                </a>
+
+                {% endif %}
+                
+                
+                <button type="button submit" class="btn btn-success btn-sm">Modifier</button>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    // jappelle le modal apres 3 secondes
+    window.setTimeout(affichageModal, 10);
+
+    function affichageModal() {
+        const myModal = new bootstrap.Modal(document.getElementById('editIntervenantModal'), {})
+        myModal.show();
+    };
+    // la doc !
+    // https://getbootstrap.com/docs/5.2/components/modal/#how-it-works
+</script>
+
+
+
+{% endblock %}

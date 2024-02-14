@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New AppelsRecus{% endblock %}
+
+{% block body %}
+    <h1>Create new AppelsRecus</h1>
+
+    {{ include('appels_recus/_form.html.twig') }}
+
+    <a href="{{ path('app_appels_recus_index') }}">back to list</a>
+{% endblock %}

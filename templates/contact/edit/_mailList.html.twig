@@ -1,0 +1,36 @@
+
+{% if contact.mails.snapshot %}
+<h4 class="orange"> Liste des mails </h4>
+
+<table class="table table-borderless">
+  <thead>
+    <tr>
+      <th scope="col">Statut</th>
+      <th scope="col">Mail</th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for m in contact.mails.snapshot %}
+
+
+    <tr>
+      <td>{{ m.statut.statut }}</td>
+      <td>{{ m.email }}</td>
+      <td><a href={{ path('app_mail_edit', {'id' :m.id})}} class="btn btn-success btn-sm">modifier</a></td>
+      <td>
+        <form method="post" action="{{ path('app_mail_delete', {'id': m.id}) }}"
+          onsubmit="return confirm('Etes vous sur ve devouloir supprimer cet email ?');">
+          <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ m.id) }}">
+          <button class="btn btn-danger btn-sm">supprimer</button>
+        </form>
+      </td>
+
+    </tr>
+
+    {% else %}
+    {% endfor %}
+  </tbody>
+</table>
+{% endif %}

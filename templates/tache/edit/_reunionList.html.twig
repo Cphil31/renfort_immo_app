@@ -1,0 +1,83 @@
+
+{% if tache.reunions.snapshot %}
+    <h4> Réunions</h4>
+    <table class="table">
+        <thead>
+
+            <tr>
+                <th scope="col"></th>
+                <th scope="col">Date</th>
+                <th scope="col">Durée</th>
+                <th scope="col">Objet</th>
+                <th scope="col">Contenu</th>
+                <th scope="col">Coût Location Salle</th>
+                <th scope="col">Coût de restauration</th>
+                <th scope="col">Coût de Collation</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+
+            {% set TotalCoutLocationSalle = 0 %}
+            {% set TotalCoutRestauration = 0 %}
+
+            {% for reunion in tache.reunions.snapshot %}
+
+                {% set TotalCoutLocationSalle = TotalCoutLocationSalle + reunion.coutLocationSalle %}
+                {% set TotalCoutRestauration = TotalCoutRestauration + reunion.CoutRestauration  %}
+
+                
+                <tr>
+                    <td></td>
+                    <td>{{ reunion.date| date('d/m/Y') }}</td>
+                    <td>{{ reunion.duree| date('H:i:s')  }}</td>
+                    <td>{{ reunion.objet }}</td>
+                    <td>{{ reunion.content }}</td>
+                    <td>{{ reunion.coutLocationSalle  }}</td>
+                    <td>{{ reunion.CoutRestauration  }}</td>
+                    <td>{{ reunion.coutCollation  }}</td>
+                    <td>{{ reunion.payer ? "Réglé" : " Pas réglé"}}</td>
+                    <td>
+                        <a href={{ path( 'app_reunion_edit' , { 'id' : reunion.id} )}}>
+                            <button class="btn btn-success btn-sm ">modifier</button>
+                        </a>
+                    </td>
+                    <td>
+                        <form method="post" action="{{ path('app_reunion_delete', {'id': reunion.id}) }}" onsubmit="return confirm('Etes vous sur de vouloir supprimer cette réunion?');">
+                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ reunion.id) }}">
+                            <button class="btn btn-danger btn-sm">supprimer</button>
+                        </form>
+                    </td>
+
+                </tr>
+
+                
+            {% else %}
+            {% endfor %}
+
+            {% set TotauxCout = TotalCoutLocationSalle + TotalCoutRestauration %}
+                <tr>
+                    <td>Total</td>
+                    <td></td>
+                    <td></td>
+                    <td> </td>
+                    <td>  </td>
+                    <td> {{ TotalCoutLocationSalle }} €</td>
+                    <td>  {{ TotalCoutRestauration }} €</td>
+                    <td></td>
+                    <td> {{ TotauxCout }}  €</td>
+                    <td>  </td>
+
+                </tr>
+
+            
+
+
+        </tbody>
+    </table>
+
+
+{% endif %}

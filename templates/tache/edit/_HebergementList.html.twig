@@ -1,0 +1,63 @@
+
+{% if tache.hebergements.snapshot %}
+
+    {% set totalNuits = 0 %}
+    {% set Totaux = 0 %}
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Hébergement</th>
+                <th scope="col">Nbr de nuits</th>
+                <th scope="col">Prix nuit</th>
+                <th scope="col">Coût total</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for hebergement in tache.hebergements.snapshot %}
+                <tr>
+                    {% set  coutTotal = hebergement.nuit * hebergement.coutNuitUnitaire %}
+                    {% set totalNuits = totalNuits + hebergement.nuit %}
+                    {% set Totaux = Totaux + coutTotal %}
+                    <td>{{hebergement.lieu}}</td>
+                    <td>{{hebergement.nuit}}</td>
+                    <td>{{hebergement.coutNuitUnitaire}} €</td>
+                    <td>{{ coutTotal  }} € </td> 
+                    <td>{{hebergement.payer ? "Réglé" : "Pas réglé" }}</td>
+                    <td>
+                        <a class="btn btn-success btn-sm" href= {{ path( "app_hebergement_edit" , { 'id' : hebergement.id} ) }}>
+                            modifier
+                        </a>
+                    </td>
+                    <td>
+                        <form method="post" action="{{ path('app_hebergement_delete', {'id': hebergement.id}) }}" onsubmit="return confirm('Etes vous sur de supprimer cet hébergement ?');">
+                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ hebergement.id) }}">
+                        <button class="btn btn-danger btn-sm">supprimer</button>
+                        </form>
+                    </td>
+                </tr>
+
+            {% endfor %}
+            <tr>
+                <td>
+                Total
+                </td>
+                <td>
+                {{totalNuits}}
+                </td>
+                <td>
+                </td>
+                <td>
+                {{Totaux ? Totaux ~ " €" : " "}}
+                </td>
+            </tr>
+        
+        </tbody>
+    </table>
+
+
+
+{% endif %}

@@ -1,0 +1,46 @@
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ asset('assets/css/navbar/style.css')  }}">
+{% endblock %}
+
+{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+
+
+<nav class="navbar navbar-light bg-light  ">
+  <div class="container-fluid">
+
+    <a class="navbar-brand" href="/">
+      <img style="width:270px;" src="{{asset('Logo.png')}}" alt="">
+    </a>
+
+    <div class="d-flex">
+      <a href={{ path('app_user_edit', {'id' : app.user.id } ) }} >
+        <p class="orange"> {{ app.user.nom ? app.user.nom }} {{ app.user.nom ? app.user.prenom }} </p>
+      </a>
+
+      <a class="deco" href="/logout">
+        déconnecter
+      </a>
+
+    </div>
+
+  </div>
+
+</nav>
+
+{% else %}
+
+<nav class="navbar navbar-light bg-light  ">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/">
+      <img style="width:270px;" src="{{asset('Logo.png')}}" alt="">
+    </a>
+
+
+
+</nav>
+
+
+{% endif %}
+
+
+<div class="violet"></div>

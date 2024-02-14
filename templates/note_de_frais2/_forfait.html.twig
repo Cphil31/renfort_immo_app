@@ -1,0 +1,55 @@
+{% if data.forfaits %}
+                {% set nbrForfait = 0 %}
+                <table class="table" >
+                    <thead>
+                        <tr>
+                            <th scope="col">Forfaits</th>
+                            <th scope="col">Date</th>
+                            <th scope="col">Description</th>
+                            <th scope="col">Prix</th>
+                            <th scope="col"></th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                            {% for f in data.forfaits %}
+                                {% set nbrForfait = nbrForfait + 1 %}
+                                
+                                <tr>
+                                    <th scope="row">{{ nbrForfait }}</th>
+                                    <td>{{f.date |date('d/m/Y')}}</td>
+                                    <td>{{ f.description ? f.description  : " "}}</td>
+                                    <td>
+                                            {{ f.prix ?  f.prix ~ " €" : " "}}
+                                        
+                                    </td>
+                                    <td>
+                                        {% if f.payer %}
+                                            réglé
+                                        {% else %}
+                                         pas réglé
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        <a href={{ path('app_forfait_edit' , { 'id' : f.id } ) }} class="btn btn-success btn-sm">
+                                            modifier
+                                        </a>
+                                    </td>
+                                    
+                                </tr>
+                            {% endfor %}
+                                <tr>
+                                    <th scope="row"> </th>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>{{ data.totalForfait ? data.totalForfait ~ " €" : ""}}</td>
+                                </tr>
+                        
+                    </tbody>
+                </table>
+                    
+        {% endif %}

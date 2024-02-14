@@ -1,0 +1,13 @@
+<table class="table relative" style="width: 180 px;margin-left:auto;margin-top : 50px;margin-bottom:20px;">       
+    <tbody>
+        <tr>
+        <td>Total ht : {{ data.totalFacture|number_format(2) }} €</td>
+        </tr>
+        <tr>
+        <td>TVA 20 % : {{ data.tva|number_format(2) }} €</td>
+        </tr>
+        <tr>
+        <td> TTC : {{ data.ttc|number_format(2) }} € </td>
+        </tr>
+    </tbody>
+</table>

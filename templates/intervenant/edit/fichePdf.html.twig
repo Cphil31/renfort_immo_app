@@ -1,0 +1,65 @@
+<style>
+.center{
+text-align: center;
+}
+.titre{
+    margin-top: -40px;
+    font-size:40px;
+    margin-left:390px;
+}
+p.nom{
+    font-size:30px;
+}
+.relative{
+    position: relative;
+    }
+img.img{
+    width: 40%;
+    }
+table{
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 702px;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    page-break-inside: avoid;
+    
+    }
+    table thead tr th{
+        text-align: center;
+        }
+        table td , table th{
+            border: 1px solid #ddd;
+            padding: 8px;
+            font-size: 15px;
+            text-align: right;
+            }
+table td {
+    font-size: 10px;
+    
+    }
+table th{
+    font-size: 12px;
+    }
+.border{
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: right;
+    }
+</style>
+{#
+#}
+<img src={{ logo }} alt="" class=" img relative ">
+
+<h1 class="titre relative">Fiche intervenant</h1>
+
+{% if intervenant.contact %}
+    <p class="nom"> {{ intervenant.contact.nom }} {{ intervenant.contact.prenom }}</p>   
+{% endif %}
+<p>Date : {{ intervenant.date | date('d/m/y') }} </p>
+
+
+<div>
+    
+    </div>
+

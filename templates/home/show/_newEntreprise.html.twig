@@ -1,0 +1,33 @@
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#newEntrepriseModal">
+	Ajouter entreprise
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="newEntrepriseModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h1 class="modal-title fs-5" id="exampleModalLabel">Ajouter entreprise</h1>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				{{ form_start(formNewEntreprise) }}
+				{{ form_label(formNewEntreprise.raison_sociale, 'Raison sociale') }}
+				{{ form_widget(formNewEntreprise.raison_sociale, {'attr': {'class': 'form-control'}}) }}
+                {{ form_label(formNewEntreprise.statut, 'Statut') }}
+				{{ form_widget(formNewEntreprise.statut, {'attr': {'class': 'form-select'}}) }}
+                {{ form_label(formNewEntreprise.siret, 'Siret') }}
+				{{ form_widget(formNewEntreprise.siret, {'attr': {'class': 'form-control'}}) }}
+                {{ form_label(formNewEntreprise.naf, 'Naf') }}
+				{{ form_widget(formNewEntreprise.naf, {'attr': {'class': 'form-control'}}) }}
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">fermer</button>
+				<button type="button submit" class="btn btn-primary">Ajouter</button>
+				{{ form_end(formNewEntreprise) }}
+
+			</div>
+		</div>
+	</div>
+</div>

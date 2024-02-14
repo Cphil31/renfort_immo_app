@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Reunion{% endblock %}
+
+{% block body %}
+    <h1>Reunion</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ reunion.id }}</td>
+            </tr>
+            <tr>
+                <th>Objet</th>
+                <td>{{ reunion.objet }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{{ reunion.date ? reunion.date|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Content</th>
+                <td>{{ reunion.content }}</td>
+            </tr>
+            <tr>
+                <th>CoutLocationSalle</th>
+                <td>{{ reunion.coutLocationSalle }}</td>
+            </tr>
+            <tr>
+                <th>CoutLocationMateriel</th>
+                <td>{{ reunion.CoutLocationMateriel }}</td>
+            </tr>
+            <tr>
+                <th>CoutRestauration</th>
+                <td>{{ reunion.CoutRestauration }}</td>
+            </tr>
+            <tr>
+                <th>CoutCollation</th>
+                <td>{{ reunion.coutCollation }}</td>
+            </tr>
+            <tr>
+                <th>Duree</th>
+                <td>{{ reunion.duree ? reunion.duree|date('H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>ForfaitHoraire</th>
+                <td>{{ reunion.forfaitHoraire }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_reunion_index') }}">back to list</a>
+
+    <a href="{{ path('app_reunion_edit', {'id': reunion.id}) }}">edit</a>
+
+    {{ include('reunion/_delete_form.html.twig') }}
+{% endblock %}

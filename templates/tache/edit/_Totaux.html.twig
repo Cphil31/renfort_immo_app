@@ -1,0 +1,109 @@
+{% set TotauxCommunications = 0 %}
+{% set TotauxIntervenants = 0 %} 
+{% set TotauxDéplacements = 0 %} 
+{% set TotauxForfaits = 0 %}
+{% set TotauxHebergements = 0 %}
+{% set TotauxDocuments = 0 %}
+{% set TotauxRestaurations = 0 %}
+{% set TotauxReunions = 0 %}
+{% set totalDeplacement = 0 %}
+
+{# communications #}
+{% if tache.communications.snapshot %}
+
+    {% for communication in tache.communications.snapshot %}
+        {% set TotauxCommunications = TotauxCommunications + communication.forfait %}
+        
+    {% endfor %}
+
+{% endif %}
+{# communications #}
+
+{# forfaits #}
+
+{% if tache.forfaits.snapshot %}
+
+    {% for forfait in tache.forfaits.snapshot %}
+        {% set TotauxForfaits = TotauxForfaits + forfait.prix %}
+        
+    {% endfor %}
+
+{% endif %}
+
+{# forfaits #}
+
+
+{# intervenants #}
+
+{% if tache.intervenants.snapshot %}
+
+    {% for intervenant in tache.intervenants.snapshot %}
+        {% set TotauxIntervenants = TotauxIntervenants + intervenant.cout %} 
+        
+    {% endfor %}
+    
+{% endif %}
+
+{# intervenants #}
+
+{# déplacements #}
+  {% if tache.deplacements.snapshot %}
+    {% for deplacement in tache.deplacements.snapshot %}
+        {% set totalDeplacement = totalDeplacement + deplacement.cout + deplacement.coutPeage + deplacement.coutCarburant %}
+        
+    {% endfor %}
+    
+  {% endif %}
+
+{# déplacements #}
+
+{# hébergements #}
+    {% if tache.hebergements.snapshot %}
+        {% for hebergement in tache.hebergements.snapshot %}
+            {% set TotauxHebergements = TotauxHebergements + (hebergement.nuit * hebergement.coutNuitUnitaire) %}
+            
+        {% endfor %}
+
+        
+    {% endif %}
+
+{# hébergements #}
+
+{# documents #}
+    {% if tache.documents.snapshot %}
+        
+        {% for document in tache.documents.snapshot %}
+            {% set TotauxDocuments = TotauxDocuments + document.coutAchatDocument + document.coutDocumentCommande + document.coutDocumentProduit %}
+            
+        {% endfor %}
+        
+    {% endif %}
+
+{# documents #}
+
+{# restauration #}
+    {% if tache.restaurations.snapshot %}
+
+        {% for rest in tache.restaurations.snapshot %}
+            {% set TotauxRestaurations = TotauxRestaurations + rest.coutRepasPersonnel + rest.coutRepasClients %}
+            
+        {% endfor %}    
+
+    {% endif %}
+
+{# restauration #}
+
+{# reunion #}
+    {% if tache.reunions.snapshot %}
+        {% for reunion in tache.reunions.snapshot %}
+            {% set TotauxReunions = TotauxReunions + reunion.coutLocationSalle + reunion.CoutLocationMateriel + reunion.CoutRestauration + reunion.coutCollation + reunion.forfaitHoraire %}
+    
+        {% endfor %}
+    {% endif %}
+
+{# reunion #}
+
+
+   
+<p>Total Global : {{ TotauxForfaits + TotauxCommunications + totalDeplacement + TotauxHebergements + TotauxDocuments + TotauxRestaurations + TotauxReunions }} €</p>
+

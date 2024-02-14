@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New OuvertureDossier{% endblock %}
+
+{% block body %}
+    <h1>Create new OuvertureDossier</h1>
+
+    {{ include('ouverture_dossier/_form.html.twig') }}
+
+    <a href="{{ path('app_ouverture_dossier_index') }}">back to list</a>
+{% endblock %}

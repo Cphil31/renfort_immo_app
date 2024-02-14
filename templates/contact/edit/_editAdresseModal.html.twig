@@ -1,0 +1,39 @@
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#adresse{{a.id}}" >
+  modifier adresse
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id= "adresse{{ a.id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">modifier adresse</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      {{ form_start(form) }}
+                {{ form_label(form.statut, 'statut') }}
+                {{ form_widget(form.statut, {'attr': {'class': 'form-control'}}) }}
+                {{ form_label(form.rue, 'rue') }}
+                {{ form_widget(form.rue, {'attr': {'class': 'form-control'}}) }}
+                {{ form_label(form.ville, 'ville') }}
+                {{ form_widget(form.ville, {'attr': {'class': 'form-control'}}) }}
+                {{ form_label(form.code_postal, 'code postal') }}
+                {{ form_widget(form.code_postal, {'attr': {'class': 'form-control'}}) }}
+                {{ form_label(form.departement, 'departement') }}
+                {{ form_widget(form.departement, {'attr': {'class': 'form-control'}}) }}
+                {{ form_label(form.region, 'region') }}
+                {{ form_widget(form.region, {'attr': {'class': 'form-control'}}) }}
+                {{ form_label(form.pays, 'pays') }}
+                {{ form_widget(form.pays, {'attr': {'class': 'form-control'}}) }}
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">fermer</button>
+        <button type="button submit " class="btn btn-primary">Modifier</button>
+      </div>
+      {{ form_end(form) }}
+    </div>
+  </div>
+</div>

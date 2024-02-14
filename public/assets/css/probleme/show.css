@@ -1,0 +1,11 @@
+.flex{
+    display: flex;
+    justify-content: space-between;
+}
+.droite{
+    display: flex;
+    justify-content: space-around;
+}
+.modifier{
+    margin-right: 10px;
+}

@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New StatutEntreprise{% endblock %}
+
+{% block body %}
+    <h1>Create new StatutEntreprise</h1>
+
+    {{ include('statut_entreprise/_form.html.twig') }}
+
+    <a href="{{ path('app_statut_entreprise_index') }}">back to list</a>
+{% endblock %}

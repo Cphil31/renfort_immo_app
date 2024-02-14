@@ -1,0 +1,37 @@
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#newDocumentModal">
+  Ajouter document
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="newDocumentModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Ajouter document</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      {{ form_start(formDoc) }}
+      {{ form_label(formDoc.name, 'Nom') }}
+      {{ form_widget(formDoc.name, {'attr': {'class': 'form-control'}}) }}
+      {{ form_label(formDoc.coutAchatDocument, 'Coût achat document') }}
+      {{ form_widget(formDoc.coutAchatDocument, {'attr': {'class': 'form-control'}}) }}
+      {{ form_label(formDoc.coutDocumentCommande, 'coût document commandé') }}
+      {{ form_widget(formDoc.coutDocumentCommande, {'attr': {'class': 'form-control'}}) }}
+      {{ form_label(formDoc.coutDocumentProduit, 'Coût document produit') }}
+      {{ form_widget(formDoc.coutDocumentProduit, {'attr': {'class': 'form-control'}}) }}
+      {{ form_label(formDoc.date, 'Date') }}
+      {{ form_widget(formDoc.date, {'attr': {'class': 'form-control'}}) }}
+      {{ form_label(formDoc.payer, 'payer') }}
+      {{ form_widget(formDoc.payer) }}
+       
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">fermer</button>
+        <button type="button submit" class="btn btn-primary btn-sm">Ajouter</button>
+      {{ form_end(formDoc) }}
+      </div>
+    </div>
+  </div>
+</div>

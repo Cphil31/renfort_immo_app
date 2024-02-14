@@ -1,0 +1,59 @@
+{% if reunions %}
+
+                {% set nbrReunion = 0 %}
+
+                
+                <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Reunions</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Objet</th>
+                        <th scope="col">Forfait</th>
+                        <th scope="col">Salle</th>
+                        <th scope="col">Matériel</th>
+                        <th scope="col">Restauration</th>
+                        <th scope="col">Collation</th>
+                        <th scope="col"> Reglement</th>
+                        <th scope="col">Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for r in reunions %}
+                        {% set reunionRow = 0 %}
+                        {% set nbrReunion = nbrReunion + 1 %}
+                        {% set reunionRow = reunionRow + r.forfaitHoraire + r.coutLocationSalle + r.coutLocationMateriel + r.coutRestauration + r.coutCollation %}
+                        
+                        <tr>
+                            <th scope="row"> {{nbrReunion}} </th>
+                            <td>{{ r.date | date('d/m/Y')}}</td>
+                            <td>{{r.objet}}</td>
+                            <td>{{r.forfaitHoraire ? r.forfaitHoraire ~ " €" : " "}}</td>
+                            <td>{{r.coutLocationSalle ? r.coutLocationSalle ~ " €" : " "}}</td>
+                            <td>{{r.coutLocationMateriel ? r.coutLocationMateriel ~ " €" : " "}}</td>
+                            <td>{{r.coutRestauration ? r.coutRestauration ~ " €": " "}}</td>
+                            <td>{{r.coutCollation ? r.coutCollation ~ " €": " "}}</td>
+                            <td>{{ r.payer ? "Réglé" : "Pas réglé"}}</td>
+                            <td>{{reunionRow ? reunionRow ~ " €" : " "}}</td>
+                           
+                        </tr>    
+                    {% endfor %}
+                        <tr>
+                            <th scope="row">Total</th>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td> {{totalReunions}} €</td>
+                        </tr>    
+                </tbody>
+                </table>
+                
+
+                
+            {% endif %}
+

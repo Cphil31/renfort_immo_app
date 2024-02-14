@@ -1,0 +1,74 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier Adresse{% endblock %}
+
+{% block body %}
+
+
+<!-- Modal -->
+<div class="modal fade" id="editAdresseModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog ">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5 text-center" id="staticBackdropLabel">
+                    
+             Modifier
+                    
+                </h1>
+            </div>
+            <div class="modal-body">
+                {{ form_start(form) }}
+
+                    {{ form_label(form.statut, 'statut') }}
+                    {{ form_widget(form.statut, {'attr': {'class': 'form-select text-capitalize'}}) }}
+                    {{ form_label(form.rue, 'rue') }}
+                    {{ form_widget(form.rue, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_label(form.ville, 'ville') }}
+                    {{ form_widget(form.ville, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_label(form.code_postal, 'code postal') }}
+                    {{ form_widget(form.code_postal, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_label(form.departement, 'departement') }}
+                    {{ form_widget(form.departement, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_label(form.region, 'region') }}
+                    {{ form_widget(form.region, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_label(form.pays, 'pays') }}
+                    {{ form_widget(form.pays, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_label(form.facturation, 'Facturation') }}
+                    {{ form_widget(form.facturation   ) }}
+                    
+           
+            </div>
+            <div class="modal-footer">
+                {% if adresse.entreprise %}
+                <a href={{ path("app_entreprise_edit" , {'id' : adresse.entreprise.id})}}>
+                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">fermer</button>
+                </a>
+                {% endif %}
+                {% if adresse.contact %}
+                <a href={{ path("app_contact_edit" , {'id' : adresse.contact.id})}}>
+                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">fermer</button>
+                </a>
+                {% endif %}
+
+                <button type="button submit" class="btn btn-success btn-sm">Modifier</button>
+            </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+</div>
+<script>
+    // jappelle le modal apres 3 secondes
+    window.setTimeout(affichageModal, 000);
+
+    function affichageModal() {
+        const myModal = new bootstrap.Modal(document.getElementById('editAdresseModal'), {})
+        myModal.show();
+    };
+    // la doc !
+    // https://getbootstrap.com/docs/5.2/components/modal/#how-it-works
+</script>
+
+
+
+{% endblock %}

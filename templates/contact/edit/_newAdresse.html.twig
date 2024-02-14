@@ -1,0 +1,41 @@
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#newAdresseModal">
+    Ajouter une adresse
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="newAdresseModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel"> Ajouter une adresse</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                {{ form_start(formAdresse) }}
+                    {{ form_label(formAdresse.statut, 'Statut') }}
+                    {{ form_widget(formAdresse.statut, {'attr': {'class': 'form-select text-capitalize'}}) }}
+                    {{ form_label(formAdresse.rue, 'Rue') }}
+                    {{ form_widget(formAdresse.rue, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_label(formAdresse.ville, 'Ville') }}
+                    {{ form_widget(formAdresse.ville, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_label(formAdresse.code_postal, 'Code postal') }}
+                    {{ form_widget(formAdresse.code_postal, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_label(formAdresse.departement, 'Département') }}
+                    {{ form_widget(formAdresse.departement, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_label(formAdresse.region, 'Région') }}
+                    {{ form_widget(formAdresse.region, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_label(formAdresse.pays, 'Pays') }}
+                    {{ form_widget(formAdresse.pays, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_label(formAdresse.facturation, 'Facturation') }}
+                    {{ form_widget(formAdresse.facturation  ) }}
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                <button type="button submit" class="btn btn-primary">Ajouter</button>
+            </div>
+        </div>
+        {{ form_end(formAdresse) }}
+    </div>
+</div>

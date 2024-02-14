@@ -1,0 +1,124 @@
+{% extends 'base.html.twig' %}
+{% block title %}Edit Mission{% endblock %}
+
+{% block stylesheets %}
+	<link rel="stylesheet" href="{{ asset('assets/css/mission/edit.css') }}">
+{% endblock %}
+{% block body %}
+<style type="text/css">
+/*
+.relative{
+    position: relative;
+}
+img.img{
+    width: 40%;
+}
+table{
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 702px;
+    margin-top: 30px;
+    margin-bottom: 20px;
+
+}
+table thead tr th{
+    text-align: center;
+}
+table td , table th{
+    border: 1px solid #ddd;
+    padding: 8px;
+    font-size: 15px;
+    text-align: right;
+}
+table td {
+    font-size: 10px;
+
+}
+table th{
+    font-size: 12px;
+}
+.border{
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: right;
+}
+*/
+</style>
+{#
+   {{ include('note_de_frais/_top.html.twig') }}
+#}
+  <h1>Note de frais : {{ month ? month : " "  }} / {{ year ? year : " "}}</h1>  
+  <h1 >
+      Mission : 
+        <a href={{ path( 'app_mission_edit' , {'id' : mission.id } ) }} >
+          {{ mission.name }} 
+        </a> 
+   </h1>
+    {% if mission.contact %}
+            <h1 >
+            Contact : 
+                <a href= {{ path('app_contact_edit',{'id' : mission.contact.id}) }}>
+
+                    {{ mission.contact.nom }}
+                    {{ mission.contact.prenom }}
+                    {{  mission.contact.entreprise }}
+                </a>
+            </h1>  
+    {% endif %}  
+  {# 
+  #}
+{# afficher les taches #}
+        <a href={{ path( 'app_mission_note_pdf_edit') }} class="btn btn-primary btn-sm pdfButton ">Génerer pdf</a>
+       
+        {#  FORFAITS   #}
+        {{ include('mission/edit/notedefrais/include/_forfait.html.twig') }}
+        {#  FORFAITS   #}
+
+       {#   DEPLACEMENTS     #}
+       {{ include('mission/edit/notedefrais/include/_deplacements.html.twig') }}
+        {#   DEPLACEMENTS     #}
+
+        {#  HEBERGEMENTS   #}
+        {{ include('mission/edit/notedefrais/include/_hebergements.html.twig') }}
+    
+        {#  HEBERGEMENTS   #}
+
+        {#  INTERVENANTS   #}
+        {{ include('mission/edit/notedefrais/include/_intervenants.html.twig') }}
+       
+        {#  INTERVENANTS   #}
+
+        {#  COMMUNICATIONS   #}
+        {{ include('mission/edit/notedefrais/include/_communications.html.twig') }}
+        {#  COMMUNICATIONS   #}
+
+        {#  RESTAURATIONS   #}
+        {{ include('mission/edit/notedefrais/include/_restaurations.html.twig') }}
+        {#  RESTAURATIONS   #}
+
+        {#  REUNIONS   #}
+        {{ include('mission/edit/notedefrais/include/_reunions.html.twig') }}
+        {#  REUNIONS   #}
+     
+        {# DOCUMENTS #}
+        {{ include('mission/edit/notedefrais/include/_documents.html.twig') }}
+        {# DOCUMENTS #}
+        
+            <table class="table relative" style="width: 180 px;margin-left:auto;margin-top : 50px;margin-bottom:10px;">
+            
+                <tbody>
+                    <tr>
+                    <td>Total ht : {{ totalHt }} €</td>
+                    </tr>
+                    <tr>
+                    <td>TVA 20 % : {{ tva}} €</td>
+                    </tr>
+                    <tr>
+                    <td> TTC :  {{ttc}} €</td>
+                    </tr>
+                </tbody>
+            </table>
+
+        
+
+{% endblock %}

@@ -1,0 +1,38 @@
+
+<div>
+	<!-- Button trigger modal -->
+	<button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#newAnalyseModal">
+		Ajouter une analyse
+	</button>
+
+	<!-- Modal -->
+	<div class="modal fade" id="newAnalyseModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h1 class="modal-title fs-5" id="exampleModalLabel">Ajouter une analyse</h1>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+				
+					{{ form_start(formAnalyse) }}
+						{{ form_label(formAnalyse.date, 'Date') }}
+                        {{ form_widget(formAnalyse.date, {'attr': {'class': 'form-control'}}) }}
+                        {{ form_label(formAnalyse.titre, 'Titre') }}
+                        {{ form_widget(formAnalyse.titre, {'attr': {'class': 'form-control'}}) }}
+                        {{ form_label(formAnalyse.description, 'Description') }}
+                        {{ form_widget(formAnalyse.description, {'attr': {'class': 'form-control'}}) }}
+                        {{ form_label(formAnalyse.observations, 'Observations') }}
+                        {{ form_widget(formAnalyse.observations, {'attr': {'class': 'form-control'}}) }}
+					
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">fermer</button>
+					<button type="button submit" class="btn btn-primary btn-sm">Ajouter</button>
+                    {{ form_end(formAnalyse) }}
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>

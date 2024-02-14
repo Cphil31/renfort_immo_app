@@ -1,0 +1,73 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}AppelsRecus{% endblock %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ asset('assets/css/appel/style.css') }}">
+{% endblock %}
+
+
+{% block body %}
+
+<div class="flex ">
+    <h1>
+        Appel Reçu de
+        <a href={{ path( "app_contact_edit" , { "id" : appels_recu.contact.id}) }}>
+            {{ appels_recu.contact.nom ? appels_recu.contact.nom | capitalize  }}
+            {{ appels_recu.contact.prenom ? appels_recu.contact.prenom | capitalize  }}
+        </a>
+    </h1>
+
+    <div class="flex">
+        <a href="{{ path('app_appels_recus_edit', {'id': appels_recu.id}) }}" class="" style="margin-right: 10px;">
+            <button class="btn btn-primary btn-sm ">
+                modifier
+            </button>
+        </a>
+
+
+        {{ include('appels_recus/_delete_form.html.twig') }}
+    </div>
+</div>
+
+
+
+<table class="table">
+    <tbody>
+
+        <tr>
+            <th>Date</th>
+            <td>{{ appels_recu.date ? appels_recu.date|date('Y-m-d H:i:s') : '' }}</td>
+        </tr>
+        <tr>
+            <th>Contact</th>
+
+            <td>
+                {{ appels_recu.contact.nom ? appels_recu.contact.nom | capitalize  }}
+                {{ appels_recu.contact.prenom ? appels_recu.contact.prenom | capitalize  }}
+            </td>
+        </tr>
+        <tr>
+            <th>Mission</th>
+
+            <td>
+                <a href={{ path( "app_mission_edit" , { 'id' : appels_recu.mission.id } )}}>
+                    {{ appels_recu.mission.name ? appels_recu.mission.name | capitalize  }}
+                </a>
+            </td>
+        </tr>
+        <tr>
+            <th>Objet</th>
+            <td>{{ appels_recu.objet }}</td>
+        </tr>
+        <tr>
+            <th>Appeller</th>
+            <td>{{ appels_recu.appeller ? 'Yes' : 'No' }}</td>
+        </tr>
+    </tbody>
+</table>
+
+
+
+
+{% endblock %}

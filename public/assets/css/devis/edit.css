@@ -1,0 +1,17 @@
+.flex{
+    display: flex;
+    justify-content: space-between;
+}
+.droite{
+    display: flex;
+}
+.modifier
+{
+    margin-right: 10px;
+}
+.pdf{
+    margin-right: 10px;
+}
+.orange{
+    color: #e8531e;
+}

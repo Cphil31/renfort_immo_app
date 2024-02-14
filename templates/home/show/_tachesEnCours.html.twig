@@ -1,0 +1,33 @@
+<div class="card" >
+        <div class="card-body">
+                <a href={{ path('app_tache_encours') }}>
+                        <h3>Tâches en cours</h3>
+                </a>
+                {% if tachesEnCours %}
+                        <table class="table">
+                                <thead>
+                                        <tr>
+                                                <th scope="col"></th>
+                                                <th scope="col"></th>
+                                        </tr>
+                                </thead>
+                                <tbody>
+                                        {% set nbrTache = 0 %}
+                                        {% for t in tachesEnCours %}
+                                        {% set nbrTache = nbrTache + 1 %}
+                                        <tr>
+                                                <th scope="row"> {{ nbrTache }} </th>
+                                                <td>
+                                                        <a href={{ path('app_tache_edit' , { 'id' : t.id}) }}
+                                                                style="color:blue;">
+
+                                                                {{ t.description | capitalize }}
+                                                        </a>
+                                                </td>
+                                        </tr>
+                                        {% endfor %}
+                                </tbody>
+                        </table>
+                {% endif %}
+        </div>
+</div>

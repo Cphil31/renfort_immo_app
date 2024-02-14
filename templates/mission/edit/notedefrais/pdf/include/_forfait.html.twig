@@ -1,0 +1,47 @@
+{% if forfaits %}
+                {% set nbrForfait = 0 %}
+                <table class="table" style="margin-top:100px;">
+                    <thead>
+                        <tr>
+                            <th scope="col">Forfaits</th>
+                            <th scope="col">Date</th>
+                            <th scope="col">Description</th>
+                            <th scope="col">Reglement</th>
+                            <th scope="col">Prix</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                            {% for f in forfaits %}
+                                {% set nbrForfait = nbrForfait + 1 %}
+                                
+                                <tr>
+                                    <th scope="row">{{ nbrForfait }}</th>
+                                    <td>{{f.date |date('d/m/Y')}}</td>
+                                    <td>{{ f.description ? f.description  : " "}}</td>
+                                    <td>
+                                    {% if f.payer %}
+                                        réglé
+                                    {% else %}
+                                        pas réglé
+                                    {% endif %}
+                                    </td>
+                                    <td>
+                                            {{ f.prix ?  f.prix ~ " €" : " "}}
+                                        
+                                    </td>
+                                    
+                                </tr>
+                            {% endfor %}
+                                <tr>
+                                    <th scope="row">Total</th>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>{{ totalForfait ? totalForfait ~ " €" : ""}}</td>
+                                </tr>
+                        
+                    </tbody>
+                </table>
+                    
+        {% endif %}

@@ -1,0 +1,29 @@
+<div class="card" >
+	<div class="card-body">
+		<h3>Mails reçus</h3>
+			{% if mails %}
+		        <ul>    
+                        {% for mail in mails %}
+                            <li>
+                                <a href={{ path('app_mail_show', {'id' : mail.id} )}}>
+                                    {{ mail.createdat | date("d/m/Y") }}
+                                    :
+                                    {{mail.contact.nom}}{{mail.contact.prenom}}
+                                    </br>
+                                    objet:{{ mail.objet}}
+                                </a>    
+                            </li>
+                        {% endfor %}    
+                </ul>
+             {% endif %}
+             {% if mails|length > 2 %}
+             <p class="text-center">
+              <a href={{ path("app_mail_index") }}  >...</a>
+             </p>
+            {% endif %}
+
+    <div class="add">
+        {{ include('home/show/_newMails.html.twig') }}
+    </div>
+</div>
+</div>

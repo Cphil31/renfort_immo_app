@@ -1,0 +1,44 @@
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#newIntervenantModal">
+  Ajouter intervenant
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="newIntervenantModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Ajouter intervenant</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        {{ form_start(formIntervenant) }}
+          {{ form_label(formIntervenant.statut, 'Statut') }}
+          {{ form_widget(formIntervenant.statut, {'attr': {'class': 'form-select'}}) }}
+          {{ form_label(formIntervenant.contact, 'contact') }}
+          {{ form_widget(formIntervenant.contact, {'attr': {'class': 'form-select'}}) }}
+          {{ form_label(formIntervenant.entreprise, 'entreprise') }}
+          {{ form_widget(formIntervenant.entreprise, {'attr': {'class': 'form-select'}}) }}
+          {{ form_label(formIntervenant.cout, 'coût') }}
+          {{ form_widget(formIntervenant.cout, {'attr': {'class': 'form-control'}}) }}
+          {{ form_label(formIntervenant.duree, 'durée') }}
+          {{ form_widget(formIntervenant.duree, {'attr': {'class': 'form-control'}}) }}
+          {{ form_label(formIntervenant.date, 'date') }}
+          {{ form_widget(formIntervenant.date, {'attr': {'class': 'form-control'}}) }}
+          {{ form_label(formIntervenant.observation, 'observation') }}
+          {{ form_widget(formIntervenant.observation, {'attr': {'class': 'form-control'}}) }}
+          {{ form_label(formIntervenant.realisations, 'realisations') }}
+          {{ form_widget(formIntervenant.realisations, {'attr': {'class': 'form-control'}}) }}
+          {{ form_label(formIntervenant.payer, 'payer') }}
+          {{ form_widget(formIntervenant.payer) }}
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">fermer</button>
+        <button type="button submit" class="btn btn-primary btn-sm">Ajouter</button>
+      </div>
+      {{ form_end(formIntervenant) }}
+    </div>
+  </div>
+</div>

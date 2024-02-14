@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Moyen{% endblock %}
+
+{% block body %}
+    <h1>Edit Moyen</h1>
+
+    {{ include('moyen/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_moyen_index') }}">back to list</a>
+
+    {{ include('moyen/_delete_form.html.twig') }}
+{% endblock %}

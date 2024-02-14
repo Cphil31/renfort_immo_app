@@ -1,0 +1,47 @@
+a.nav:link {
+    color: red;
+  }
+  
+  /* visited link */
+  a.nav:visited {
+    color: red;
+  }
+  
+  /* mouse over link */
+  a.nav:hover {
+    color: black;
+  }
+  
+  /* selected link */
+  a.nav:active {
+    color: blue;
+  }
+  
+  a:link {
+    color: blue;
+  }
+  
+  /* visited link */
+  a:visited {
+    color: blue;
+  }
+  
+  /* mouse over link */
+  a:hover {
+    color: black;
+  }
+  
+  /* selected link */
+  a:active {
+    color: blue;
+  }
+
+a.deco{
+  margin-left: 10px;
+}
+.orange{
+  color: #e8531e;
+}
+a{
+  text-decoration: none;
+}

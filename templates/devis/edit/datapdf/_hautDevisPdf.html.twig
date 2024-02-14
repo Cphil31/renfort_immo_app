@@ -1,0 +1,88 @@
+  <style>
+  img{
+      position:relative;
+      width:180px;
+  }
+  #titredevis{
+    font-size:35px;
+    margin-left:490px;
+  }
+  .relative{
+    position:relative;
+  }
+  </style>
+  <div>
+  
+      <div class=" relative" >
+        <img src="{{data.logo}}" style="width:300px;" > 
+      </div>
+
+      <div class=" relative" style="margin-top:-46px;padding-top:0px;">
+
+        <span id='titredevis'  class="relative" style="margin-left: 530px;"  >
+            Devis n° {{devis.id}}   
+        </span>
+        <span style="margin-left: 530px;margin-top:-25px;font-size:25px;">
+          Validité : 
+        </span>
+
+      </div>
+
+  </div>
+
+  <div>
+  
+    <div class="relative  " style="margin-top:20px;" >
+
+        <span class='relative'>
+          Date :  <br>      
+          {{ devis.date | date('d/m/Y')}}
+        </span>
+
+        <br>
+        <br>
+
+        <span class='relative'  >
+          Ref Projet :   
+          <br>
+          {{ devis.mission.reference ? devis.mission.reference | capitalize : " " }}
+        </span>
+          
+    </div>
+  
+    <div class="" style="position:relative;margin-top:-111px;margin-left:530px;;">
+    
+        <span class="relative" style="margin-left:0px;margin-top:-30px;">
+          Client :   <br>
+          
+        </span>
+        <br>   
+        <br>
+        <span style="position:relative;" >
+          Adresse :    <br>  
+          {#
+           #}
+            {% if devis.mission.contact.adresses.snapshot %}	
+
+                {% for d in devis.mission.contact.adresses.snapshot %}
+
+                  {% if d.facturation %} 
+                    {{ d.rue }} <br>
+                    
+                      {{d.codePostal}} {{ d.ville}}
+                    
+                  {% endif %}
+                  
+                {% endfor %}
+
+            {% endif %}
+        </span>
+
+    </div>
+  </div>
+
+
+
+
+
+  

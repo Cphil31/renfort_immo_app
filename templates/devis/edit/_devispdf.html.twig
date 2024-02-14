@@ -1,0 +1,164 @@
+
+<style>
+body{
+  padding: 0;
+  position: relative;
+}
+.relative{
+  position: relative;
+}
+
+.client{
+  margin-top: -700px;
+  margin-left: 400px;
+  position: relative;
+}
+.adresse{
+  margin-top: -500px;
+  margin-left: 400px;
+  position: relative;
+}
+
+.border{
+  border: solid 0.5px;
+  padding: 1%;
+}
+.designation{
+  border: solid 0.5px;
+  padding: 2px;
+  position: relative;
+}
+.listeqte{
+  margin-top: -100px;
+}
+ 
+</style>
+{% set nbrDep = 0 %}
+{% set nbrHeb = 0 %}
+{% set nbrPresta = 0 %}
+{% set qtePresta = 0 %}
+{% set TotalPrixPrestation = 0 %}
+{% set PrixDeplacement = 0 %}
+{% set PrixHebergement = 0 %}
+{% set totalSejour = 0 %}
+{% set nbrReunion = 0 %}
+{% set prixReunion = 0 %}
+{% set nbrRestauration = 0 %}
+{% set PrixRestauration = 0 %}
+{% set NbrOuvertureDossier = 0 %}
+{% set PrixDossier = 0 %}
+{% set totalHt = 0 %}
+{% set totalTTC = 0 %}
+
+{# prestation principale #}
+{% set coutPrestationPrincipale = 0 %}
+{% set nbr = 0 %}
+
+
+
+{# total ht #}
+  
+{# total ht #}
+
+{# dossier #}
+{% if devis.ouvertureDossiers.snapshot %}
+  
+  {% for d in devis.ouvertureDossiers.snapshot %}
+    {% set NbrOuvertureDossier = NbrOuvertureDossier + d.quantite %}
+    {% set PrixDossier = PrixDossier + d.prix %}
+    
+  {% endfor %}
+{% endif %}
+{# dossier #}
+
+{# Prestation #}
+{% if devis.devisPrestations.snapshot %}
+
+    {% for p in devis.devisPrestations.snapshot %}
+      {% set nbrPresta = nbrPresta + 1 %}
+      {% set qtePresta = qtePresta + p.quantite %}
+      {% set TotalPrixPrestation = TotalPrixPrestation + (p.quantite * p.prix) %}
+      
+    {% endfor %}
+  
+{% endif %}
+{# Prestation #}
+
+{# Deplacements #}
+{% if devis.devisDeplacements.snapshot %}
+  {% for d in devis.devisDeplacements.snapshot %}
+    {% set nbrDep = nbrDep + d.quantite %}
+    {% set PrixDeplacement = PrixDeplacement + d.prix %}
+    
+  {% endfor %}
+  
+{% endif %}
+
+{# Deplacements #}
+
+{# Hebergements#}
+{% if devis.devishebergements.snapshot %}
+    
+    {% for h in devis.devishebergements.snapshot %}
+      {% set nbrHeb = nbrHeb + 1 %}
+      {% set PrixHebergement = PrixHebergement + h.prixUnitaire %}
+      
+    {% endfor %}
+  
+
+{% endif %}
+
+{# Hebergements#}
+
+{# REUNION #}
+
+{% if devis.devisReunions.snapshot %}
+  {% for r in devis.devisReunions.snapshot %}
+    {% set nbrReunion = nbrReunion + r.quantite %}
+    {% set prixReunion = prixReunion +  r.prix %}
+
+    
+  {% endfor %}
+  
+{% endif %}
+{# REUNION #}
+{# Restauration #}
+{% if devis.devisRestaurations.snapshot %}
+
+  {% for r in devis.devisRestaurations.snapshot %}
+   
+   {% set nbrRestauration = nbrRestauration + r.quantite %}
+   {% set PrixRestauration = PrixRestauration + r.prix %}
+
+
+    
+  {% endfor %}
+  
+{% endif %}
+{# Restauration #}
+
+{% set TotalDossier = NbrOuvertureDossier * PrixDossier %}
+{% set TotalDeplacement = nbrDep *  PrixDeplacement %}
+{% set TotaHebergement = nbrHeb * PrixHebergement %}
+{% set TotalReunion = nbrReunion * prixReunion %}
+{% set TotalRestauration = nbrRestauration * PrixRestauration %}
+
+{% set TotalHt = TotalDossier + TotalDeplacement + TotaHebergement + TotalReunion + TotalRestauration %}
+{% set TVA = TotalHt * 0.2 %}
+{% set TotalTTC = TotalHt + TVA %}
+
+{% block body %}
+
+  
+  {% include 'devis/edit/datapdf/_hautDevisPdf.html.twig' %}
+  {% include 'devis/edit/datapdf/_titresTableau.html.twig' %}
+  {% include 'devis/edit/datapdf/_prestationPrincipale.html.twig' %}
+  {% include 'devis/edit/datapdf/_fraisAnnexe.html.twig' %}
+  {% include 'devis/edit/datapdf/_accord.html.twig' %}
+  {% include 'devis/edit/datapdf/_footer.html.twig' %}
+
+
+
+
+
+{% endblock %}

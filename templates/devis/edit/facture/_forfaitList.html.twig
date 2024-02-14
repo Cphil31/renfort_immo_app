@@ -1,0 +1,42 @@
+{% if data.taches.forfaitList %}
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Forfait</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Reglement</th>
+                    <th scope="col">Prix</th>
+                  </tr>
+                </thead>
+                <tbody>
+
+                {% set nbrF = 0 %}
+                {% for f in data.taches.forfaitList %}
+                  
+                  {% set nbrF = nbrF + 1 %}
+                  <tr>
+                    <th scope="row">{{ nbrF }}</th>
+                    <td>{{f.date | date('d/m/Y')}}</td>
+                    <td>{{ f.description  }}</td>
+                    <td> {{ f.payer ? "payé " : " a payer "  }}</td>
+                    <td>{{ f.payer ? f.prix ~ " €" : 0  }}</td>
+                  </tr>
+                  
+                {% endfor %}
+                {% if data.taches.forfaitList|length > 1  %}.
+
+                  <tr>
+                    <th scope="row">Total</th>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>{{ data.taches.totalForfait ? data.taches.totalForfait ~ " €" : " "  }}</td>
+                  </tr>
+                  
+                {% endif %}
+                
+                </tbody>
+              </table>
+  
+{% endif %}

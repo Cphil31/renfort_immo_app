@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}DevisHebergement index{% endblock %}
+
+{% block body %}
+    <h1>DevisHebergement index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Quantite</th>
+                <th>PrixUnitaire</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for devis_hebergement in devis_hebergements %}
+            <tr>
+                <td>{{ devis_hebergement.id }}</td>
+                <td>{{ devis_hebergement.quantite }}</td>
+                <td>{{ devis_hebergement.prixUnitaire }}</td>
+                <td>
+                    <a href="{{ path('app_devis_hebergement_show', {'id': devis_hebergement.id}) }}">show</a>
+                    <a href="{{ path('app_devis_hebergement_edit', {'id': devis_hebergement.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_devis_hebergement_new') }}">Create new</a>
+{% endblock %}

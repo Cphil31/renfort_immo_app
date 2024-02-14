@@ -1,0 +1,47 @@
+
+{% block body %}
+    <div class="designation" style="margin-top:20px;font-size:15px;width:332px;padding:10px;">
+        Ce devis, en accord avec le Mandant,  peut être réévalué en fonction du développement du dossier
+    </div>
+
+    <div class="designation" style="width:70px;margin-top:-200px;margin-left:530px;">
+        <ul style="padding:3px;margin-top:-2px;">
+            <li style="list-style-type: none;">Total Ht</li>
+            <li style="list-style-type: none;">Tva 20%</li>
+            <li style="list-style-type: none;">Total ttc</li>
+        </ul>
+    </div>
+
+    <div class="designation" style="width:70px;margin-top:-200px;margin-left:630px;">
+        <ul style="padding:1px;margin-top:1px;">
+            <li style="list-style-type: none;text-align: right;">{{ TotalHt }} €</li>
+            <li style="list-style-type: none;text-align: right;">  {{TVA}} €</li>
+            <li style="list-style-type: none;text-align: right;"> {{ TotalTTC | round(2,'floor') }} €</li>
+        </ul>
+    </div>
+
+    <div class="designation" style="width:685px;margin-top:10px;font-size:15px;padding:10px;">
+        Conditions de règlement : <br>
+        -Lettre de commande : 100 € frais ouverture dossier <br>
+        -Signature contrat : acompte de 10% du coût prestation principale <br>
+        -Validation des solutions : acompte de 20 % du coût prestation principale <br>
+        -Réalisation mission : solde des 70% du coût prestation principale <br>
+        -Frais annexes  à payer dès présentation de notes de frais <br>
+
+    </div>
+
+    <div class="designation relative" style="width:350px;margin-top:10px;font-size:15px;padding-bottom:162px;">
+        <p style="text-align:center;">Pour l'Entreprise</p> 
+    </div>
+    <div class="designation relative" style="width:295px;margin-left:370px;margin-top:-315px;padding:10px;padding-left:30px;padding-bottom:60px;font-size:15px;">
+    <span style="margin-left:50px;font-size:15px;">Pour le Client</span>  <br>
+    <span>A _________________________</span>
+        <br> <br>
+    <span>Le ________________________</span>
+        <br> <br>
+    <span>Nom _______________________</span>
+        <br> <br>
+        Signature + Cachet
+
+    </div>
+{% endblock %}

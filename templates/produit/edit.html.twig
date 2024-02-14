@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Produit
+{% endblock %}
+{% block stylesheets %}
+	<link rel="stylesheet" href="{{ asset('assets/css/produit/style.css') }}">
+{% endblock %}
+{% block body %}
+	<div class="flex">
+		<div class="column">
+			<h1>{{produit.name | capitalize}}</h1>
+			<h5>{{produit.localisation | capitalize}}</h5>
+			<h5>{{produit.identification ? "Identification : " ~ produit.identification.identification | capitalize : " "}}</h5>
+			<h5>{{produit.etat ? "Etat : " ~ produit.etat | capitalize : " "}}</h5>
+			<h5>{{produit.observation ? "Observation : " ~ produit.observation | capitalize : " "}}</h5>
+			{% if produit.missions.snapshot %}
+				<h5 > <span class="orange">Missions</span> :</h5>
+				<ul>
+					{% for p in produit.missions.snapshot %}
+						<li>
+							<a href={{ path('app_mission_edit' , { "id" : p.id } ) }}>
+								{{ p.name }}
+							</a>
+						</li>
+					{% endfor %}
+				</ul>
+				
+			{% endif %}
+		</div>
+		<div class="end">
+			<div>
+				<a href={{ path('app_produit_pdf', {'id': produit.id} ) }} class="modifier btn btn-primary btn-sm">Pdf produit</a>
+			</div>
+			<div>
+				<a href={{ path('app_produit_pdf_etat_des_lieux', {'id': produit.id} ) }} class="modifier btn btn-primary btn-sm">Pdf etat des lieux</a>
+			</div>
+
+			{{ include('produit/edit/_editProduit.html.twig') }}
+			
+			{{ include('produit/_delete_form.html.twig') }}
+			
+		</div>
+	</div>
+	<div class="add">
+		{{ include('produit/edit/_newIntervenant.html.twig') }}
+		{{ include('produit/edit/_newEtatDesLieux.html.twig') }}
+		{{ include('produit/edit/_newHistoriqueModal.html.twig') }}
+		{{ include('produit/edit/_newAnalyse.html.twig') }}
+	</div>
+	<div class="table">
+		{{ include('produit/edit/_EtatDesLieuxList.html.twig') }}
+		{{ include('produit/edit/_historique.html.twig') }}
+		{{ include('produit/edit/_analyseList.html.twig') }}
+		{{ include('produit/edit/_carTechniques.html.twig') }}
+		{{ include('produit/edit/_carJuridiques.html.twig') }}
+		{{ include('produit/edit/_carCommerciales.html.twig') }}
+		{{ include('produit/edit/_environement.html.twig') }}
+		{{ include('produit/edit/_intervenantList.html.twig') }}
+		
+	</div>
+	
+
+
+{% endblock %}

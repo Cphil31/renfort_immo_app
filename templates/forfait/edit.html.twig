@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Forfait{% endblock %}
+
+{% block body %}
+
+    <!-- Modal -->
+<div class="modal fade" id="editForfaitModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog ">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5 text-center" id="staticBackdropLabel">
+                Modifier
+                </h1>
+            </div>
+            <div class="modal-body">
+                {{ form_start(form) }}
+                
+                   {{ form_label(form.description, 'Description') }}
+                    {{ form_widget(form.description, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_label(form.prix, 'Prix') }}
+                    {{ form_widget(form.prix, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_label(form.date, 'Date') }}
+                    {{ form_widget(form.date, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_label(form.date_reglement, 'Date de règlement') }}
+                    {{ form_widget(form.date_reglement, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_label(form.payer, 'Payé') }}
+                    {{ form_widget(form.payer ) }}
+                
+            </div>
+            <div class="modal-footer">
+                
+               <a href={{ path('app_tache_edit',{'id' : forfait.tache.id})}}>
+                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">fermer</button>
+               </a>
+            
+                <button type="button submit" class="btn btn-success btn-sm">Modifier</button>
+            </div>
+            {{ form_end(form) }}
+            
+            
+        </div>
+    </div>
+</div>
+<script>
+    // jappelle le modal apres 3 secondes
+    window.setTimeout(affichageModal, 250);
+
+    function affichageModal() {
+        const myModal = new bootstrap.Modal(document.getElementById('editForfaitModal'), {})
+        myModal.show();
+    };
+    // la doc !
+    // https://getbootstrap.com/docs/5.2/components/modal/#how-it-works
+</script>
+{% endblock %}

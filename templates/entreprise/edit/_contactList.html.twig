@@ -1,0 +1,15 @@
+<!-- 
+{{ entreprise.professions.snapshot ? "<h4> Contacts associés </h4>" : ""}}
+<ul>
+    {% for c in entreprise.professions.snapshot %}
+    <li>
+    <a href= {{ path( 'app_contact_show' , {'id' : c.contact.id})}}>
+        {{ c.contact.nom | upper }} {{ c.contact.prenom | capitalize }} 
+    </a>
+        : {{ c.profession | capitalize}}
+    <a href = {{ path('app_profession_edit', {'id' : c.id})}} class="btn btn-success btn-sm" >modifier</a>
+    </li>
+    {% else %}
+    {% endfor %}
+</ul>
+-->

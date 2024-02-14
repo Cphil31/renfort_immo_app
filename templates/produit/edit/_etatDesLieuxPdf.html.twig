@@ -1,0 +1,168 @@
+<style>
+    .blue {
+        width: 22px;
+        height: 100%;
+        background-color: #0BA49A;
+        position: relative;
+    }
+
+    @page {
+        size: a4 portrait;
+        margin: 0;
+        padding: 0;
+    }
+    .center{
+    text-align:center;
+    }
+    .flex {
+        display: flex;
+        justify-content: space-between;
+        position: relative;
+    }
+
+    .texte {
+        position: relative;
+        margin-top: -1000px;
+        margin-left: 55px;
+        width: 700px;
+    }
+
+    .souligne {
+        text-decoration: underline;
+    }
+
+    h1 {
+        margin-top: -100PX;
+        margin-left: 210px;
+        margin-bottom: 50px;
+        font-size: 40px;
+    }
+
+    p {
+        text-align: justify;
+        overflow: hidden;
+        /* les dépassements seront masqués */
+        word-wrap: break-word;
+    }
+
+    table {
+        border-collapse: collapse;
+    }
+
+    th,
+    td.colone {
+        padding: 10px;
+        border-bottom: 1px solid #ddd;
+    }
+
+    td.colone {
+        padding-left: 10px;
+
+    }
+
+    .averifier {
+        width: 330px;
+        margin-right: 70px;
+        border-style: solid;
+        border-color: #5b9bd5;
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+
+    .observations {
+        margin-top: -100px;
+        margin-left: 410px;
+        width: 250px;
+        border-style: solid;
+        border-color: #5b9bd5;
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+
+
+    .contentleft {
+        margin-top: 20px;
+        border-style: solid;
+        border-color: #5b9bd5;
+        position: relative;
+        width: 290px;
+        padding-top: 10px;
+        padding-bottom: 20px;
+    }
+
+    .contentright {
+        
+        border-style: solid;
+        border-color: #5b9bd5;
+        margin-top: -500px;
+        margin-left: 410px;
+        position: relative;
+        width: 210px;
+        padding-top: 10px;
+        padding-bottom: 20px;
+    }
+    .relative{
+        text-align:center;
+    }
+
+    ul {
+        list-style-type: none;
+    }
+    .orange{
+    color: #e8531e;
+    }
+</style>
+<div class="blue"></div>
+<div class="texte">
+
+    <h1 class="titre souligne orange">
+        Etat des Lieux
+    </h1>
+    
+    <h2 style="margin-bottom:30px;"> <span class="orange">Produit</span> : {{ produit.name ? produit.name | capitalize : " " }} </h2>
+    <div class="flex">
+        <span class="souligne">
+            Date de début
+        </span> : {{ minDate |date('d/m/Y')}}
+        <span class="souligne" style="margin-left: 300px;">
+            Date de fin
+        </span> : {{ maxDate |date('d/m/Y')}}
+
+    </div>
+
+    <div class="flex" style="margin-top:50px;">
+
+        <div class="souligne averifier center relative" style="padding-top: 10px;padding-bottom:10px;" >Liste des points a vérifier :</div>
+        <div class="souligne  observations center relative" style="border-style: solid;padding-top: 10px;padding-bottom:10px;">Observations :</div>
+    </div>
+
+
+    <ul class="contentleft">
+        {% if EtatsTab %}
+            {% for e in EtatsTab %}
+            <li>
+                - {{ e.createdAt | date('d/m/Y')}} : {{ e.statut.statut | capitalize}}
+            </li>
+
+            {% endfor %}
+        {% endif %}
+    </ul>
+
+    <ul class="contentright">
+        {% if EtatsTab %}
+            {% for e in EtatsTab %}
+            <li>
+                - {{ e.observation ? e.observation | capitalize : " Aucune observation" }}
+            </li>
+            {% endfor %}
+
+        {% endif %}
+
+
+    </ul>
+
+    <p>Observation : {{ produit.observation ? produit.observation : " Aucune observation" }}</p> 
+
+
+</div>
+

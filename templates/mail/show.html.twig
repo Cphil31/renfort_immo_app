@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+	<link rel="stylesheet" href="{{ asset('assets/css/mail/style.css') }}">
+{% endblock %}
+
+{% block title %}Mail
+{% endblock %}
+
+{% block body %}
+	<div class="flex">
+		<div class="gauche">
+			<p>objet :
+				{{ mail.objet }}</p>
+			<p>mail :
+				{{ mail.email }}</p>
+		</div>
+		<p>date :
+			{{ mail.createdAt ? mail.createdAt|date('Y-m-d H:i:s') : '' }}</p>
+	</div>
+
+	<table class="table">
+		<tbody>
+
+			<tr>
+				<td>
+                <p>
+					{{ mail.content}}
+                </p>
+                </td>
+			</tr>
+
+		</tbody>
+	</table>
+
+
+	<a href="{{ path('app_mail_index') }}">Liste des mails
+	</a>
+
+	<a href="{{ path('app_mail_edit', {'id': mail.id}) }}">Modifier</a>
+
+	{{ include('mail/_delete_form.html.twig') }}
+{% endblock %}

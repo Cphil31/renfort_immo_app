@@ -1,0 +1,44 @@
+{% if data.taches.intervenantList %}
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Intervention</th>
+        <th scope="col">Contact</th>
+        <th scope="col">Réalisations</th>
+        <th scope="col">Reglement</th>
+        <th scope="col">Coût</th>
+      </tr>
+    </thead>
+    <tbody>
+                 {% set nbrI = 0 %}   
+              {% for i in data.taches.intervenantList %}
+                   {% set nbrI = nbrI + 1 %}
+
+                   <tr>
+                      <th scope="row">{{ i.date | date("d/m/Y") }}</th>
+                      <td>{{i.contact ? i.contact.nom }} {{i.contact ? i.contact.prenom }} {{i.entreprise ? i.entreprise.raisonSociale }}</td>
+                      <td>{{ i.realisations }}</td>
+                      <td>{{i.payer ? "Reglé" : " A regler"}}</td>
+                      <td>{{ i.cout ? i.cout ~ " €" : 0 }}</td>
+                    </tr>
+                      
+              {% endfor %}
+              {% if data.taches.intervenantList|length > 1 %}
+                    <tr>
+                      <th scope="row">Total</th>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td> {{data.taches.totalIntervenant ? data.taches.totalIntervenant ~ " €" : 0}} </td>
+                    </tr>
+            
+              {% endif %}
+                
+      
+    </tbody>
+  </table>
+
+
+  
+{% endif %}

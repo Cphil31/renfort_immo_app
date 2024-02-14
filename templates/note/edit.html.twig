@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Note{% endblock %}
+
+{% block body %}
+<!-- Modal -->
+<div class="modal fade" id="editNoteModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog ">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5 text-center" id="staticBackdropLabel">
+
+                </h1>
+            </div>
+            <div class="modal-body">
+                {{ form_start(form) }}
+                {{ form_label(form.note, 'note') }}
+                {{ form_widget(form.note, {'attr': {'class': 'form-control'}}) }}
+
+            </div>
+            <div class="modal-footer">
+
+                {% if note.contact == null %}
+                <a href={{ path('app_entreprise_edit' , {'id'  : note.entreprise.id})}}>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">fermer</button>
+                </a>
+                {% endif %}
+                {% if note.entreprise == null %}
+                <a href={{ path('app_contact_edit' , {'id'  : note.contact.id})}}>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">fermer</button>
+                </a>
+                {% endif %}
+
+                <button type="button submit" class="btn btn-primary">Modifier</button>
+            </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+</div>
+<script>
+    // jappelle le modal apres 3 secondes
+    window.setTimeout(affichageModal, 000);
+
+    function affichageModal() {
+        const myModal = new bootstrap.Modal(document.getElementById('editNoteModal'), {})
+        myModal.show();
+    };
+    // la doc !
+    // https://getbootstrap.com/docs/5.2/components/modal/#how-it-works
+</script>
+{% endblock %}

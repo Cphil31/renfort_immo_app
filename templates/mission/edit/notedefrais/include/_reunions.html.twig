@@ -1,0 +1,64 @@
+{% if reunions %}
+
+                {% set nbrReunion = 0 %}
+
+                
+                <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Reunions</th>
+                        <th scope="col">Objet</th>
+                        <th scope="col">Forfait</th>
+                        <th scope="col">Salle</th>
+                        <th scope="col">Matériel</th>
+                        <th scope="col">Restauration</th>
+                        <th scope="col">Collation</th>
+                        <th scope="col">Total</th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for r in reunions %}
+                        {% set reunionRow = 0 %}
+                        {% set nbrReunion = nbrReunion + 1 %}
+                        {% set reunionRow = reunionRow + r.forfaitHoraire + r.coutLocationSalle + r.coutLocationMateriel + r.coutRestauration + r.coutCollation %}
+                        
+                        <tr>
+                            <th scope="row">{{ r.date | date('d/m/Y')}} </th>
+                            <td></td>
+                            <td>{{r.objet}}</td>
+                            <td>{{r.forfaitHoraire ? r.forfaitHoraire ~ " €" : " "}}</td>
+                            <td>{{r.coutLocationSalle ? r.coutLocationSalle ~ " €" : " "}}</td>
+                            <td>{{r.coutLocationMateriel ? r.coutLocationMateriel ~ " €" : " "}}</td>
+                            <td>{{r.coutRestauration ? r.coutRestauration ~ " €": " "}}</td>
+                            <td>{{r.coutCollation ? r.coutCollation ~ " €": " "}}</td>
+                            <td>{{reunionRow ? reunionRow ~ " €" : " "}}</td>
+                            <td>{{ r.payer ? "Réglé" : "Pas réglé"}}</td>
+                            <td>
+                                <a href={{ path('app_reunion_edit' , {"id" : r.id})}} class=" btn btn-success btn-sm">
+                                    modifier
+                                </a>
+                            </td>
+                        </tr>    
+                    {% endfor %}
+                        <tr>
+                            <th scope="row"></th>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td> {{totalReunions}} €</td>
+                            <td></td>
+                            <td></td>
+                        </tr>    
+                </tbody>
+                </table>
+                
+
+                
+            {% endif %}
+

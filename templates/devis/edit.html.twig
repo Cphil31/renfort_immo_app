@@ -1,0 +1,88 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	{{devi.name}}
+{% endblock %}
+{% block stylesheets %}
+	<link rel="stylesheet" href="{{ asset('assets/css/devis/edit.css') }}">
+{% endblock %}
+{% block body %}
+	<div class="flex">
+		<div class="gauche">
+			<h1> 
+				Devis :  
+				<span class="orange"> 
+					{{devi.name | capitalize}} 
+				</span> 
+			</h1>
+			<h4>Mission :
+				<a href={{ path("app_mission_edit",{'id' : devi.mission.id}  )}} class="orange">
+					{{devi.mission.name}}</a>
+			</h4>
+			{{ include('devis/edit/_contact.html.twig') }}
+			{{ include('devis/edit/_produitList.html.twig') }}
+		</div>
+		<div class="droite">
+			<div>
+				<a href= {{ path('app_devis_pdf' , {'id' : devi.id } )}} class= "btn btn-primary btn-sm pdf ">
+										Devis pdf
+				</a>
+			</div>
+			<div>
+				<a href= {{ path('app_devis_facture' , {'id' : devi.id } )}} class= "btn btn-primary btn-sm pdf ">
+										Facture pdf  
+				</a>
+			</div>
+
+            <div class="modifier">
+			    {{ include('devis/edit/_editDevis.html.twig') }}
+            </div>
+			{{ include('devis/_delete_form.html.twig') }}
+		</div>
+	</div>
+	{% if devi.mission.problemes.snapshot %}
+		
+		{% for probleme in devi.mission.problemes.snapshot %}
+			
+			{% if probleme.taches.snapshot %}
+
+				{% for tache in probleme.taches.snapshot %}
+				
+					
+					
+				{% endfor %}
+				
+			{% endif %}
+		{% endfor %}
+
+	{% endif %}
+	
+	<h1 class="text-center">Etablissement du Devis</h1>
+
+
+
+	<div style="padding-top:2%;padding-left:2%;padding-right:20%;">
+
+		<div style="padding-bottom:2%;">
+			{{ include('devis/edit/_newPrestation.html.twig') }}
+			{{ include('devis/edit/_newAccompte.html.twig') }}
+			{{ include('devis/edit/_newOuvertureDossier.html.twig') }}
+			{{ include('devis/edit/_newDeplacement.html.twig') }}
+			{{ include('devis/edit/_newHebergement.html.twig') }}
+			{{ include('devis/edit/_newReunion.html.twig') }}
+			{{ include('devis/edit/_newRestauration.html.twig') }}
+		</div>
+		{{ include('devis/edit/_prestationList.html.twig') }}
+		{{ include('devis/edit/_accompteList.html.twig') }}
+		{{ include('devis/edit/_dossierList.html.twig') }}
+		{{ include('devis/edit/_deplacementList.html.twig') }}
+		{{ include('devis/edit/_hebergementList.html.twig') }}
+		{{ include('devis/edit/_reunionList.html.twig') }}
+		{{ include('devis/edit/_restaurationList.html.twig') }}
+	</div>
+	
+
+
+	
+
+{% endblock %}

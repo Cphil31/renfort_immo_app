@@ -1,0 +1,28 @@
+body {
+    background-color: white;
+}
+.horloge{
+    display: flex;
+}
+.date{
+    margin-right: 100px;
+}
+.table{
+    background-color: white;
+    border-radius: 10px;
+}
+.violet{
+    background-color: #7952B3;
+    height:4px;
+}
+.box{
+    background-color: #edf2f9;
+    border-radius: 10px;
+}
+#logo{
+    width: 212px;
+}
+.orange{
+    color: #e8531e;
+}
+

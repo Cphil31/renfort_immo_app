@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Mission{% endblock %}
+
+{% block stylesheets %}
+	<link rel="stylesheet" href="{{ asset('assets/css/mission/edit.css') }}">
+{% endblock %}
+
+{% block body %}
+    <div class="flex">
+        <h1 > <span  class="orange"> Mission  </span> : {{ mission.name|capitalize }} </h1>
+
+        <div class="droite">
+
+            {{ include('mission/_form.html.twig', {'button_label': 'Update'}) }}
+
+            {{ include('mission/_delete_form.html.twig') }}
+        </div>
+
+    </div>
+
+    <h3> <span class="orange"> Référence </span> : {{ mission.reference ? mission.reference | capitalize : " "}}</h3>
+    <h3> <span class="orange"> Localisation </span> : {{ mission.localisation ? mission.localisation | capitalize : "aucun "}}</h3>
+    <h3> <span class="orange"> Stade </span> : {{ mission.stade ? mission.stade | capitalize : "aucun"}}</h3>
+   
+    {% if mission.contact %}
+        <h3> <span class="orange">Contact</span>  : 
+        <a href={{ path('app_contact_edit' , { 'id' : mission.contact.id} ) }}>
+            {{ mission.contact.nom }} {{ mission.contact.prenom }} {{ mission.contact.entreprise }} </h3>
+        </a>
+    {% endif %}
+    {% if mission.entreprise %}
+        <h3> Entreprise : {{ mission.entreprise.raisonSociale }} </h3>
+    {% endif %}
+    {{ include('mission/edit/_bouttonBonPriseEnCharge.html.twig') }}
+    {{ include('mission/edit/_bouttonLettreDeCommande.html.twig') }}
+    {{ include('mission/edit/_ficheMission.html.twig') }}
+    {{ include('mission/edit/_newProbleme.html.twig') }}
+    {{ include('mission/edit/_newDevis.html.twig') }}
+    {{ include('mission/edit/_notesDeFrais.html.twig') }}
+    {{ include('mission/edit/_produitList.html.twig') }}
+    {{ include('mission/edit/_devisList.html.twig') }}
+    {{ include('mission/edit/_problemeList.html.twig') }}
+
+{% endblock %}

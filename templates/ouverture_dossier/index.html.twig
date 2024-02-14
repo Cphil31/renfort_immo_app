@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}OuvertureDossier index{% endblock %}
+
+{% block body %}
+    <h1>OuvertureDossier index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Quantite</th>
+                <th>Prix</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for ouverture_dossier in ouverture_dossiers %}
+            <tr>
+                <td>{{ ouverture_dossier.id }}</td>
+                <td>{{ ouverture_dossier.quantite }}</td>
+                <td>{{ ouverture_dossier.prix }}</td>
+                <td>
+                    <a href="{{ path('app_ouverture_dossier_show', {'id': ouverture_dossier.id}) }}">show</a>
+                    <a href="{{ path('app_ouverture_dossier_edit', {'id': ouverture_dossier.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_ouverture_dossier_new') }}">Create new</a>
+{% endblock %}

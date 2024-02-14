@@ -1,0 +1,40 @@
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#newRestaurationModal">
+  Ajouter restauration
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="newRestaurationModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Ajouter restauration</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+       {{ form_start(formRestau) }}
+        {{ form_label(formRestau.date, 'Date') }}
+        {{ form_widget(formRestau.date, {'attr': {'class': 'form-control'}}) }}
+        {{ form_label(formRestau.duree, 'Durée') }}
+        {{ form_widget(formRestau.duree, {'attr': {'class': 'form-control'}}) }}
+        {{ form_label(formRestau.etablissement, 'Etablissement') }}
+        {{ form_widget(formRestau.etablissement, {'attr': {'class': 'form-control'}}) }}
+        {{ form_label(formRestau.coutRepasPersonnel, 'Cout repas personnel') }}
+        {{ form_widget(formRestau.coutRepasPersonnel, {'attr': {'class': 'form-control'}}) }}
+        {{ form_label(formRestau.coutRepasClients, 'Cout repas Clients') }}
+        {{ form_widget(formRestau.coutRepasClients, {'attr': {'class': 'form-control'}}) }}
+        {{ form_label(formRestau.forfait, 'Forfait') }}
+        {{ form_widget(formRestau.forfait, {'attr': {'class': 'form-control'}}) }}
+        {{ form_label(formRestau.payer, 'payer') }}
+        {{ form_widget(formRestau.payer ) }}
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">fermer</button>
+        <button type="button submit" class="btn btn-primary btn-sm">Ajouter</button>
+       {{ form_end(formRestau) }}
+      </div>
+    </div>
+  </div>
+</div>

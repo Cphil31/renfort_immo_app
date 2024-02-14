@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ probleme.description }}{% endblock %}
+
+{% block stylesheets %}
+	<link rel="stylesheet" href="{{ asset('assets/css/probleme/show.css') }}">
+{% endblock %}
+
+{% block body %}
+
+    {{ include('probleme/show/_haut.html.twig') }}
+
+{% endblock %}

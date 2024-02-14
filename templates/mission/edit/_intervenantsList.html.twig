@@ -1,0 +1,16 @@
+{#
+{% if produit.intervenants.snapshot %}
+    <ul>
+        {% for intervenant in produit.intervenants.snapshot %}
+            <li>
+                {{ intervenant.statut.statut ? intervenant.statut.statut : " " }} :
+                <a href={{ path('app_contact_edit' , { 'id' : intervenant.contact.id }) }}>
+                    {{ intervenant.contact.nom | capitalize }}
+                    {{ intervenant.contact.prenom | capitalize }}
+                </a>
+            </li>
+
+        {% endfor %}
+    </ul>
+{% endif %}
+#}

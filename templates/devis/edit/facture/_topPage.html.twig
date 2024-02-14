@@ -1,0 +1,49 @@
+     {# 
+     #} 
+
+        <img src= {{data.logo}} alt="" class="img relative">
+        <p class="titre relative" style="margin-top: -30px;font-size:30px;margin-left:380px;">
+            Facture :
+            
+        </p>
+        
+        <p class="relative" style="margin-top: 20px;font-size:20px;margin-left:450px;">
+        </p>
+        <p class="relative">
+            Mission :
+            {{data.mission.name}}
+        </p>
+        {% if data.mission.contact %}
+            <p class="relative" style="margin-top:-300px;margin-left:530px;">
+                Client :
+                {{ data.mission.contact.nom }}
+                {{ data.mission.contact.prenom }}
+            </p>
+        {% endif %}
+
+        {% if data.mission.reference %}   
+            <p class="relative">
+              Référence :
+                  {{data.mission.reference | capitalize }}
+            </p>
+            <p class="relative">
+              Devis : {{ devis.name ? devis.name : " " }}
+            </p>
+        {% endif %}
+
+ 
+
+        {% if data.mission.contact.adresses.snapshot %}
+            <p class="relative" style="margin-top:-300px;margin-left:530px;margin-bottom:20px;">
+                Adresse :
+                {% for a in data.mission.contact.adresses.snapshot %}
+                    {% if a.facturation %}  
+                        {{ a.rue }}
+                        <br>
+                        {{ a.codePostal }} , {{ a.ville }}
+                    {% endif %}
+                    
+                {% endfor %}
+            </p>
+
+        {% endif %}

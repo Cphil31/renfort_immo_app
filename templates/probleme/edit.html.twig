@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{probleme.classe | capitalize}}{% endblock %}
+
+{% block stylesheets %}
+	<link rel="stylesheet" href="{{ asset('assets/css/probleme/edit.css') }}">
+{% endblock %}
+
+{% block body %}
+<div class="flex">
+    <h1>Problème : <span class="orange">  {{probleme.classe | capitalize}}</span></h1>
+    <div class="flex">
+        {{ include('probleme/edit/_editProbleme.html.twig') }}
+        {{ include('probleme/_delete_form.html.twig') }}
+    </div>
+</div>
+    <h1>
+        Mission :
+        <a href={{ path("app_mission_edit" , {'id' : probleme.mission.id} ) }}>
+            {{ probleme.mission.name}} 
+        </a>
+    </h1>
+
+{{ include('probleme/edit/_newTache.html.twig') }}
+{{ include('probleme/edit/_tacheList.html.twig') }}
+{% endblock %}

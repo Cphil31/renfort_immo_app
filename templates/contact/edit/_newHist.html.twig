@@ -1,0 +1,29 @@
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  Ajouter un historique
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Ajouter un historique</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        {{ form_start(formHist) }}
+        {{ form_label(formHist.title, 'Titre') }}
+        {{ form_widget(formHist.title, {'attr': {'class': 'form-control'}}) }}
+        {{ form_label(formHist.historique, 'Historique') }}
+        {{ form_widget(formHist.historique, {'attr': {'class': 'form-control'}}) }}
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">fermer</button>
+        <button type="button submit" class="btn btn-primary btn-sm">Ajouter</button>
+      </div>
+        {{ form_end(formHist) }}
+    </div>
+  </div>
+</div>

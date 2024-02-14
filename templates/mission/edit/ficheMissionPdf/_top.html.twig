@@ -1,0 +1,15 @@
+<img src={{logo}} alt="">
+<h1 class="center titre"> Fiche Mission </h1>
+<p>
+    Référence : {{ mission.reference ?  mission.reference : " "}} <br>
+</p>
+<p style="margin-top:-20px;margin-left:400px;">
+    Mandant : {{prenom | capitalize }} {{ nom  | capitalize }} <br>
+</p>
+<p>
+    Mission : {{ mission.name ? mission.name : " " }}
+</p>
+<p>
+    Localisation : {{ mission.localisation }}
+</p>
+

@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New StatutDeplacement{% endblock %}
+
+{% block body %}
+    <h1>Create new StatutDeplacement</h1>
+
+    {{ include('statut_deplacement/_form.html.twig') }}
+
+    <a href="{{ path('app_statut_deplacement_index') }}">back to list</a>
+{% endblock %}

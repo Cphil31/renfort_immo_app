@@ -1,0 +1,54 @@
+
+
+{% if devi.devisReunions.snapshot %}
+    {% set nbrReunion = 0 %}
+    {% set TotalQuantité = 0 %}
+    {% set TotauxPrix = 0 %}
+    {% set TotauxFinalLigne = 0 %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col"> </th>
+                <th scope="col">Réunions</th>
+                <th scope="col">Prix</th>
+                <th scope="col">Totaux</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for d in devi.devisReunions.snapshot %}
+                {% set nbrReunion = nbrReunion + 1 %}
+                {% set TotalQuantité = TotalQuantité + d.quantite %}
+                {% set TotauxPrix = TotauxPrix + d.prix %}
+                {% set TotauxFinalLigne = TotauxFinalLigne + d.quantite * d.prix %}
+                <tr>
+                    <th scope="row">{{ nbrReunion }}</th>
+                    <td> {{ d.quantite }}  </td>
+                    <td> {{ d.prix }} €</td>
+                    <td> {{ d.quantite * d.prix }} € </td>
+                    <td>
+                        <a href={{ path('app_devis_reunion_edit' , { 'id' : d.id }) }} class="btn btn-success btn-sm" >
+                            modifier
+                        </a>
+                    </td>
+                    <td>
+                        <form method="post" action="{{ path('app_devis_reunion_delete', {'id': d.id}) }}" onsubmit="return confirm('Ete vous sur de vouloir supprimer cette réunion ?');">
+                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ d.id) }}">
+                            <button class="btn btn-danger btn-sm">supprimer</button>
+                        </form>
+
+                    </td>
+                </tr>  
+            {% endfor %}
+            <tr>
+                <td></td>
+                <td>{{ TotalQuantité }}</td>
+                <td>{{ TotauxPrix }} €</td>
+                <td> {{ TotauxFinalLigne }} €</td>
+            </tr>
+                    
+        </tbody>
+    </table>
+
+{% endif %}

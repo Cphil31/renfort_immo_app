@@ -1,0 +1,51 @@
+{% if contact.intervenants.snapshot %}
+    <h4 class="orange"> Intervenant</h4>
+
+    <table class="table table-borderless">
+        <thead>
+            <tr>
+                <th scope="col">Date</th>
+                <th scope="col">Statut</th>
+                <th scope="col">Tâche</th>
+                <th scope="col"> Produit</th>
+                <th scope="col">Mission</th>
+                <th scope="col">Réalisations</th>
+                <th scope="col">Observation</th>
+                <th scope="col">Coût</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for c in contact.intervenants.snapshot %}
+            
+                    <tr>
+                        <td>
+                            {{ c.date | date('d/m/Y') }}
+                        </td>
+                        <td>
+                            {{ c.statut.statut ? c.statut.statut : " "}}
+                        </td>
+                        <td>    
+                            {% if c.tache %}
+                              <a href={{ path('app_tache_edit' , {'id' : c.tache.id })}}>
+                                {{  c.tache.description | capitalize}}
+                              </a>  
+                            {% endif %}                
+                        </td>
+                        
+                        <td>
+                            {{ c.realisations | capitalize }}
+                        </td>
+                         <td>
+                            {{ c.observation | capitalize }}
+                        </td>
+                        <td>
+                            {{ c.cout ? c.cout ~ " €" }} 
+                        </td>
+                        {#
+                        #}
+                    </tr>
+               
+            {% endfor %}
+        </tbody>
+    </table>
+{% endif %}

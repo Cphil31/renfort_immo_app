@@ -1,0 +1,539 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Note de Frais{% endblock %}
+{% block body %}
+
+        <h1>
+            Mission : 
+            <a href={{ path('app_mission_edit',{'id' : data.mission.id})}}>
+                {{ mission.name}}
+            </a>
+        <h1>Notes de frais du {{data.month}}/{{data.year}}</h1>
+        </h1>
+        
+        {% set totalNoteDeFrais = 0 %}
+
+        {{ form_start(formPayAll ) }}
+            {{ form_widget(formPayAll) }}
+        {{ form_end(formPayAll) }}
+       
+       <a href= {{ path('app_devis_pdf_note_de_frais' , {"id" : mission.id ,'data' : data} )}}>
+       pdf 
+       </a>
+        {#  FORFAITS   #}
+
+
+        {% if data.forfaits %}
+                {% set nbrForfait = 0 %}
+                {% set totalForfait = 0 %}
+
+
+                <table class="table" >
+                    <thead>
+                        <tr>
+                            <th scope="col">Forfaits</th>
+                            <th scope="col">Date</th>
+                            <th scope="col">Description</th>
+                            <th scope="col">Prix</th>
+                            <th scope="col"></th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                            {% for f in data.forfaits %}
+                                {% set nbrForfait = nbrForfait + 1 %}
+                                {% if f.payer == false %}
+                                    {% set totalForfait = totalForfait + f.prix %}
+                                {% else %}    
+                                    
+                                {% endif %}
+                                <tr>
+                                    <th scope="row">{{ nbrForfait }}</th>
+                                    <td>{{f.date |date('d/m/Y')}}</td>
+                                    <td>{{ f.description ? f.description  : " "}}</td>
+                                    <td>
+                                            {{ f.prix ?  f.prix ~ " €" : " "}}
+                                        
+                                    </td>
+                                    <td>
+                                        {% if f.payer %}
+                                            réglé
+                                        {% else %}
+                                         pas réglé
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        <a href={{ path('app_forfait_edit' , { 'id' : f.id } ) }} class="btn btn-success btn-sm">
+                                            modifier
+                                        </a>
+                                    </td>
+                                    
+                                </tr>
+                            {% endfor %}
+                                <tr>
+                                    <th scope="row"> </th>
+                                    <td></td>
+                                    <td></td>
+                                    <td>{{ totalForfait ? totalForfait ~ " €" : totalForfait ~ " €"}}</td>
+                                </tr>
+
+                        
+                    </tbody>
+                </table>
+
+                {% set totalNoteDeFrais = totalNoteDeFrais + totalForfait %}
+                
+            
+        {% endif %}
+        {#  FORFAITS   #}
+
+       {#   DEPLACEMENTS     #}
+
+        {% if data.deplacements %}
+                {% set nbrDep = 0 %}
+                {% set totalNbr = 0 %}
+                {% set totalCout = 0 %}
+                {% set totalPeage = 0 %}
+                {% set totalCarburant = 0 %}
+                {% set total1Deplacement = 0 %}
+                {% set TotauxDeplacements = 0 %}
+            <table class="table">
+            <thead>
+                <tr>
+                <th scope="col">Déplacement</th>
+                <th scope="col">Date</th>
+                <th scope="col">Lieu</th>
+                <th scope="col">Durée</th>
+                <th scope="col">Coût</th>
+                <th scope="col">Coût Péage</th>
+                <th scope="col">Coût Carburant</th>
+                <th scope="col">Total</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+
+
+                </tr>
+            </thead>
+            <tbody>
+                {% for d in data.deplacements %}
+                    {% set nbrDep = nbrDep + 1 %}
+                    {% set totalCout = totalCout + d.cout %}
+                    {% set totalPeage = totalPeage +  d.coutPeage %}
+                    {% set totalCarburant = totalCarburant + d.coutCarburant %}
+                    {% set total1Deplacement = d.cout + d.coutPeage + d.coutCarburant %}
+                    {% if d.payer == false %}
+                        
+                        {% set TotauxDeplacements = TotauxDeplacements + total1Deplacement %}
+                    {% endif %}
+
+                    <tr>
+                        <th scope="row">{{  nbrDep }}</th>
+                        <td>
+                            {{ d.date|date('d/m/Y')}}
+                        </td>
+                        <td>
+                            {{d.lieu | capitalize }}
+                        </td>
+                        <td>
+                            {{d.duree|date('H:i')}}
+                        </td>
+                        <td>
+                            {{d.cout ? d.cout ~ " €" : ""}} 
+                        </td>
+                        <td>
+                            {{d.coutPeage ? d.coutPeage ~ " €" : ""}} 
+                        </td>
+                        <td>
+                            {{d.coutCarburant ? d.coutCarburant ~ " €" : ""}} 
+                        </td>
+                        <td>
+                            {{total1Deplacement ? total1Deplacement ~ " €" : ""}} 
+                        </td>
+                        <td>
+                            {% if d.payer  %}
+                                réglé
+                            {% else %}
+                                pas réglé
+                            {% endif %}
+                        </td>
+                        <td>
+                            <a href={{ path('app_deplacement_edit' , { "id" : d.id}) }} class="btn btn-success btn-sm">
+                                modifier
+                            </a>
+                        </td>
+
+                    </tr>  
+                {% endfor %}
+                <tr>
+                    <th scope="row">
+                    {% if nbrDep < 1 %}
+                        {{ nbrDep }}     
+                    {% endif %}
+                    </th>
+                    <td></td>
+                    <td></td>
+                    <td> </td>
+                    <td> {{totalCout ? totalCout ~ " €" : ""}} </td>
+                    <td>    {{totalPeage ? totalPeage ~ " €" : ""}} </td>
+                    <td>    {{totalCarburant ? totalCarburant ~ " €" : ""}} </td>
+                    <td>    {{TotauxDeplacements ? TotauxDeplacements ~ " €" : " "}} </td>
+
+                </tr>    
+                
+            </tbody>
+            </table>
+            
+            {% set totalNoteDeFrais = totalNoteDeFrais +  TotauxDeplacements %}
+
+        {% endif %}
+
+
+        {#   DEPLACEMENTS     #}
+
+        {#  HEBERGEMENTS   #}
+
+        {% if data.hebergements %}
+
+            {% set nbrHebergements = 0 %}
+            {% set nbrNuit = 0 %}
+            {% set totalCout = 0 %}
+            {% set total1Hebergement = 0 %}
+            {% set totauxHebergement = 0 %}
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Hébergement</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Lieu</th>
+                        <th scope="col">Nuit</th>
+                        <th scope="col">Cout</th>
+                        <th scope="col">Total</th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                        {% for h in data.hebergements %}
+                                {% set nbrHebergements = nbrHebergements + 1 %}
+                                {% set nbrNuit = nbrNuit + h.nuit %}
+                                {% set totalCout = totalCout + h.coutNuitUnitaire %}
+                                {% set total1Hebergement =  h.nuit * h.coutNuitUnitaire %}
+                                {% if h.payer %}
+                                {% else %}
+                                    {% set totauxHebergement = totauxHebergement + total1Hebergement %}
+                                {% endif %}
+                            
+                                <tr>
+                                    <th scope="row">{{ nbrHebergements }}</th>
+                                    <td>{{h.date|date('d/m/Y')}}</td>
+                                    <td>{{h.lieu}}</td>
+                                    <td>{{h.nuit}}</td>
+                                    <td> {{h.coutNuitUnitaire}} €</td>
+                                    <td> 
+                                        {{total1Hebergement}} €                                       
+                                    </td>
+                                    <td>
+                                        {% if h.payer %}
+                                            réglé
+                                         {% else %}   
+                                         pas réglé
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        <a href={{ path("app_hebergement_edit" , {'id' : h.id } )  }} class="btn btn-success btn-sm">
+                                            modifier
+                                        </a>
+                                    </td>
+
+                                </tr>
+                        {% endfor %}
+                        <tr>
+                            <th scope="row">{{ nbrHebergements }}</th>
+                            <td></td>
+                            <td></td>
+                            <td> {{ nbrNuit}} </td>
+                            <td> {{ totalCout }} €</td>
+                            <td> {{totauxHebergement}} €</td>
+                        </tr>
+                </tbody>
+            </table>
+            
+        {% set totalNoteDeFrais = totalNoteDeFrais +  totauxHebergement %}
+        {% endif %}
+        {#  HEBERGEMENTS   #}
+
+        {#  INTERVENANTS   #}
+        {% if data.intervenants %}
+            {% set nbrInter = 0 %}
+            {% set totalIntervention = 0 %}
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Intervenant</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Durée</th>
+                        <th scope="col">Réalisation</th>
+                        <th scope="col">Observation</th>
+                        <th scope="col">Coût</th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    {% for i in data.intervenants %}
+                        {% set nbrInter = nbrInter + 1 %}
+                        {% if i.payer  %}
+
+                        {% else %}
+                            {% set totalIntervention = totalIntervention + i.cout %}        
+                        {% endif %}
+
+                        <tr>
+                            <th scope="row">{{ nbrInter }}</th>
+                            <td>{{ i.date | date('d/m/Y')}}</td>
+                            <td>{{ i.duree | date('H:i')}}</td>
+                            <td> {{ i.realisations }} </td>
+                            <td> {{ i.observation }} </td>
+                            <td> {{ i.cout ? i.cout ~ " €" : ""}} </td>
+                            <td>{{ i.payer ? "réglé" : "pas réglé"}}</td>
+                            <td>
+                                <a href={{ path( 'app_intervenant_edit' , {"id" : i.id} ) }} class="btn btn-success btn-sm">
+                                    modifier
+                                </a>
+                            </td>
+                        </tr>
+                        
+                    {% endfor %}
+
+                        <tr>
+                            <th ></th>
+                            <td></td>
+                            <td></td>
+                            <td> </td>
+                            <td>  </td>
+                            <td> {{ totalIntervention }} € </td>
+                        </tr>
+                    
+                </tbody>
+            </table>
+            
+            {% set totalNoteDeFrais = totalNoteDeFrais + totalIntervention %}
+
+        {% endif %}
+        {#  INTERVENANTS   #}
+
+        {#  RESTAURATIONS   #}
+
+            {% if data.restaurations %}
+                {% set nbrRest = 0 %}
+                {% set total1Restauration = 0 %}
+                {% set totauxRestaurations = 0 %}
+
+                <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Restauration</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Durée</th>
+                        <th scope="col">Etablissement</th>
+                        <th scope="col">Forfait</th>
+                        <th scope="col">repas Personnel</th>
+                        <th scope="col">repas Clients</th>
+                        <th scope="col">Total</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for r in data.restaurations %}
+                    {% set nbrRest = nbrRest + 1 %}
+                    {% set total1Restauration = total1Restauration + r.forfait + r.coutRepasPersonnel + r.coutRepasClients %}
+                    {% if r.payer %}
+
+                        {% else %}   
+
+                        {% set totauxRestaurations = totauxRestaurations + total1Restauration %}
+                    {% endif %}
+                    <tr>
+                        <th scope="row">{{nbrRest}}</th>
+                        <td>{{ r.date | date('d/m/Y')}}</td>
+                        <td>{{ r.duree | date('H:i')}}</td>
+                        <td>{{ r.etablissement }}</td>
+                        <td>{{ r.forfait ? r.forfait ~ " €" : " "}}</td>
+                        <td>{{ r.coutRepasPersonnel ? r.coutRepasPersonnel ~ " €" : " "}}</td>
+                        <td>{{ r.coutRepasClients ? r.coutRepasClients ~ " €" : " "}}</td>
+                        <td>{{ total1Restauration ? total1Restauration ~ " €" : " "}}</td>
+                        <td>{{ r.payer ? "Réglé" : " Pas réglé"}}</td>
+                        <td>
+                            <a href={{ path('app_restauration_edit' , { 'id' : r.id} ) }} class="btn btn-success btn-sm">
+                                modifier
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                    <tr>
+                        <th scope="row"></th>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>{{ totauxRestaurations ? totauxRestaurations ~ " €" : " "}}</td>
+                    </tr>
+                
+                </tbody>
+                </table>
+
+                {% set totalNoteDeFrais = totalNoteDeFrais + totauxRestaurations %}
+            {% endif %}
+        {#  RESTAURATIONS   #}
+
+        {#  COMMUNICATIONS   #}
+            {% if data.communications %}
+                {% set nbrCom = 0 %}
+                {% set totalForfait = 0 %}
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Communication</th>
+                            <th scope="col">Date</th>
+                            <th scope="col">Statut</th>
+                            <th scope="col">Description</th>
+                            <th scope="col">Forfait</th>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for c in data.communications %}
+                            {% if c.payer %}
+                            {% else %}
+                            {% set totalForfait = totalForfait + c.forfait %}
+                            {% endif %}
+                            
+                            <tr>
+                                <th scope="row">1</th>
+                                <td> {{ c.date | date('d/m/Y')}} </td>
+                                <td>{{ c.statut.statut ? c.statut.statut : " "}}</td>
+                                <td> {{ c.description }} </td>
+                                <td> {{ c.forfait ? c.forfait ~ " €" : "" }}</td>
+                                <td> {{ c.payer ? "réglé" : "Pas réglé"}} </td>
+                                <td>
+                                    <a href="" class="btn btn-success btn-sm">
+                                    modifier
+                                    </a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                            <tr>
+                                <th scope="row">Total</th>
+                                <td> </td>
+                                <td></td>
+                                <td>  </td>
+                                <td> {{ totalForfait ? totalForfait ~ " €" : "0 €" }} </td>
+                            </tr>
+                        
+                    </tbody>
+                </table>
+            {% set totalNoteDeFrais = totalNoteDeFrais + totalForfait %} 
+            {% endif %}
+
+        {#  COMMUNICATIONS   #}
+
+        {#  REUNIONS   #}
+
+            {% if data.reunions %}
+
+                {% set nbrReunion = 0 %}
+                {% set TotalReunion = 0 %}
+
+                
+                <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Reunion</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Objet</th>
+                        <th scope="col">Forfait</th>
+                        <th scope="col">Salle</th>
+                        <th scope="col">Matériel</th>
+                        <th scope="col">Restauration</th>
+                        <th scope="col">Collation</th>
+                        <th scope="col">Total</th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for r in data.reunions %}
+                        {% set reunionRow = 0 %}
+                        {% set nbrReunion = nbrReunion + 1 %}
+                        {% set reunionRow = reunionRow + r.forfaitHoraire + r.coutLocationSalle + r.coutLocationMateriel + r.coutRestauration + r.coutCollation %}
+                        {% if r.payer %}
+                            {% else %}
+                                {% set TotalReunion = TotalReunion + reunionRow %}
+                        {% endif %}
+                        <tr>
+                            <th scope="row"> {{nbrReunion}} </th>
+                            <td>{{ r.date | date('d/m/Y')}}</td>
+                            <td>{{r.objet}}</td>
+                            <td>{{r.forfaitHoraire ? r.forfaitHoraire ~ " €" : " "}}</td>
+                            <td>{{r.coutLocationSalle ? r.coutLocationSalle ~ " €" : " "}}</td>
+                            <td>{{r.coutLocationMateriel ? r.coutLocationMateriel ~ " €" : " "}}</td>
+                            <td>{{r.coutRestauration ? r.coutRestauration ~ " €": " "}}</td>
+                            <td>{{r.coutCollation ? r.coutCollation ~ " €": " "}}</td>
+                            <td>{{reunionRow ? reunionRow ~ " €" : " "}}</td>
+                            <td>{{ r.payer ? "Réglé" : "Pas réglé"}}</td>
+                            <td>
+                                <a href={{ path('app_reunion_edit' , {"id" : r.id})}} class=" btn btn-success btn-sm">
+                                    modifier
+                                </a>
+                            </td>
+                        </tr>    
+                    {% endfor %}
+                        <tr>
+                            <th scope="row"></th>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>{{TotalReunion ? TotalReunion ~ " €" : " "}}</td>
+                        </tr>    
+                </tbody>
+                </table>
+                
+
+                {% set totalNoteDeFrais = totalNoteDeFrais + TotalReunion %}
+            {% endif %}
+
+
+        {#  REUNIONS   #}
+        {% set tva = totalNoteDeFrais * 0.20 %}
+        {% set ttc = totalNoteDeFrais + tva %}
+            <table class="table relative" style="width: 180 px;margin-left:auto;margin-top : 50px;margin-bottom:10px;">
+            
+                <tbody>
+                    <tr>
+                    <td>Total ht : {{ totalNoteDeFrais }} €</td>
+                    </tr>
+                    <tr>
+                    <td>TVA 20 % : {{ tva }} €</td>
+                    </tr>
+                    <tr>
+                    <td> TTC : {{ ttc }} € </td>
+                    </tr>
+                </tbody>
+            </table>
+
+
+
+{% endblock %}
+

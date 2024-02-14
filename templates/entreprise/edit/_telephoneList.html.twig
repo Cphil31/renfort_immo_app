@@ -1,0 +1,21 @@
+{#
+#}
+{% if entreprise.telephones.snapshot %}
+
+{{entreprise.telephones.snapshot ? "<h4>Liste des téléphone</h4>" : "<h6> Pas de telephones trouvées .</h6>"}}
+<ul>
+    {% for t in entreprise.telephones.snapshot %}
+    <li>
+        <p>
+            {{t.statut.statut}} :
+            {{t.number}}
+            <a href={{ path('app_telephone_edit',{'id' : t.id})}} class="btn btn-success btn-sm">
+                modifier
+            </a>
+        </p>
+    </li>
+    {% else %}
+    {% endfor %}
+</ul>
+
+{% endif %}

@@ -1,0 +1,37 @@
+{% if mission.produit.snapshot %}
+        <h4> <span class="orange">Bien concernés</span>  : </h4>
+
+        <table class="table">
+            <thead>
+                <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nom</th>
+                <th scope="col">Localisation</th>
+                <th scope="col">Etats des lieux</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% set nbrProduit = 0 %}
+                {% for produit in mission.produit.snapshot %}
+                    
+                    {% set nbrProduit = nbrProduit + 1  %}
+                    <tr>
+                        <th scope="row"> {{nbrProduit}}</th>
+                        <td> 
+                            <a href={{ path("app_produit_edit", {"id" : produit.id} ) }} >
+                                {{ produit.name | capitalize }} 
+                            </a>
+                        </td>
+                        <td> 
+                            {{ produit.localisation }} 
+                        </td>
+                        
+                        <td>
+                            {{ include('mission/edit/_etatDesLieuxList.html.twig') }}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    
+{% endif %}

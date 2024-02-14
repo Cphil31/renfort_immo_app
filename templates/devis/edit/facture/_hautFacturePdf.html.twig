@@ -1,0 +1,29 @@
+<div>
+    <img src="{{data.logo}}" class="relative logo"> 
+    <h3  class="relative" style="font-size: 35px;margin-top:-35px;margin-left:500px;">Facture n° {{devis.id}}</h3>
+
+    <div>
+        <p>Date :</p>
+        <p style="margin-top:-35px;margin-left:500px;">Client :</p>
+        <p> {{ devis.date | date('d/m/Y') }} </p>
+        <p style="margin-top:-35px;margin-left:500px;">{{ devis.client.nom }} {{ devis.client.prenom }}</p>
+    </div>
+    <div>
+        <p>Ref Projet : </p>
+        <p style="margin-top: -35px;margin-left:500px;">Adresse : </p>
+        <p>
+            {{ devis.mission.reference ? devis.mission.reference | capitalize : " " }}
+        </p>
+        <p style="margin-top:-35px;margin-left:500px;">
+            {% for a in data.adresses.snapshot %}
+            {% if a.facturation == true %}
+                {{  a.rue }} <br>
+                {{ a.ville }} {{a.codePostal ? ", " ~ a.codePostal }}
+                
+            {% endif %}
+            
+            {% endfor %}
+        </p>
+    </div>
+</div>
+

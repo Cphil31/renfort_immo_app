@@ -1,0 +1,29 @@
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#newProblemeModal">
+    Ajouter un probleme
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="newProblemeModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel"> Ajouter un probleme</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+            
+               {{ form_start(formProb) }}
+                {{ form_label(formProb.statut, 'statut') }}
+                {{ form_widget(formProb.statut, {'attr': {'class': 'form-select'}}) }}
+                {{ form_label(formProb.description, 'description') }}
+                {{ form_widget(formProb.description, {'attr': {'class': 'form-control'}}) }}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button submit" class="btn btn-primary">Ajouter</button>
+            </div>
+               {{ form_end(formProb) }}
+        </div>
+    </div>
+</div>

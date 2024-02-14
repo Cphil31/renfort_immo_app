@@ -1,0 +1,53 @@
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#newDepModal">
+  Ajouter déplacement
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="newDepModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Ajouter déplacement</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        {{ form_start(formNewDep) }}
+
+        {{ form_label(formNewDep.statut, 'Statut') }}
+        {{ form_widget(formNewDep.statut, {'attr': {'class': 'form-select'}}) }}
+
+        {{ form_label(formNewDep.date, 'Date') }}
+        {{ form_widget(formNewDep.date, {'attr': {'class': 'form-control'}}) }}
+
+        {{ form_label(formNewDep.lieu, 'Lieu') }}
+        {{ form_widget(formNewDep.lieu) }}
+
+        {{ form_label(formNewDep.kilometrage_depart, 'kilometrage départ') }}
+        {{ form_widget(formNewDep.kilometrage_depart) }}
+
+        {{ form_label(formNewDep.kilometrage_arrive, 'kilometrage arrivée') }}
+        {{ form_widget(formNewDep.kilometrage_arrive) }}
+
+        {{ form_label(formNewDep.duree, 'Durée') }}
+        {{ form_widget(formNewDep.duree, {'attr': {'class': 'form-control'}}) }}
+        {{ form_label(formNewDep.cout, 'Coût') }}
+        {{ form_widget(formNewDep.cout, {'attr': {'class': 'form-control'}}) }}
+        {{ form_label(formNewDep.coutPeage, 'Coût Péage') }}
+        {{ form_widget(formNewDep.coutPeage, {'attr': {'class': 'form-control'}}) }}
+        {{ form_label(formNewDep.coutCarburant, 'Coût Carburant') }}
+        {{ form_widget(formNewDep.coutCarburant, {'attr': {'class': 'form-control'}}) }}
+        {{ form_label(formNewDep.observation, 'observation') }}
+        {{ form_widget(formNewDep.observation, {'attr': {'class': 'form-control'}}) }}
+        {{ form_label(formNewDep.payer, 'payer') }}
+        {{ form_widget(formNewDep.payer ) }}
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">fermer</button>
+        <button type="button submit" class="btn btn-primary btn-sm">Ajouter</button>
+      </div>
+      {{ form_end(formNewDep) }}
+    </div>
+  </div>
+</div>

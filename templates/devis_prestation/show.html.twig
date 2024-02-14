@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}DevisPrestation{% endblock %}
+
+{% block body %}
+    <h1>DevisPrestation</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ devis_prestation.id }}</td>
+            </tr>
+            <tr>
+                <th>Quantite</th>
+                <td>{{ devis_prestation.quantite }}</td>
+            </tr>
+            <tr>
+                <th>Prix</th>
+                <td>{{ devis_prestation.prix }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_devis_prestation_index') }}">back to list</a>
+
+    <a href="{{ path('app_devis_prestation_edit', {'id': devis_prestation.id}) }}">edit</a>
+
+    {{ include('devis_prestation/_delete_form.html.twig') }}
+{% endblock %}

@@ -1,0 +1,37 @@
+
+<div>
+	<!-- Button trigger modal -->
+	<button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#newEtatDesLieuxModal">
+		Ajouter un état des lieux
+	</button>
+
+	<!-- Modal -->
+	<div class="modal fade" id="newEtatDesLieuxModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h1 class="modal-title fs-5" id="exampleModalLabel">Ajouter un état des lieux</h1>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+				
+					{{ form_start(formEtatDesLieux) }}
+					{{ form_label(formEtatDesLieux.statut, 'Statut') }}
+					{{ form_widget(formEtatDesLieux.statut, {'attr': {'class': 'form-select'}}) }}
+					{{ form_label(formEtatDesLieux.createdAt, 'Date') }}
+					{{ form_widget(formEtatDesLieux.createdAt, {'attr': {'class': 'form-control'}}) }}
+					{{ form_label(formEtatDesLieux.observation, 'Observation') }}
+					{{ form_widget(formEtatDesLieux.observation, {'attr': {'class': 'form-control'}}) }}
+					
+			
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">fermer</button>
+					<button type="button submit" class="btn btn-primary btn-sm">Ajouter</button>
+                    {{ form_end(formEtatDesLieux) }}
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>

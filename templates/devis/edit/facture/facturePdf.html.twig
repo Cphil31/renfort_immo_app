@@ -1,0 +1,107 @@
+
+<style type="text/css">
+.relative{
+    position: relative;
+}
+img.img{
+    width: 40%;
+}
+table{
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 702px;
+    margin-top: 30px;
+    margin-bottom: 20px;
+
+}
+table thead tr th{
+    text-align: center;
+}
+table td , table th{
+    border: 1px solid #ddd;
+    padding: 8px;
+    font-size: 15px;
+    text-align: right;
+}
+table td {
+    font-size: 10px;
+
+}
+table th{
+    font-size: 12px;
+}
+.border{
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: right;
+}
+.wrapper-page {
+    page-break-inside: avoid;
+}
+footer {
+    /*
+            */
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+    }
+
+
+</style>
+      {# TOP #}
+      {{ include('devis/edit/facture/_topPage.html.twig') }}
+      {# TOP #}
+  
+      {# LISTE DES FORFAITS #}
+      {{ include('devis/edit/facture/_forfaitList.html.twig') }} 
+      {# LISTE DES FORFAITS #}
+      {# ACCOMPTES #}
+      {{ include('devis/edit/facture/_accomptesList.html.twig') }}
+      {# ACCOMPTES #}
+
+      {# OUVERTURE DOSSIER #}
+      {{ include('devis/edit/facture/_ouvertureDeDossier.html.twig') }}
+      {# OUVERTURE DOSSIER #}
+
+      {# PRESTATION PRINCIPALE #}
+      {{ include('devis/edit/facture/_prestationPrincipale.html.twig') }}    
+      {# PRESTATION PRINCIPALE #}
+
+      {# DEVIS HEBERGEMENTS #}
+      {{ include('devis/edit/facture/_devisHebergement.html.twig') }}         
+      {# DEVIS HEBERGEMENTS #}
+      
+      {# LISTE DES DEPLACEMENTS #}
+      {{ include('devis/edit/facture/_deplacementList.html.twig') }}
+      {# LISTE DES DEPLACEMENTS #}
+
+      {# DEVIS REUNIONS #}
+      {{ include('devis/edit/facture/_reunionList.html.twig') }}         
+      {# DEVIS REUNIONS #}
+
+      {# DEVIS RESTAURATIONS #}
+      {{ include('devis/edit/facture/_restaurationList.html.twig') }}  
+      {# DEVIS RESTAURATIONS #}
+
+      {# LISTE DES INTERVENANTS #}
+      {{ include('devis/edit/facture/_intervenantList.html.twig') }}   
+      {# LISTE DES INTERVENANTS #}
+
+      {# LISTE DES DOCUMENTS #}
+      {{ include('devis/edit/facture/_documentList.html.twig') }}
+      {# LISTE DES DOCUMENTS #}
+
+      {# LISTE DES COMMUNICATIONS #}
+      {{ include('devis/edit/facture/_communicationList.html.twig') }}
+      {# LISTE DES COMMUNICATIONS #}
+          
+      {# TOTAUX #}
+      {{ include('devis/edit/facture/_totaux.html.twig') }} 
+      {# TOTAUX #}  
+
+
+      {{ include('devis/edit/facture/_conditions.html.twig') }}
+      {{ include('devis/edit/facture/_footerFacturePdf.html.twig') }}
+{#
+#}

@@ -1,0 +1,25 @@
+<div class="flex">
+        <h1 >Problème {{ probleme.statut.statut| capitalize }} : {{ probleme.description }}</h1>
+        <div class="droite">
+            <div>
+                <a href={{ path('app_probleme_edit', {'id': probleme.id}) }} class="btn btn-success btn-sm modifier">modifier</a>
+                
+            </div>
+
+            {{ include('probleme/_delete_form.html.twig') }}  
+        </div>
+</div>
+{% if probleme.mission %}
+    <h1> 
+    Mission : 
+    <a href= {{ path('app_mission_edit' , { 'id' : probleme.mission.id}) }}>
+        {{ probleme.mission.name }} 
+    </a>
+    </h1>
+    <h1> Référence : {{ probleme.mission.reference| capitalize }} </h1>
+    {{ dump(probleme) }}
+    
+{% endif %}
+
+{{ include('probleme/show/_newTache.html.twig') }}
+

@@ -1,0 +1,165 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ asset('assets/css/home/style.css')  }}">
+{% endblock %}
+{% block javascripts %}
+
+{% endblock %}
+
+{% block body %}
+
+<div class="row ">
+    <div class="col-sm-12 mb-3 col-md-4">
+        {{ include('home/show/_contactList.html.twig') }}
+    </div>
+    <div class="col-sm-12 mb-3 col-md-4">
+        {{ include('home/show/_produitList.html.twig') }}
+    </div>
+    <div class="col-sm-12 mb-3 col-md-4">
+        {{ include('home/show/_missionList.html.twig') }}
+    </div>
+</div>
+
+<div class="row  mb-3">
+    <div class="col-sm-12 mb-3 col-md-4">
+        {{ include('home/show/_agenda.html.twig') }}
+    </div>
+    <div class="col-sm-12 mb-3 col-md-4">
+        {{ include('home/show/_appelsRecus.html.twig') }}
+    </div>
+    <div class="col-sm-12 mb-3 col-md-4">
+        {{ include('home/show/_appeller.html.twig') }}
+    </div>
+</div>
+
+<div class="row ">
+    <div class="col-sm-12 mb-3 col-md-4">
+    </div>
+
+    <div class="col-sm-12 mb-3 col-md-4">
+        {{ include('home/show/_mailsRecus.html.twig') }}
+    </div>
+
+    <div class="col-sm-12 mb-3 col-md-4">
+        {{ include('home/show/_envoyerMails.html.twig') }}
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-12 mb-3 col-md-4">
+        {{ include('home/show/_tachesAFaire.html.twig') }}
+    </div>
+    <div class="col-sm-12 mb-3 col-md-4">
+        {{ include('home/show/_tachesEnCours.html.twig') }}
+    </div>
+    <div class="col-sm-12 mb-3 col-md-4">
+        {{ include('home/show/_tachesOk.html.twig') }}
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-sm-12 mb-3 col-md-4">
+        {{ include('home/show/_prospectionList.html.twig') }}
+    </div>
+    <div class="col-sm-12 mb-3 col-md-4">
+        {{ include('home/show/_prospectionStat.html.twig') }}
+    </div>
+    <div class="col-sm-12 mb-3 col-md-4">
+        {{ include('home/show/_statEnCours.html.twig') }}
+    </div>
+
+
+</div>
+
+
+<script>
+    window.onload = function () {
+
+        document.getElementById("form_contact").addEventListener("keyup", function () {
+
+            let filter = document.getElementById("form_contact").value.toUpperCase();
+
+            let count = 0;
+            if (filter.length > 0) {
+                document.querySelector('.input-group-text').style.borderBottom = "none";
+                document.querySelector('.input-group-text').style.borderRadius = "8px 0px 0px 0px";
+                document.getElementById("form_contact").style.borderRadius = "0px 5px 0px 0px";
+                document.getElementById("form_contact").style.borderBottom = "none";
+                document.getElementById("dropdownContact").style.display = "block";
+            } else {
+                document.querySelector('.form_contact').style.borderRadius = "0px 8px 8px 0px";
+            }
+            let div = document.getElementById("dropdownContact");
+            let a = div.getElementsByTagName("a");
+            let txtValue;
+            for (let i = 0; i < a.length; i++) {
+                txtValue = a[i].textContent || a[i].innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    a[i].style.display = "";
+                } else {
+                    a[i].style.display = "none";
+                }
+            }
+        });
+
+        document.getElementById("form_produit").addEventListener("keyup", function () {
+
+            let filterProduit = document.getElementById("form_produit").value.toUpperCase();
+            let count = 0;
+            if (filterProduit.length > 0) {
+                document.querySelector('#loupeProduit').style.borderBottom = "none";
+                document.querySelector('#loupeProduit').style.borderRadius = "8px 0px 0px 0px";
+                document.getElementById("form_produit").style.borderRadius = "0px 5px 0px 0px";
+                document.getElementById("form_produit").style.borderBottom = "none";
+                document.getElementById("search-produit").style.borderRadius = "0px 0px 8px 8px";
+                document.getElementById("search-produit").style.border = "solid 0.1rem #ced4da";
+                document.getElementById("search-produit").style.borderTop = "none";
+                document.getElementById("dropdownProduit").style.display = "block";
+
+            } else {
+
+            }
+            let div2 = document.getElementById("dropdownProduit");
+            let a = div2.getElementsByTagName("a");
+            let txtValue;
+            for (let i = 0; i < a.length; i++) {
+                txtValue = a[i].textContent || a[i].innerText;
+                if (txtValue.toUpperCase().indexOf(filterProduit) > -1) {
+                    a[i].style.display = "";
+                } else {
+                    a[i].style.display = "none";
+                }
+            }
+        });
+
+        document.getElementById("form_mission").addEventListener("keyup", function () {
+            let filter = document.getElementById("form_mission").value.toUpperCase();
+            let count = 0;
+            if (filter.length > 0) {
+                document.getElementById("dropdownMission").style.border = "solid 0.1rem #ced4da ";
+                document.getElementById("dropdownMission").style.borderTop = "none";
+                document.getElementById("dropdownMission").style.display = "block";
+                document.getElementById("basic-addon1").style.borderRadius = "8px 0px 0px 0px";
+                document.getElementById("basic-addon1").style.borderBottom = "none";
+                document.getElementById("form_mission").style.borderRadius = "0px 8px 0px 0px ";
+                document.getElementById("form_mission").style.borderBottom = "none";
+                document.getElementById("dropdownMission").style.borderRadius = "0px 0px 8px 8px ";
+
+            } else {}
+            let div = document.getElementById("dropdownMission");
+            let a = div.getElementsByTagName("a");
+            let txtValue;
+            for (let i = 0; i < a.length; i++) {
+                txtValue = a[i].textContent || a[i].innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    a[i].style.display = "";
+                } else {
+                    a[i].style.display = "none";
+                }
+            }
+        });
+    }
+</script>
+
+{% endblock %}

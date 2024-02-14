@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit AppelsRecus{% endblock %}
+
+{% block body %}
+    <h1>Edit AppelsRecus</h1>
+
+    {{ include('appels_recus/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_appels_recus_index') }}">back to list</a>
+
+    {{ include('appels_recus/_delete_form.html.twig') }}
+{% endblock %}

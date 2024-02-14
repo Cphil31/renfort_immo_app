@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Reunion{% endblock %}
+
+{% block body %}
+    <h1></h1>
+
+<!-- Modal -->
+<div class="modal fade" id="editReunionModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog ">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5 text-center" id="staticBackdropLabel">
+                   
+                </h1>
+            </div>
+            <div class="modal-body">
+
+            {{ form_start(form) }}
+
+                {{ form_label(form.date, 'Date') }}
+                {{ form_widget(form.date, {'attr': {'class': 'form-control'}}) }}
+                {{ form_label(form.duree, 'Durée ') }}
+                {{ form_widget(form.duree, {'attr': {'class': 'form-control'}}) }}
+                {{ form_label(form.objet, 'objet') }}
+                {{ form_widget(form.objet, {'attr': {'class': 'form-control'}}) }}
+                {{ form_label(form.content, 'content') }}
+                {{ form_widget(form.content, {'attr': {'class': 'form-control'}}) }}
+                {{ form_label(form.coutLocationSalle, 'Coût location salle') }}
+                {{ form_widget(form.coutLocationSalle, {'attr': {'class': 'form-control'}}) }}
+                {{ form_label(form.CoutLocationMateriel, 'Coût location matériel') }}
+                {{ form_widget(form.CoutLocationMateriel, {'attr': {'class': 'form-control'}}) }}
+                {{ form_label(form.CoutRestauration, 'Coût de restauration') }}
+                {{ form_widget(form.CoutRestauration, {'attr': {'class': 'form-control'}}) }}
+                {{ form_label(form.coutCollation, 'Coût coutCollation ') }}
+                {{ form_widget(form.coutCollation, {'attr': {'class': 'form-control'}}) }}
+                {{ form_label(form.forfaitHoraire, 'forfait Horaire ') }}
+                {{ form_widget(form.forfaitHoraire, {'attr': {'class': 'form-control'}}) }}
+                {{ form_label(form.payer, 'payer ') }}
+                {{ form_widget(form.payer) }}
+                
+            </div>
+            <div class="modal-footer">
+                
+                <a href= {{ path( "app_tache_edit" , {'id' : reunion.tache.id})}}>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">fermer</button>
+                </a>
+
+                <button type="button submit" class="btn btn-primary">Modifier</button>
+            </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+</div>
+<script>
+    // jappelle le modal apres 3 secondes
+    window.setTimeout(affichageModal, 000);
+
+    function affichageModal() {
+        const myModal = new bootstrap.Modal(document.getElementById('editReunionModal'), {})
+        myModal.show();
+    };
+    // la doc !
+    // https://getbootstrap.com/docs/5.2/components/modal/#how-it-works
+</script>
+
+
+{% endblock %}

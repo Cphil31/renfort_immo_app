@@ -1,0 +1,53 @@
+{% if devi.devisPrestations.snapshot %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Prestation</th>
+                <th scope="col">Quantié</th>
+                <th scope="col">Prix</th>
+                <th scope="col">Total</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+
+            </tr>
+        </thead>
+        <tbody>
+            {% set TotauxPrestation = 0 %}
+            {% for p in devi.devisPrestations.snapshot %}
+                {% set TotauxPrestation = p.quantite * p.prix  %}
+                <tr>
+                    <th scope="row">1</th>
+                    <td>{{ p.quantite }}</td>
+                    <td> {{ p.prix}}  </td>
+                    <td> {{ TotauxPrestation }}</td>
+                    <td>
+                        <a href={{ path( 'app_devis_prestation_edit' , {'id' : p.id} ) }} class="btn btn-success btn-sm">
+                            modifier
+                        </a>
+                    </td>
+                    <td>
+                       <form method="post" action="{{ path('app_devis_prestation_delete', {'id': p.id}) }}" onsubmit="return confirm('Etes vous sur de vouloir supprimmer cette prestation ?');">
+                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ p.id) }}">
+                            <button class="btn btn-danger btn-sm">supprimer</button>
+                        </form>
+
+                    </td>
+                </tr>
+            {% endfor %}
+            {% if devi.devisPrestations.snapshot|length  > 1 %}
+                
+                <tr>
+                    <td>Total</td>
+                    <td></td>
+                    <td></td>
+                    <td>{{ totalPrestation }} €</td>
+                    <td></td>
+                    <td></td>
+
+                </tr>       
+            {% endif %}
+            
+        </tbody>
+    </table>
+    
+{% endif %}

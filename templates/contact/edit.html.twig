@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{contact.nom | upper}} {{contact.prenom | capitalize}}{% endblock %}
+
+{% block stylesheets %}
+	<link rel="stylesheet" href="{{ asset('assets/css/contact/edit.css') }}">
+{% endblock %}
+
+{% block body %}
+<div>
+            {{ include('contact/edit/_contactProfil.html.twig') }}
+            {{ include('contact/edit/_newAdresse.html.twig') }}
+            {{ include('contact/edit/_newTel.html.twig') }}
+            {{ include('contact/edit/_newMail.html.twig') }}
+            {{ include('contact/edit/_newNote.html.twig') }}
+            {{ include('contact/edit/_newHist.html.twig') }}
+</div>
+<div>
+            {{ include('contact/edit/_profList.html.twig') }}
+</div>
+<div>
+            {{ include('contact/edit/_adresseList.html.twig') }}
+</div>
+<div>
+            {{ include('contact/edit/_telList.html.twig') }}
+</div>
+<div>
+            {{ include('contact/edit/_mailList.html.twig') }}
+</div>
+<div>
+            {{ include('contact/edit/_histList.html.twig') }}
+</div>
+<div>
+            {{ include('contact/edit/_noteList.html.twig') }}
+</div>
+
+            {{ include('contact/edit/_intList.html.twig') }}
+
+
+
+{% endblock %}

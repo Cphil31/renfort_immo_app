@@ -1,0 +1,61 @@
+{% if tache.communications.snapshot %}
+    
+
+    <h4>Communications</h4>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Statut</th>
+                <th scope="col">Communication</th>
+                <th scope="col">forfait</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% set total = 0 %}
+
+            {% for c in tache.communications.snapshot %}
+
+                {% set total = total + c.forfait %}          
+                <tr>
+
+                    <td>{{ c.statut.statut }}</td>
+                    <td>{{ c.description ? " " ~ c.description ~ " " : "" }}</td>
+                    <td>{{ c.forfait ? c.forfait ~ " €" : "" }}</td>
+                    <td>
+                        {% if c.payer == 1 %}
+                            réglée
+                        {% else %}
+                            pas réglée
+                        {% endif %}
+                    </td>
+                    <td>
+                        <a href={{ path( 'app_communication_edit',{'id' : c.id})}}>
+                            <button class="btn btn-success btn-sm ">modifier</button>
+                        </a>
+                    </td>
+                    <td>
+                        <form method="post" action="{{ path('app_communication_delete', {'id': c.id}) }}"
+                            onsubmit="return confirm('Etes-vous sur de modifier cette communication ?');">
+                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ c.id) }}">
+                            <button class="btn btn-danger btn-sm">supprimer</button>
+                        </form>
+                    </td>
+
+                </tr>
+            {% else %}
+            {% endfor %}
+
+        
+            <tr>
+                <td>Total</td>
+                <td></td>
+                <td>{{total}} €</td>
+            </tr>
+                
+        </tbody>
+    </table>
+{% endif %}

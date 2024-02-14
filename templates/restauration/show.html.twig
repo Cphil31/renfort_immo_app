@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Restauration{% endblock %}
+
+{% block body %}
+    <h1>Restauration</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ restauration.id }}</td>
+            </tr>
+            <tr>
+                <th>CoutRepasPersonnel</th>
+                <td>{{ restauration.coutRepasPersonnel }}</td>
+            </tr>
+            <tr>
+                <th>CoutRepasClients</th>
+                <td>{{ restauration.coutRepasClients }}</td>
+            </tr>
+            <tr>
+                <th>Durée</th>
+                <td>{{ restauration.durée ? restauration.durée|date('H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Forfait</th>
+                <td>{{ restauration.forfait }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_restauration_index') }}">back to list</a>
+
+    <a href="{{ path('app_restauration_edit', {'id': restauration.id}) }}">edit</a>
+
+    {{ include('restauration/_delete_form.html.twig') }}
+{% endblock %}

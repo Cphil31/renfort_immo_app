@@ -1,0 +1,66 @@
+{# DEVIS DEPLACEMENTS #}
+          {% if devis.devisDeplacements.snapshot %}
+            {% set Total1Deplacement = 0 %}
+
+
+           <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Statut</th>
+                        <th scope="col">Déplacement</th>
+                        <th scope="col">Reglement</th>
+                        <th scope="col">Coût</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                        
+                        {% for d in devis.devisDeplacements.snapshot %}
+                          {% set Total1Deplacement = d.quantite * d.prix %}
+
+                          <tr>
+                            <th scope="row">Devis</th>
+                            <td></td>
+                            <td></td>
+                            <td> {{ d.quantite }}</td>
+                            <td> {{ d.prix }} €</td>
+                            <td> {{ Total1Deplacement }} € </td>
+                          </tr>
+                        {% endfor %}
+
+                        {% if data.taches.deplacementList %}
+                          
+                          {% for d in data.taches.deplacementList %}
+                              {% set cout1Deplacement = d.cout + d.coutPeage + d.coutCarburant  %}
+                              
+                              
+                          <tr>
+                              <th scope="row"></th>
+                              <td> {{ d.date|date('d/m/Y')}} </td>
+                              <td>  {{ d.statut ? d.statut : "" }}</td>
+                              <td>  {{ d.lieu }}  </td>
+                              <td>  {{ d.payer ? "réglé" : "non réglé" }} </td>
+                              <td> {{ d.payer ? 0 : cout1Deplacement ~ " €"  }} </td>
+                            </tr>
+                              
+                          {% endfor %}
+                        {% endif %}
+
+                        <tr>
+                            <th scope="row">Total</th>
+                            <td>  </td>
+                            <td>  </td>
+                            <td>    </td>
+                            <td>  </td>
+                            <td> {{ data.taches.totalDéplacements}} €</td>
+                          </tr>
+                    
+                    </tbody>
+                  </table>
+
+            
+          {% endif %}
+        {# DEVIS DEPLACEMENTS #}
+
+        

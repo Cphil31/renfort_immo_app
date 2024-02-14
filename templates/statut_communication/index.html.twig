@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}StatutCommunication index{% endblock %}
+
+{% block body %}
+    <h1>StatutCommunication index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Statut</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for statut_communication in statut_communications %}
+            <tr>
+                <td>{{ statut_communication.id }}</td>
+                <td>{{ statut_communication.statut }}</td>
+                <td>
+                    <a href="{{ path('app_statut_communication_show', {'id': statut_communication.id}) }}">show</a>
+                    <a href="{{ path('app_statut_communication_edit', {'id': statut_communication.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_statut_communication_new') }}">Create new</a>
+{% endblock %}

@@ -1,0 +1,53 @@
+{% if devis.devisReunions.snapshot %}
+             <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Réunions</th>
+                        <th scope="col">Reglement</th>
+                        <th scope="col">Coût</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                        {% set Total1Reunion = 0 %}
+                        {% for r in devis.devisReunions.snapshot %}
+                          {% set Total1Reunion = r.quantite * r.prix %}
+                          <tr>
+                            <th scope="row">Devis</th>
+                            <td> {{ r.quantite }} </td>
+                            <td> </td>
+                            <td>{{Total1Reunion}} €</td>
+                          </tr>                          
+                        {% endfor %}
+                        
+                        {% if data.taches.ReunionList %}
+                            {% set nbrReunion = 0 %}
+                            
+                            {% for r in data.taches.ReunionList %}
+                                {% set nbrReunion = nbrReunion + 1 %}
+                                {% set cout1Reunion = 0 %}
+                                {% set cout1Reunion = r.coutLocationSalle + r.CoutLocationMateriel + r.CoutRestauration + r.coutCollation + r.forfaitHoraire  %}
+                                <tr>
+                                    <th scope="row"> {{ nbrReunion }} </th>
+                                    <td> {{ r.date|date('d/m/Y')}}  </td>
+                                    <td> {{ r.payer ? "réglé" : "a regler" }} </td>
+                                    <td> {{ r.payer ? 0 :  cout1Reunion ~ " €"  }} </td>
+                                </tr>        
+                                
+                            {% endfor %}
+
+                            {% if  data.taches.ReunionList|length > 1  %}
+
+                              <tr>
+                                  <th scope="row"> Total </th>
+                                  <td>  </td>
+                                  <td> </td>
+                                  <td> {{ data.taches.totalReunion }} € </td>
+                              </tr> 
+                              
+                            {% endif %}
+                        {% endif %}
+        
+                    </tbody>
+                  </table>
+{% endif %}

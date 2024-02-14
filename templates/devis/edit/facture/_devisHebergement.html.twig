@@ -1,0 +1,64 @@
+{% if devis.devisHebergements.snapshot %}
+                  {% set Total1Hebergement = 0 %}
+
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+
+                        <th scope="col">Hebergement</th>
+                        <th scope="col">Nuit</th>
+                        <th scope="col">Pu</th>
+                        <th scope="col">Reglement</th>
+                        <th scope="col">Total</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+
+                      {#Liste DEVIS HEBERGEMENT#}
+                      {% for h in devis.devisHebergements.snapshot %}
+                        {% set Total1Hebergement = h.quantite * h.prixUnitaire %}
+                        <tr>
+                          
+                          <th scope="row">Devis</th>
+                          <td></td>
+                          <td>{{ h.quantite }}</td>
+                          <td>{{ h.prixUnitaire }}</td>
+                          <td></td>
+                          <td>{{ Total1Hebergement  }} € </td>
+                        </tr>
+                        
+                      {% endfor %}
+                      {#Liste DEVIS HEBERGEMENT#}
+
+                        {# LISTE DES HEBERGEMENTS #}
+                          {% set total1Heb = 0 %}
+                            {% for h in data.taches.hebergementList %}
+                                {% if h.payer %}
+                                    {% set total1H = 0 %}
+                                {% else %} 
+                                    {% set total1H = h.nuit * h.coutNuitUnitaire %}
+                                {% endif %}
+                                <tr>
+                                    <th scope="row">{{ h.date|date('d/m/Y')}}</th>
+                                    <td> {{ h.lieu }} </td>
+                                    <td> {{ h.nuit}} </td>
+                                    <td> {{ h.coutNuitUnitaire }} </td>
+                                    <td> {{ h.payer ? "payé" : "non payé"}} </td>
+                                    <td> {{total1H}} € </td>
+                                </tr>
+                            
+                          {% endfor %}
+                        {# LISTE DES HEBERGEMENTS #}
+
+                      <tr>
+                        <th scope="row">Total</th>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td> {{data.taches.totalHebergements}} €</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                {% endif %}

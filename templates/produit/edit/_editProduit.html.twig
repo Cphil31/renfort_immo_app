@@ -1,0 +1,46 @@
+<div>
+	<!-- Button trigger modal -->
+	<button class=" modifier btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#editProduitModal">
+		Modifier produit
+	</button>
+
+	<!-- Modal -->
+	<div class="modal fade" id="editProduitModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h1 class="modal-title fs-5" id="exampleModalLabel">Modifer Produit</h1>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					{{ form_start(form) }}
+					{{ form_label(form.name, 'Nom') }}
+					{{ form_widget(form.name, {'attr': {'class': 'form-control'}}) }}
+					{{ form_label(form.etat, 'Etat') }}
+					{{ form_widget(form.etat, {'attr': {'class': 'form-select'}}) }}
+					{{ form_label(form.identification, 'Identification') }}
+					{{ form_widget(form.identification, {'attr': {'class': 'form-select'}}) }}
+					{{ form_label(form.localisation, 'Localisation') }}
+					{{ form_widget(form.localisation, {'attr': {'class': 'form-control'}}) }}
+					{{ form_label(form.carTechniques, 'Caractéristiques Techniques') }}
+					{{ form_widget(form.carTechniques, {'attr': {'class': 'form-control'}}) }}
+					{{ form_label(form.carJuridiques, 'Caractéristiques Juridiques') }}
+					{{ form_widget(form.carJuridiques, {'attr': {'class': 'form-control'}}) }}
+					{{ form_label(form.carCommerciales, 'Caractéristiques Commerciales') }}
+					{{ form_widget(form.carCommerciales, {'attr': {'class': 'form-control'}}) }}
+					{{ form_label(form.environement, 'Environement') }}
+					{{ form_widget(form.environement, {'attr': {'class': 'form-control'}}) }}
+					{{ form_label(form.observation, 'Observations') }}
+					{{ form_widget(form.observation, {'attr': {'class': 'form-control'}}) }}
+
+
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">fermer</button>
+					<button type="button submit" class="btn btn-success btn-sm">Modifier</button>
+					{{ form_end(form) }}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

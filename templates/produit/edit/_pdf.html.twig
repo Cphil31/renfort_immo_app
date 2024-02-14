@@ -1,0 +1,230 @@
+<style>
+  
+	.horloge,nav,#navbarSupportedContent{
+	    display: none;
+	}
+	.blue{
+		width: 22px;
+		height: 100%;
+		background-color: #0BA49A;
+		position: relative;
+	}
+	{#
+	.blue{
+		background-color: #0BA49A;
+		width: 10%;
+		height: 17.5px;
+        position: fixed;
+        left: 0;
+	}
+	#}
+	@page {
+	        size: a4 portrait; 
+	        margin:0;
+            padding:0; 
+	      } 
+	.flex{
+		display: flex;
+		justify-content: space-between;
+        position: relative;
+	}
+	.footer{
+		background-color: #E8542E;
+		width: 100%;
+		height: 17.5px;
+        position: fixed;
+        left: 0;
+        bottom: 0;
+	}    
+	.texte{
+		position: relative;
+		margin-top: -1000px; 
+		margin-left: 55px;
+		width: 700px;
+	}
+	.souligne{
+		text-decoration: underline;
+	}
+        
+	h1{
+        margin-top: -100PX;
+		margin-left: 210px;
+		text-decoration: underline;
+		margin-bottom: 100px;
+		font-size: 40px;
+	}
+	p{
+		text-align: justify;
+        overflow: hidden; /* les dépassements seront masqués */
+        word-wrap: break-word;
+	}
+	table {
+		border-collapse: collapse;
+	}
+	th,td.colone{
+		padding: 10px;
+		border-bottom: 1px solid #ddd;
+	}
+	td.colone{
+	padding-left: 10px;
+		
+	}
+
+    
+
+</style>
+	
+	<div class="flex">
+	</div>
+		<div class="blue"></div>
+        
+		<div class="texte">
+
+			<h1>Fiche Produit</h1>
+
+
+            <p><span class="souligne">Nom</span> : {{nom ?  nom | capitalize : " "}}</p>
+			
+			<p><span class="souligne">Identification</span> : {{identification ?  identification.identification | capitalize : " "}}</p>
+            <p><span class="souligne">Etat</span> : {{etat ?  etat | capitalize : " "}}</p>
+			<p><span class="souligne">Localisation</span> : {{localisation ? localisation | capitalize : " "}}</p>
+			
+            
+
+                {% if carTechniques %}
+
+						
+						<div class="flex">
+							
+								<p > <span class="souligne"> Caractéristiques Techniques </span> : </p>
+							
+								<p> {{ carTechniques }} </p>
+							
+						</div>
+						
+                        
+                       
+                {% endif %}
+                {% if carJuridiques %}
+						<div class="flex">
+                        <p> <span class="souligne">Caractéristiques Juridiques</span> : </p>
+						</div>
+                        <p> {{ carJuridiques }} </p>
+                        
+                       
+                {% endif %}
+                {% if carCommerciales %}
+                        <p> <span class="souligne">Caractéristiques Commerciales</span> : </p>
+                         <p> {{ carCommerciales }} </p>
+                        
+                       
+                {% endif %}
+                {% if environement %}
+                        <p> <span class="souligne">Environement du site</span> : </p>
+                         <p> {{ environement }} </p>
+                        
+                       
+                {% endif %}
+				
+                {% if intervenants |length > 0 %}
+					<p><span class="souligne">Interlocuteurs</span> : </p>
+						<table class="table">
+							<thead>
+								<tr>
+								<th scope="col titre"></th>
+								<th scope="col titre">Statut</th>
+								<th scope="col titre">Nom</th>
+								<th scope="col titre">Réalisations</th>
+								</tr>
+								</thead>
+								<tbody>
+
+								{% set nbrint = 0 %}
+								{% for intervenant in intervenants %}  
+									{% set nbrint = nbrint + 1 %}     
+									<tr>
+										<th scope="row">{{ nbrint }}</th>
+										<td class="colone">{{intervenant.statut }}</td>
+										<td class="colone nom">{{intervenant.contact.nom | upper}} {{intervenant.contact.prenom | capitalize}}</td>
+										<td class="colone">{{intervenant.realisations}}</td>
+									</tr> 
+								{% endfor %}	
+							</tbody>
+						</table>
+                {% endif %}
+
+				{% if historique |length > 0 %}
+
+					<p><span class="souligne">Historiques</span> : </p>
+					{% set nbrHist = 0 %}
+
+					<table class="table ">
+						<thead>
+							<tr>
+								<th scope="col"> </th>
+								<th scope="col">Date</th>
+								<th scope="col">Titre</th>
+								<th scope="col">Contenu</th>
+							</tr>
+						</thead>
+						<tbody>
+							{% for hist in historique %}
+								{% set nbrHist = nbrHist + 1 %}
+								<tr>
+									<th scope="row">{{ nbrHist }}</th>
+									<td class="colone">{{ hist.createdAt | date('d/m/Y') }}</td>
+									<td class="colone">{{ hist.title}}</td>
+									<td class="colone">{{ hist.historique }}</td>
+								</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+	
+				{% endif %}
+				
+
+                {% if observation |length > 0 %}
+                        <p class="souligne">Observations : </p>
+                        <p>{{observation}}</p>
+                {% endif %}
+
+				{% if analyses |length > 0 %}
+
+					<p><span class="souligne">Analyses</span> : </p>
+					{% set nbrAna = 0 %}
+
+
+					<table class="table ">
+						<thead>
+							<tr>
+								<th scope="col">#</th>
+								<th scope="col">Titre</th>
+								<th scope="col">Description</th>
+								<th scope="col">Observations</th>
+								
+							</tr>
+						</thead>
+						<tbody>
+							{% for analyse in analyses %}
+								{% set nbrAna = nbrAna + 1 %}
+								<tr>
+									<th scope="row"> {{ nbrAna }}</th>
+									<td>{{ analyse.titre }}</td>
+									<td>{{ analyse.description }}</td>
+									<td>{{ analyse.observations }}</td>
+									
+								</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+
+					
+				{% endif %}
+
+
+
+		</div>
+
+		<div class="footer"></div>
+
+

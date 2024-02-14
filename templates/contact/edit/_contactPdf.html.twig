@@ -1,0 +1,102 @@
+{{ include("contact/edit/contact_pdf/_style.html.twig") }}
+
+
+<div class="body relative">
+
+    <h1 class="titre">Fiche contact</h1>
+
+
+    <p>
+        Nom : {{nom}}
+    </p>
+    <p>
+        Prenom : {{prenom}}
+    </p>
+
+    <p>
+        Référence : .....
+    </p>
+    <p>
+        Statut : {{statut}}
+    </p>
+
+    <p>
+        {{entreprise ? "Entreprise : "~entreprise : "Entreprise : aucune"}}
+    </p>
+
+    <p>
+        {% if adresses %}
+        Adressse(s) :
+        <ul>
+            {% for a in adresses %}
+            <li>
+                {{ a.rue }}
+                {{ a.codePostal ? ", "~a.codePostal}}
+                {{a.ville ? ", "~a.ville}}
+                {{a.departement ? ", "~a.departement}}
+                {{a.region ? ", "~a.region}}
+                {{a.pays ? ", "~a.pays}}
+            </li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </p>
+    <p>
+        {% if telephones %}
+        Téléphone(s) :
+        <ul>
+            {% for t in telephones %}
+            <li>
+                {{t.statut}} :
+                {{t.number}}
+                {{ t.observation ? ", "~t.observation }}
+            </li>
+            {% endfor %}
+        </ul>
+
+        {% endif %}
+
+    </p>
+
+    <p>
+        {% if mails %}
+        Mail(s) :
+        <ul>
+            {% for m in mails %}
+                <li>
+                    {{m.statut}} : 
+                    {{m.email}}
+                </li>
+            {% endfor %}
+        </ul>
+
+        {% endif %}
+    </p>
+
+    <p>
+        {% if historiques %}
+        Historique(s) :
+        <ul>
+            {% for h in historiques %}
+            <li>
+                {{ h.historique }}
+            </li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </p>
+
+
+
+
+</div>
+
+<div class="left">
+
+</div>
+
+<footer>
+    <div class="footer">
+
+    </div>
+</footer>

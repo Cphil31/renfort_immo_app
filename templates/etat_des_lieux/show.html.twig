@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}EtatDesLieux{% endblock %}
+
+{% block body %}
+    <h1>EtatDesLieux</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ etat_des_lieux.id }}</td>
+            </tr>
+            <tr>
+                <th>CreatedAt</th>
+                <td>{{ etat_des_lieux.createdAt ? etat_des_lieux.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Observation</th>
+                <td>{{ etat_des_lieux.observation }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_etat_des_lieux_index') }}">back to list</a>
+
+    <a href="{{ path('app_etat_des_lieux_edit', {'id': etat_des_lieux.id}) }}">edit</a>
+
+    {{ include('etat_des_lieux/_delete_form.html.twig') }}
+{% endblock %}

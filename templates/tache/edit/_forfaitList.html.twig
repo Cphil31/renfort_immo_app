@@ -1,0 +1,62 @@
+{% if tache.forfaits.snapshot %}
+<h4>Forfaits</h4>
+{% set totauxForfait = 0 %}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Date</th>
+            <th scope="col">Forfait</th>
+            <th scope="col">Coût</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for f in tache.forfaits.snapshot %}
+            {% set totauxForfait = totauxForfait + f.prix %}
+            <tr>
+                <td> {{f.date |date('d/m/Y')}} </td>
+                <td>{{f.description}}</td>
+                <td>{{f.prix ? f.prix ~ " €" : ""}} </td>
+                <td>
+                    {% if f.payer == 1 %}
+                        réglée
+                    {% else %}
+                        pas réglée
+                    {% endif %}
+                </td>
+                
+                <td>
+                    <a href= {{ path('app_forfait_edit' , {'id' : f.id}) }} class="btn btn-success btn-sm">
+                    modifier
+                    </a>
+                </td>
+                <td>
+                    <form method="post" action="{{ path('app_forfait_delete', {'id': f.id}) }}"
+                        onsubmit="return confirm('Etes vous sur de supprimer ce forfait ?');">
+                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ f.id) }}">
+                        <button class="btn btn-danger btn-sm">supprimer</button>
+                    </form>
+                </td>
+            </tr>
+
+        {% else %}
+
+        {% endfor %}
+        {% if tache.forfaits.snapshot|length > 1 %}
+            <tr>
+                <td></td>
+                <td></td>
+                <td>{{ totauxForfait ? totauxForfait ~ " €" : ""}}</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        {% endif %}
+    </tbody>
+</table>
+
+
+{% endif %}

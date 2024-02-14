@@ -1,0 +1,47 @@
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#newMissionModal">
+	Ajouter mission
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="newMissionModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h1 class="modal-title fs-5" id="exampleModalLabel">Ajouter mission</h1>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				{{ form_start(formNewMission) }}
+
+					{{ form_label(formNewMission.name, 'Nom') }}
+					{{ form_widget(formNewMission.name, {'attr': {'class': 'form-control'}}) }}
+
+					{{ form_label(formNewMission.reference, 'Reference') }}
+					{{ form_widget(formNewMission.reference, {'attr': {'class': 'form-control'}}) }}
+
+					{{ form_label(formNewMission.localisation, 'Localisation') }}
+					{{ form_widget(formNewMission.localisation, {'attr': {'class': 'form-control'}}) }}
+					
+					{{ form_label(formNewMission.stade, 'Stade') }}
+					{{ form_widget(formNewMission.stade, {'attr': {'class': 'form-control'}}) }}
+					
+					{{ form_label(formNewMission.contact, 'Contact') }}
+					{{ form_widget(formNewMission.contact, {'attr': {'class': 'form-select'}}) }}
+					
+					{{ form_label(formNewMission.entreprise, 'Entreprise') }}
+					{{ form_widget(formNewMission.entreprise, {'attr': {'class': 'form-select'}}) }}
+
+					{{ form_label(formNewMission.produit, 'Produit') }}
+					{{ form_widget(formNewMission.produit, {'attr': {'class': 'form-control'}}) }}
+
+
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">fermer</button>
+				<button type="button submit" class="btn btn-primary">Ajouter</button>
+				{{ form_end(formNewMission) }}
+			</div>
+		</div>
+	</div>
+</div>

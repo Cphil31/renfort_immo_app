@@ -1,0 +1,22 @@
+{% if prob.taches.snapshot %}
+    <ul>
+        {% for t in prob.taches.snapshot %}
+            <li style="list-style-type: none;">
+            -
+                <a href={{ path('app_tache_edit' , {'id' : t.id}) }}  >
+                    {{ t.description| capitalize  }}
+                </a>
+
+
+                {# il faut récuperer les forfaits #}
+
+                {# il faut récuperer les forfaits #}
+
+                {# il faut récuperer les forfaits #}
+
+                
+            </li>
+        {% endfor %}
+    </ul>
+
+{% endif %}

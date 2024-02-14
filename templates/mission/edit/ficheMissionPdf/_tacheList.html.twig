@@ -1,0 +1,31 @@
+<p>
+    Liste des tâches : 
+
+    {% if tacheList %}
+        <ul>
+            {% for t in tacheList %}
+                <li>
+                    {{ t.description | capitalize  }} 
+                    {% if t.intervenants %}
+
+                        intervenant :
+                        <ul>
+                            {% for i in t.intervenants.snapshot %}
+                                    <li>
+                                        {{ i.date | date("d/m/Y")}} : 
+                                        {{i.contact.nom ? i.contact.nom }}
+                                        {{i.contact.prenom ? i.contact.prenom }},
+                                        {{ i.realisations }}
+                                    </li>
+                            {% endfor %}
+                        </ul>
+                        
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+
+    {% else %}
+        
+    {% endif %}
+</p>

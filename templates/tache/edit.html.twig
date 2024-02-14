@@ -1,0 +1,71 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{tache.description}}{% endblock %}
+{% block stylesheets %}
+	<link rel="stylesheet" href="{{ asset('assets/css/tache/edit.css') }}">
+{% endblock %}
+
+{% block body %}
+        <div class="titre">
+            <div class="gauche">
+                <h1 >
+                    Tâche : 
+                    <span class="orange">
+                        {{tache.description | capitalize}}
+                    </span>
+                </h1>
+            </div>
+            <div class="droite">
+                <div>
+                    {{ include('tache/edit/_editTacheModal.html.twig') }}
+                </div>
+                {{ include('tache/_delete_form.html.twig') }}
+            </div>
+        </div>
+        <h4>
+            Statut : <span class="orange">{{ tache.statut.name }}</span>
+        </h4>
+        <h4>
+            Date : {{ tache.date ? tache.date | date("d/m/Y") }}
+        </h4>
+
+        <h4>
+            Problème : 
+            <a href={{ path( 'app_probleme_edit', {'id' : tache.probleme.id } ) }}>
+                {{tache.probleme.classe | capitalize }}
+                
+            </a>
+        </h4>
+        
+        <h4>
+            Mission : 
+            <a href= {{ path('app_mission_edit' , { 'id' : tache.probleme.mission.id })}} >
+                {{ tache.probleme.mission.name ? tache.probleme.mission.name }}
+            </a>
+        </h4>
+        {{ include('tache/edit/_Totaux.html.twig') }}
+
+        <div class="add ">
+            {{ include('tache/edit/_newForfaitModal.html.twig') }}
+            {{ include('tache/edit/_newComModal.html.twig') }}
+            {{ include('tache/edit/_newIntervenantModal.html.twig') }}
+            {{ include('tache/edit/_newDeplacementModal.html.twig') }}
+            {{ include('tache/edit/_newHebergement.html.twig') }}
+            {{ include('tache/edit/_newDocumentModal.html.twig') }}
+            {{ include('tache/edit/_newRestaurationModal.html.twig') }}
+            {{ include('tache/edit/_newReunionModal.html.twig') }}              
+        </div>
+        
+        <div class="list">
+            {{ include('tache/edit/_forfaitList.html.twig') }}
+            {{ include('tache/edit/_ComList.html.twig') }}
+            {{ include('tache/edit/_deplacementList.html.twig') }}
+            {{ include('tache/edit/_intervenantList.html.twig') }}
+            {{ include('tache/edit/_HebergementList.html.twig') }}
+            {{ include('tache/edit/_restaurationList.html.twig') }}
+            {{ include('tache/edit/_reunionList.html.twig') }}
+            {{ include('tache/edit/_documentList.html.twig') }}
+        </div>
+    
+
+{% endblock %}

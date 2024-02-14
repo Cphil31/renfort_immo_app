@@ -1,0 +1,29 @@
+<div class="card " >
+	<div class="card-body">
+		<h3>Appels Reçus </h3>
+		{#
+		#}
+		{% if appels %}
+			<ul>
+				{% for appel in appels %}
+					<li>
+						<a href={{path('app_appels_recus_show' , {'id' : appel.id}) }}>
+							{{appel.date | date('d/m/y') }}
+							:
+							{{ appel.contact.nom}}
+							{{ appel.contact.prenom}}
+							</br>
+							{{appel.objet}}
+						</a>
+					</li>
+				{% endfor %}
+			</ul>
+		{% endif %}
+		{% if appels|length > 2 %}
+			<p class="text-center">
+			<a href= {{ path( 'app_appels_recus_index') }}>...</a>
+			</p>
+		{% endif %}
+	</div>
+	<div class="add">{{ include('home/show/_newAppel.html.twig') }}</div>
+</div>

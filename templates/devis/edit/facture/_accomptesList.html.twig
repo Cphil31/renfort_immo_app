@@ -1,0 +1,37 @@
+{% if data.devis.tabAccompte %}
+
+    <table class="table">
+            <thead>
+                <tr>
+                <th scope="col">Accompte</th>
+                <th scope="col">Date</th>
+                <th scope="col">Observation</th>
+                <th scope="col">Reglement</th>
+                <th scope="col">Prix</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if data.devis.tabAccompte %} 
+                    {% for a in data.devis.tabAccompte %}  
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>{{ a.date|date('d/m/Y') }}</td>
+                            <td>{{ a.observation}}</td>
+                            <td>{{ a.payer ? "Réglé" : "Reste a regler"}}</td>
+                            <td> {{ a.prix ? a.prix ~ " € " : " "}} </td>
+                        </tr>        
+                    {% endfor %}
+
+                {% endif %}
+                {% if  data.devis.tabAccompte|length  > 1 %}
+                    <tr>        
+                        <td>Total</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>{{ data.devis.totalAcompte ? data.devis.totalAcompte ~ " €" : " " }}</td>
+                    </tr>
+                {% endif %}  
+            </tbody>
+    </table>
+{% endif %}

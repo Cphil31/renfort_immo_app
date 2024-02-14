@@ -1,0 +1,66 @@
+<div style="position:relative;">
+<style>
+  .right{
+    text-align: right;
+    margin-left:30px;
+  }
+  .left{
+    text-align: left;
+  }
+  .none{
+    list-style-type: none;
+
+  }
+  .total{
+    
+  }
+  
+</style>
+
+      <div class="designation " style="padding-left:20px;width:330px; "  >
+          Frais annexes  :
+        <ul >
+          <li class="none">- Ouverture de dossier</li>
+          <li class="none">- Déplacements</li>
+          <li class="none">- Hébergements</li>
+          <li class="none">- Salle réunion</li>
+          <li class="none">- Restauration</li>
+        </ul>
+      </div>
+
+      <div class="designation" style="width: 67px;margin-left:430px;margin-top:-200px;position:relative;padding-top:20px;padding-right:5px;">
+            <ul>
+              <li class="right none" > {{ NbrOuvertureDossier}} </li>
+              <li class="right none"> {{ nbrDep }} </li>
+              <li class="right none">{{ nbrHeb }}</li>
+              <li class="right none">{{ nbrReunion }}</li>
+              <li class="right none"> {{ nbrRestauration }}</li>
+            </ul>
+      </div>
+
+
+      <div class="designation" style="width: 70px;margin-left:530px;margin-top:-200px;position:relative;padding-top:35px;padding-bottom:19px;">
+
+          <span class="right" >{{ PrixDossier}} €</span>
+          <span class="right" >{{ PrixDeplacement}} €</span>
+          <span class="right" >{{ PrixHebergement}} €</span>
+          <span class="right" >{{ prixReunion}} €</span>
+          <span class="right" >{{ PrixRestauration}} €</span>
+          
+      </div>
+        
+       <div class="designation" style="width:70px;margin-left:630px;margin-top:-200px;position:relative;padding-top:35px;padding-bottom:19px">
+          
+            <span class="right">{{ TotalDossier }} €</span>
+            <span class="right"> {{ TotalDeplacement }} €</span>
+            <span class="right"> {{ TotaHebergement }} €</span>
+            <span class="right"> {{TotalReunion}} €</span>
+            <span class="right"> {{ TotalRestauration }} €</span>
+          
+      </div>
+          
+      
+   
+    
+</div>
+

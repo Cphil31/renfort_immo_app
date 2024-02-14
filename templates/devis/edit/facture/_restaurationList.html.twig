@@ -1,0 +1,53 @@
+{% if devis.devisRestaurations.snapshot %}
+             <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col"> Restaurations</th>
+                        <th scope="col">Etablissement</th>
+                        <th scope="col">Reglement</th>
+                        <th scope="col">Coût</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% if devis.devisRestaurations.snapshot %}
+                        
+                        {% set Total1Restauration = 0 %}
+                        {% for r in devis.devisRestaurations.snapshot %}
+                          {% set Total1Restauration = r.quantite * r.prix %}
+                          <tr>
+                            <th scope="row">Devis</th>
+                            <td> {{ r.quantite }} </td>
+                            <td></td>
+                            <td>  {{ r.prix }} €</td>
+                          </tr>                          
+                        {% endfor %}
+
+                      {% endif %}
+
+                      {% if data.taches.restaurationList %}
+                        
+                        {% for r in data.taches.restaurationList %}
+                          {% set Cout1Restauration = 0 %}
+                          {% set Cout1Restauration = Cout1Restauration + r.coutRepasPersonnel + r.coutRepasClients + r.forfait %}
+                          <tr>
+                            <th scope="row"> {{ r.date | date('d/m/Y') }} </th>
+                            <td> {{ r.etablissement }} </td>
+                            <td> {{ r.payer ? "réglé" : "a regler"}}</td>
+                            <td> {{ r.payer ? 0 : Cout1Restauration ~ " €"  }} </td>
+                          </tr>      
+                        {% endfor %}
+                        {% if data.taches.restaurationList|length > 1 %}
+                          <tr>
+                            <th scope="row"> Total </th>
+                            <td>  </td>
+                            <td>  </td>
+                            <td> {{ data.taches.totalRestauration ? data.taches.totalRestauration ~ " €" : " "}}</td>
+                          </tr>      
+                        {% endif %}
+
+                      {% endif %}
+                       
+                                         
+                    </tbody>
+                  </table>
+          {% endif %}

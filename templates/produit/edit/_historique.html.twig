@@ -1,0 +1,41 @@
+{% if produit.historiques.snapshot %}
+	<h4> <span class='souligne orange'>Historiques</span> :</h4>
+	<table class="table">
+		<thead>
+			<tr>
+				<th scope="col"></th>
+				<th scope="col">Titre</th>
+				<th scope="col">Historique</th>
+				<th scope="col"></th>
+			</tr>
+		</thead>
+		<tbody>
+			{% set nbrHist = 0 %}
+			{% for h in produit.historiques.snapshot %}
+			 	{% set nbrHist = nbrHist + 1  %}
+				<tr>
+					<th scope="row">{{ nbrHist }}</th>
+					<td>
+						<p> {{ h.title }} </p>
+					</td>
+					<td>
+						<p > {{  h.historique }}</p>
+					</td>
+					<td>
+						<a href={{ path("app_historique_edit",{'id' : h.id})}} class="btn btn-success btn-sm">
+							modifier
+						</a>
+					</td>
+					<td>
+						<form method="post" action="{{ path('app_historique_delete', {'id': h.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+							<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ h.id) }}">
+							<button class="btn btn-danger btn-sm">supprimer</button>
+						</form>
+					</td>
+				</tr>
+				{% else %}
+			{% endfor %}
+		</tbody>
+	</table>
+
+{% endif %}

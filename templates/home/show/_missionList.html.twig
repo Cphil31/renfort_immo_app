@@ -1,0 +1,55 @@
+<style>
+	#basic-addon1 {
+		border-right: none;
+	}
+	#form_mission{
+		border-left: none;
+	}
+	#dropdownMission{
+		padding-top: 10px;
+		padding-left: 20%;
+		display: none;
+		border-radius: 0px 0px 8efpx 8px;
+	}
+
+</style>
+<div class="card" >
+	<div class="card-body">
+		<h3>Missions</h3>
+
+		{{ form_start(formMission) }}
+
+		<div class=" input-group  relative">
+				<span class="input-group-text" id="basic-addon1">
+					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+						<path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+					</svg>
+				</span>
+				{{ form_widget(formMission.mission, {'attr': {'class': 'form-control'}}) }}
+			</div>
+
+			<div id="dropdownMission">
+				<div class="scrolling">
+					<div id="search_mission">
+						<h6 class="text-xl"><i class="fa-solid fa-cubes mr-2 my-auto"></i></h6>
+						{% for m in missions %}
+							<a class="trans" href="{{ path( 'app_mission_edit', { 'id': m.id } ) }}">
+								<div class="flex">	
+									<p class="w-full truncate">{{ m.name }} </p>
+								</div>
+							</a>
+						{% endfor %}
+					</div>
+				</div>
+			</div>
+
+
+		{{ form_end(formMission) }}
+
+
+		<div class="add">
+			{{ include('home/show/_newMission.html.twig') }}
+		</div>
+
+	</div>
+</div>

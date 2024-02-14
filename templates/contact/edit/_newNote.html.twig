@@ -1,0 +1,25 @@
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#newNoteModal">
+  Ajouter une note
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="newNoteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Ajouter une note</h1>
+      </div>
+      <div class="modal-body">
+       {{ form_start(formNote) }}
+       {{ form_label(formNote.note, 'Note') }}
+        {{ form_widget(formNote.note, {'attr': {'class': 'form-control'}}) }}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">fermer</button>
+        <button type="button submit" class="btn btn-primary btn-sm">Ajouter</button>
+      </div>
+       {{ form_end(formNote) }}
+    </div>
+  </div>
+</div>

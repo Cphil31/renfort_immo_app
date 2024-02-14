@@ -1,0 +1,35 @@
+
+{% if contact.telephones.snapshot %}
+<h4 class="orange"> Liste des téléphones </h4>
+<table class="table table-borderless">
+   <thead>
+      <tr>
+         <th scope="col">Statut</th>
+         <th scope="col">Numéro</th>
+         <th scope="col">Observation</th>
+         <th scope="col"></th>
+         <th scope="col"></th>
+      </tr>
+   </thead>
+   <tbody>
+      {% for t in contact.telephones.snapshot %}
+      <tr>
+         <td>{{ t.statut.statut }}</td>
+         <td>{{ t.number | e }}</td>
+         <td>{{t.observation ? t.observation : ""}} </td>
+         <td> <a href={{ path( 'app_telephone_edit' , { 'id' : t.id } )}} class=" btn btn-success btn-sm">modifier</a>
+         </td>
+         <td>
+            <form method="post" action="{{ path('app_telephone_delete', {'id': t.id}) }}"
+               onsubmit="return confirm('Are you sure you want to delete this item?');">
+               <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ t.id) }}">
+               <button class="btn btn-danger btn-sm">supprimer</button>
+            </form>
+
+         </td>
+      </tr>
+      {% else %}
+      {% endfor %}
+   </tbody>
+</table>
+{% endif %}

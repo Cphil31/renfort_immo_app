@@ -1,0 +1,34 @@
+{% if devis.devisPrestations.snapshot %}
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Prestation principale</th>
+                <th scope="col">Quantité</th>
+                <th scope="col">Prix</th>
+                <th scope="col">Total</th>
+
+              </tr>
+            </thead>
+            <tbody>
+            
+              {% for p in devis.devisPrestations.snapshot %}     
+                {% set unePrestation = p.quantite * p.prix %}
+                <tr>
+                  <th scope="row">1</th>
+                  <td>{{p.quantite}}</td>
+                  <td>{{p.prix }}</td>
+                  <td>{{ unePrestation ? unePrestation ~ " €" : " " }}</td>
+                </tr>
+              {% endfor %}
+            {% if devis.devisPrestations.snapshot|length > 1 %}
+                <tr>
+                  <th scope="row">Total</th>
+                  <td></td>
+                  <td></td>
+                  <td>{{ data.devis.TotalDevisPrestations ? data.devis.TotalDevisPrestations ~ " €" : " "}}</td>
+                </tr>
+            {% endif %}
+            </tbody>
+          </table>
+          
+        {% endif %}

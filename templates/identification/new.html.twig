@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Identification{% endblock %}
+
+{% block body %}
+    <h1>Create new Identification</h1>
+
+    {{ include('identification/_form.html.twig') }}
+
+    <a href="{{ path('app_identification_index') }}">back to list</a>
+{% endblock %}

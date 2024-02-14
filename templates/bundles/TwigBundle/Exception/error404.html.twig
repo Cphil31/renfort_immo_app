@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+    {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('assets/css/error.css')  }}">
+    {% endblock %}
+
+    {% block body %}
+    
+        <h1 >
+    Une erreur a été trouvée sur cette page  .
+   <span class="orange">Retournez a l'accueil .</span> 
+    </h1>
+        
+    {% endblock %}

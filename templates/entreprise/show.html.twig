@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ entreprise.raisonSociale }}{% endblock %}
+
+{% block body %}
+
+<h1>{{ entreprise.raisonSociale | capitalize }}</h1>
+<a href="{{ path('app_entreprise_edit', {'id': entreprise.id}) }}">modifier</a>
+<a href="{{ path('app_entreprise_index') }}">liste des Entreprises</a>
+{{ include('entreprise/edit/_contactList.html.twig') }}
+{{ include('entreprise/edit/_newAdresse.html.twig') }}
+{{ include('entreprise/edit/_adressesList.html.twig') }}
+{{ include('entreprise/edit/_newTelephone.html.twig') }}
+{{ include('entreprise/edit/_telephoneList.html.twig') }}
+
+
+{{ include('entreprise/_delete_form.html.twig') }}
+{% endblock %}

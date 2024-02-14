@@ -1,0 +1,32 @@
+.titre{
+    display: flex;
+    justify-content: space-between;
+   
+}
+.droite{
+    display: flex;
+    justify-content: end;
+}
+.add{
+    margin-bottom: 18px;
+    display:flex;
+    justify-content: space-around;
+}
+.orange{
+    color: #e8531e;
+}
+a:link , a.btn:link   {
+    color: white;
+}
+.btn{
+    margin-right: 10px;
+}
+@media screen and (max-width: 870px) {
+    .add {
+      display:flex;
+      flex-direction: column;
+    }
+    .btn{
+        margin-bottom: 10px;
+    }
+  }

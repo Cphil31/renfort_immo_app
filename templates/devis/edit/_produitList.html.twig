@@ -1,0 +1,21 @@
+{% if devi.mission.produit.snapshot %}
+        {% set nbrProduit = 0 %}
+        <table class="table">
+            <thead>
+                <tr>
+                <th scope="col"></th>
+                <th scope="col">Produits</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for produit in devi.mission.produit.snapshot %}
+                {% set nbrProduit = nbrProduit + 1 %}
+                <tr>
+                    <th scope="row">{{ nbrProduit }}</th>
+                    <td>{{ produit.name}}</td>
+                </tr>      
+            {% endfor %}
+            </tbody>
+        </table>
+        
+{% endif %}

@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Moyen{% endblock %}
+
+{% block body %}
+    <h1>Create new Moyen</h1>
+
+    {{ include('moyen/_form.html.twig') }}
+
+    <a href="{{ path('app_moyen_index') }}">back to list</a>
+{% endblock %}

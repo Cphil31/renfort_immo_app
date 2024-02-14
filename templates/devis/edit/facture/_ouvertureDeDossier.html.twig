@@ -1,0 +1,37 @@
+{# OUVERTURE DE DOSSIERS #}
+          {% if devis.ouvertureDossiers.snapshot %}
+           
+             <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col"> Ouverture de dossier</th>
+                        <th scope="col">Quantité</th>
+                        <th scope="col">Pu</th>
+                        <th scope="col">Total</th>
+                        <th scope="col">Reglement</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                        {% set Total1Dossier = 0 %}
+                        {% for o in devis.ouvertureDossiers.snapshot %}
+                          {% set Total1Dossier = o.quantite * o.prix  %}
+                            <tr>
+                              <th scope="row">1</th>
+                              <td> {{ o.quantite }} </td>
+                              <td> {{ o.prix }} €</td>
+                              <td>  {{ Total1Dossier }} € </td>
+                              <td> {{ o.payer ? "Payé" : "a payer" }} </td>
+                            </tr>                          
+                        {% endfor %} 
+                        {% if devis.ouvertureDossiers.snapshot|length > 1 %}
+                            <tr>
+                                <th scope="row">Total</th>
+                                <td></td>
+                                <td></td>
+                                <td> {{ data.devis.totalOuvertureDeDossier ? data.devis.totalOuvertureDeDossier ~ " €" : " " }} </td>
+                            </tr>
+                            
+                        {% endif %}
+                    </tbody>
+                  </table>
+          {% endif %}

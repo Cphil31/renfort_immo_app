@@ -1,0 +1,44 @@
+{% if documents %}
+
+    <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Documents</th>
+      <th scope="col">Nom</th>
+      <th scope="col">Reglement</th>
+      <th scope="col">Coût</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for d in data.documents %}
+        {% set cout1Doc =  d.coutAchatDocument + d.coutDocumentCommande + d.coutDocumentProduit %}
+
+        <tr>
+            <th scope="row">{{ d.date | date("d/m/Y")}}</th>
+            <td>{{d.name}}</td>
+            <td>{{ d.payer ? "reglé" : " pas réglé"}}</td>
+            <td>{{ cout1Doc ? cout1Doc ~ " €" : 0 ~ " €"}}</td>
+            <td>
+              <a href={{ path( 'app_document_edit' , {'id' : d.id } )}} class="btn btn-success btn-sm">
+                modifier
+              </a>
+            </td>
+        </tr>
+        
+    {% endfor %}
+    {% if data.documents|length > 1 %}
+        <tr>
+            <th scope="row"></th>
+            <td></td>
+            <td></td>
+            <td>{{ data.totalDocuments ? data.totalDocuments ~ " €" }}</td>
+            <td></td>
+        </tr>
+    {% endif %}
+      
+   
+  </tbody>
+</table>
+    
+{% endif %}

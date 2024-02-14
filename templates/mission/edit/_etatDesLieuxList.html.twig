@@ -1,0 +1,18 @@
+{% if produit.etatDesLieuxes.snapshot %}
+    
+    <ul>
+        
+        {% for etat in produit.etatDesLieuxes.snapshot %}
+            <li>
+                {% if etat.statut %}
+                    {{ etat.statut.statut | capitalize}} : 
+                {% endif %}
+                {{ etat.observation | capitalize }}
+                </li>
+            {% endfor %}
+            </ul>
+            
+        {% endif %}
+        
+        {#
+#}

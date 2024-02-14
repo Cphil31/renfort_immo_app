@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Appels Reçus {% endblock %}
+
+{% block body %}
+    <h1>Appels Reçus </h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Contact</th>
+                <th>Mission</th>
+                <th>Objet</th>
+                <th>Appeller</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for appels_recu in appels_recuses %}
+    
+            <tr>
+                <td>{{ appels_recu.date ? appels_recu.date|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{appels_recu.contact.nom}} {{appels_recu.contact.prenom}}</td>
+                <td>{{appels_recu.mission.name}}</td>
+                <td>{{ appels_recu.objet }}</td>
+                <td>{{ appels_recu.appeller ? 'Yes' : 'No' }}</td>
+                <td>
+                    <a href="{{ path('app_appels_recus_show', {'id': appels_recu.id}) }}">show</a>
+                    <a href="{{ path('app_appels_recus_edit', {'id': appels_recu.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_appels_recus_new') }}">Create new</a>
+{% endblock %}

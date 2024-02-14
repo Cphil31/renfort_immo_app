@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}StatutEtatDesLieux{% endblock %}
+
+{% block body %}
+    <h1>StatutEtatDesLieux</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ statut_etat_des_lieux.id }}</td>
+            </tr>
+            <tr>
+                <th>Statut</th>
+                <td>{{ statut_etat_des_lieux.statut }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_statut_etat_des_lieux_index') }}">back to list</a>
+
+    <a href="{{ path('app_statut_etat_des_lieux_edit', {'id': statut_etat_des_lieux.id}) }}">edit</a>
+
+    {{ include('statut_etat_des_lieux/_delete_form.html.twig') }}
+{% endblock %}

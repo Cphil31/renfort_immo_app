@@ -1,0 +1,11 @@
+.gauche{
+display: flex;
+flex-direction: column;
+}
+.flex{
+    display: flex;
+    justify-content: space-between;
+}
+p{
+    font-size: 12px;
+}

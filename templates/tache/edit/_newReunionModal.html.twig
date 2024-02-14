@@ -1,0 +1,46 @@
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#newReunionModal">
+  Ajouter Réunion
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="newReunionModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Ajouter réunion</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+       {{ form_start(formReunion) }}
+        {{ form_label(formReunion.date, 'Date') }}
+        {{ form_widget(formReunion.date, {'attr': {'class': 'form-control'}}) }}
+        {{ form_label(formReunion.duree, 'Durée ') }}
+        {{ form_widget(formReunion.duree, {'attr': {'class': 'form-control'}}) }}
+        {{ form_label(formReunion.objet, 'objet') }}
+        {{ form_widget(formReunion.objet, {'attr': {'class': 'form-control'}}) }}
+        {{ form_label(formReunion.content, 'content') }}
+        {{ form_widget(formReunion.content, {'attr': {'class': 'form-control'}}) }}
+        {{ form_label(formReunion.coutLocationSalle, 'Coût location salle') }}
+        {{ form_widget(formReunion.coutLocationSalle, {'attr': {'class': 'form-control'}}) }}
+        {{ form_label(formReunion.CoutLocationMateriel, 'Coût location matériel') }}
+        {{ form_widget(formReunion.CoutLocationMateriel, {'attr': {'class': 'form-control'}}) }}
+        {{ form_label(formReunion.CoutRestauration, 'Coût de restauration') }}
+        {{ form_widget(formReunion.CoutRestauration, {'attr': {'class': 'form-control'}}) }}
+        {{ form_label(formReunion.coutCollation, 'Coût coutCollation ') }}
+        {{ form_widget(formReunion.coutCollation, {'attr': {'class': 'form-control'}}) }}
+        {{ form_label(formReunion.forfaitHoraire, 'forfait Horaire ') }}
+        {{ form_widget(formReunion.forfaitHoraire, {'attr': {'class': 'form-control'}}) }}
+        {{ form_label(formReunion.payer, 'payer ') }}
+        {{ form_widget(formReunion.payer) }}
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">fermer</button>
+        <button type="button submit" class="btn btn-primary btn-sm">Ajouter</button>
+       {{ form_end(formReunion) }}
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Button trigger modal -->
