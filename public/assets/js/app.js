@@ -1,6 +1,6 @@
 window.onload = function () {
 };
-    console.log(setInterval("date_heure()", 1000));
+    
     setInterval("date_heure()", 1000); //Actualisation de l'heure
 
 
