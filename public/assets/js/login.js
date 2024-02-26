@@ -1,5 +1,4 @@
-window.onload = function () {
-    const passwordField = document.querySelector('input[type="password"]');
+window.onload = function () {   
 
     const check = document.querySelector('input[type="checkbox"]');
 
