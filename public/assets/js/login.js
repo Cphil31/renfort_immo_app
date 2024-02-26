@@ -1,7 +1,6 @@
 window.onload = function () {
-    const passwordField = document.querySelector('input[type="password"]');
 
-    const check = document.querySelector('input[type="checkbox"]');
+    const passwordField = document.querySelector('input[type="password"]');
 
     const eye = document.querySelector('#basic-addon1');
     
