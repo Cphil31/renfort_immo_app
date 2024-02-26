@@ -13,6 +13,8 @@
       </div>
       <div class="modal-body">
         {{ form_start(formHist) }}
+        {{ form_label(formHist.created_At , 'Date')}}
+        {{ form_widget(formHist.created_At , {'attr': {'class': 'form-control'}})}}
         {{ form_label(formHist.title, 'Titre') }}
         {{ form_widget(formHist.title, {'attr': {'class': 'form-control'}}) }}
         {{ form_label(formHist.historique, 'Historique') }}

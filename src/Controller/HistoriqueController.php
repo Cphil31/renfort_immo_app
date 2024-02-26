@@ -6,6 +6,7 @@ use App\Entity\Historique;
 use App\Form\HistoriqueType;
 use App\Form\EditHistoriqueType;
 use App\Repository\HistoriqueRepository;
+use App\Form\EditHistoriqueContactPageType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -53,7 +54,7 @@ class HistoriqueController extends AbstractController
     public function edit(Request $request, Historique $historique, HistoriqueRepository $historiqueRepository): Response
     {
         
-        $form = $this->createForm(EditHistoriqueType::class, $historique);
+        $form = $this->createForm(EditHistoriqueContactPageType::class, $historique);
         $form->handleRequest($request);
         
         if ($form->isSubmitted() && $form->isValid()) {

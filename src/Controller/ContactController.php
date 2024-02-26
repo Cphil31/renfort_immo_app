@@ -13,6 +13,7 @@ use App\Form\AdresseType;
 use App\Form\ContactType;
 use App\Entity\Historique;
 use App\Form\AdresseContactType;
+use App\Form\EditHistoriqueContactPageType;
 use App\Repository\MailRepository;
 use App\Repository\NoteRepository;
 use App\Repository\AdresseRepository;
@@ -22,6 +23,7 @@ use App\Repository\HistoriqueRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/contact')]
@@ -149,10 +151,7 @@ class ContactController extends AbstractController
 
          //New historique
          $historique = new Historique();
-         $formHist = $this->createFormBuilder($historique)
-         ->add('title')
-         ->add('historique')
-         ->getForm();
+         $formHist = $this->createForm(EditHistoriqueContactPageType::class , $historique);
          $formHist->handleRequest($request);
         
          $today = new \DateTimeImmutable('now');
