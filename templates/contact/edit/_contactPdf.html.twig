@@ -1,21 +1,29 @@
 {{ include("contact/edit/contact_pdf/_style.html.twig") }}
+<style>
+    h1.titre{
+        margin-bottom: 40px;
+    }
+    p{
+        margin-bottom: 10px;
+    }
 
+</style>
 
 <div class="body relative">
 
     <h1 class="titre">Fiche contact</h1>
 
-
-    <p>
-        Nom : {{nom}}
-    </p>
-    <p>
-        Prenom : {{prenom}}
-    </p>
-
     <p>
         Référence : .....
     </p>
+
+    <h3>
+        Nom : {{nom}}
+    </h3>
+    <h3>
+        Prenom : {{prenom}}
+    </h3>
+
     <p>
         Statut : {{statut}}
     </p>
@@ -40,7 +48,7 @@
             {% endfor %}
         </ul>
         {% endif %}
-    </p>
+    </p>    
     <p>
         {% if telephones %}
         Téléphone(s) :

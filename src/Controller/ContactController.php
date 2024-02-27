@@ -229,12 +229,12 @@ class ContactController extends AbstractController
         // (Optional) Setup the paper size and orientation
         $dompdf->setPaper('A4', 'landscape');
         
+        ob_get_clean();
         // Render the HTML as PDF
         $dompdf->render();
-        ob_get_clean();
-        
+        $pdfTitre = "Fiche Contact : ".$contact->getNom()." ".$contact->getPrenom();
         // Output the generated PDF to Browser
-        $dompdf->stream('Fiche contact', ["Attachment" => false]);
+        $dompdf->stream($pdfTitre, ["Attachment" => false]);
         
         return $this->render('contact/edit/_contactPdf.html.twig', [
             'controller_name' => 'HomeController',

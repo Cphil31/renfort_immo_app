@@ -9,6 +9,8 @@
             </div>
             <div class="modal-body">
                 {{ form_start(form) }}
+                {{ form_label(form.created_At, 'Date') }}
+                {{ form_widget(form.created_At, {'attr': {'class': 'form-control'}}) }}
                 {{ form_label(form.title, 'Titre') }}
                 {{ form_widget(form.title, {'attr': {'class': 'form-control'}}) }}
                 {{ form_label(form.historique, 'historique') }}
